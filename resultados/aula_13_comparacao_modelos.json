@@ -1,0 +1,50 @@
+{
+    "aula": 13,
+    "objetivo": "classificacao educativa de doenca cardiaca",
+    "treino": 688,
+    "teste": 230,
+    "features": [
+        "Age",
+        "RestingBP",
+        "Cholesterol",
+        "FastingBS",
+        "MaxHR",
+        "ExerciseAngina",
+        "Oldpeak",
+        "ChestPainType_ASY",
+        "ChestPainType_ATA",
+        "ChestPainType_NAP",
+        "ChestPainType_TA",
+        "Sex_F",
+        "RestingECG_LVH",
+        "RestingECG_Normal",
+        "RestingECG_ST",
+        "ST_Slope_Down",
+        "ST_Slope_Up"
+    ],
+    "modelos": {
+        "Regressao Logistica": {
+            "acuracia": 0.8869565217391304,
+            "precisao": 0.8914728682170543,
+            "recall": 0.905511811023622,
+            "f1_score": 0.8984375,
+            "verdadeiros_negativos": 89,
+            "falsos_positivos": 14,
+            "falsos_negativos": 12,
+            "verdadeiros_positivos": 115
+        },
+        "KNN": {
+            "acuracia": 0.8391304347826087,
+            "precisao": 0.8515625,
+            "recall": 0.8582677165354331,
+            "f1_score": 0.8549019607843137,
+            "verdadeiros_negativos": 84,
+            "falsos_positivos": 19,
+            "falsos_negativos": 18,
+            "verdadeiros_positivos": 109
+        }
+    },
+    "observacao": "Resultados de demonstracao em dataset historico. Nao utilizar para diagnostico ou triagem clinica.",
+    "modelos_salvos": false,
+    "recursos_aws_criados": 0
+}

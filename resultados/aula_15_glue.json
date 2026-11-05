@@ -1,0 +1,27 @@
+{
+    "aula": 15,
+    "database": "hospital_db",
+    "table": "heart_raw",
+    "total_registros": 918,
+    "total_colunas": 12,
+    "crawler_local_executado": true,
+    "etl_executado_nesta_aula": false,
+    "etapas_etl": [
+        {
+            "etapa": "Extract",
+            "origem": "raw/heart.csv",
+            "situacao": "fonte identificada"
+        },
+        {
+            "etapa": "Transform",
+            "descricao": "limpeza e padronizacao",
+            "situacao": "planejada"
+        },
+        {
+            "etapa": "Load",
+            "destino": "processed/",
+            "situacao": "planejada"
+        }
+    ],
+    "recursos_aws_criados": 0
+}

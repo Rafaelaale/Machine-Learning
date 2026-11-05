@@ -1,0 +1,64 @@
+{
+    "aula": 8,
+    "modo": "simulacao_local",
+    "testes": [
+        {
+            "servico": "SageMaker",
+            "acao": "s3:GetObject",
+            "chave": "raw/heart.csv",
+            "permitido_na_politica": true,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "SageMaker",
+            "acao": "s3:PutObject",
+            "chave": "predictions/resultado.csv",
+            "permitido_na_politica": true,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "SageMaker",
+            "acao": "s3:DeleteObject",
+            "chave": "raw/heart.csv",
+            "permitido_na_politica": false,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "SageMaker",
+            "acao": "s3:PutObject",
+            "chave": "processed/dados.csv",
+            "permitido_na_politica": false,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "Glue",
+            "acao": "s3:GetObject",
+            "chave": "raw/heart.csv",
+            "permitido_na_politica": true,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "Glue",
+            "acao": "s3:PutObject",
+            "chave": "processed/heart_limpo.csv",
+            "permitido_na_politica": true,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "Glue",
+            "acao": "s3:DeleteObject",
+            "chave": "raw/heart.csv",
+            "permitido_na_politica": false,
+            "teste_aprovado": true
+        },
+        {
+            "servico": "Glue",
+            "acao": "s3:PutObject",
+            "chave": "predictions/resultado.csv",
+            "permitido_na_politica": false,
+            "teste_aprovado": true
+        }
+    ],
+    "total_aprovados": 8,
+    "recursos_aws_criados": 0
+}

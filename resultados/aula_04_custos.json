@@ -1,0 +1,10 @@
+{
+    "aula": 4,
+    "modo": "simulacao_local",
+    "moeda": "USD",
+    "glue": "0.440",
+    "athena": "0.0500",
+    "total_hipotetico": "0.4900",
+    "orcamento_real": "0.00",
+    "cobranca_real": false
+}

@@ -1,0 +1,66 @@
+{
+    "modo": "simulacao_local",
+    "database": "hospital_db",
+    "tables": {
+        "heart_raw": {
+            "database": "hospital_db",
+            "table": "heart_raw",
+            "formato": "csv",
+            "localizacao": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\s3_local\\hospital-dados\\raw\\heart.csv",
+            "s3_uri_ilustrativa": "s3://aws-alura-ds22-local/raw/heart.csv",
+            "registros": 918,
+            "colunas": [
+                {
+                    "nome": "Age",
+                    "tipo": "integer"
+                },
+                {
+                    "nome": "Sex",
+                    "tipo": "string"
+                },
+                {
+                    "nome": "ChestPainType",
+                    "tipo": "string"
+                },
+                {
+                    "nome": "RestingBP",
+                    "tipo": "integer"
+                },
+                {
+                    "nome": "Cholesterol",
+                    "tipo": "integer"
+                },
+                {
+                    "nome": "FastingBS",
+                    "tipo": "integer"
+                },
+                {
+                    "nome": "RestingECG",
+                    "tipo": "string"
+                },
+                {
+                    "nome": "MaxHR",
+                    "tipo": "integer"
+                },
+                {
+                    "nome": "ExerciseAngina",
+                    "tipo": "string"
+                },
+                {
+                    "nome": "Oldpeak",
+                    "tipo": "double"
+                },
+                {
+                    "nome": "ST_Slope",
+                    "tipo": "string"
+                },
+                {
+                    "nome": "HeartDisease",
+                    "tipo": "integer"
+                }
+            ],
+            "sha256": "948420b084d8a3a0ca42b8419fce9aee175879e43f8aedf712377899a67aa49b"
+        }
+    },
+    "aws_catalog_real": false
+}

@@ -1,0 +1,18 @@
+{
+    "aula": 18,
+    "ferramenta": "DuckDB",
+    "servico_aws_real": false,
+    "database_catalogado": "processed_data",
+    "tabela": "glue_heart",
+    "formato": "parquet",
+    "registros": 918,
+    "colunas": 7,
+    "distribuicao_alvo": {
+        "0": 410,
+        "1": 508
+    },
+    "colesterol_zero": 172,
+    "pressao_zero": 1,
+    "repeticoes_apos_selecao": 7,
+    "recursos_aws_criados": 0
+}

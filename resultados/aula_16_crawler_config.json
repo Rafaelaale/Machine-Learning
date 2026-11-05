@@ -1,0 +1,10 @@
+{
+    "crawler": "crawler-alura",
+    "database": "raw-data",
+    "fonte_local": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\s3_local\\hospital-dados\\raw",
+    "s3_uri_ilustrativa": "s3://aws-alura-ds22-local/raw/",
+    "agendamento": "ON_DEMAND",
+    "role_referencia": "Glue",
+    "modo": "simulacao_local",
+    "aws_crawler_real": false
+}

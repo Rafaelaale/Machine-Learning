@@ -1,0 +1,33 @@
+{
+    "aula": 5,
+    "projeto": "Predicao de doenca cardiaca",
+    "tipo_problema": "classificacao_binaria",
+    "ambiente": "local",
+    "servicos_aws_criados": 0,
+    "arquivos_encontrados": 1,
+    "analises": [
+        {
+            "arquivo": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\material_alura\\AWSCienciaDeDados-main\\dados\\heart.csv",
+            "registros": 918,
+            "colunas": [
+                "Age",
+                "Sex",
+                "ChestPainType",
+                "RestingBP",
+                "Cholesterol",
+                "FastingBS",
+                "RestingECG",
+                "MaxHR",
+                "ExerciseAngina",
+                "Oldpeak",
+                "ST_Slope",
+                "HeartDisease"
+            ],
+            "variavel_alvo": "HeartDisease",
+            "distribuicao_alvo": {
+                "0": 410,
+                "1": 508
+            }
+        }
+    ]
+}

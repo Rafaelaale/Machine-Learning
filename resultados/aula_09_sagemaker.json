@@ -1,0 +1,46 @@
+{
+    "aula": 9,
+    "servico_estudado": "Amazon SageMaker",
+    "modo": "local",
+    "python": "3.11.9",
+    "bibliotecas": {
+        "pandas": true,
+        "numpy": true,
+        "sklearn": true,
+        "matplotlib": true,
+        "joblib": true,
+        "jupyter": true
+    },
+    "dataset": {
+        "registros": 918,
+        "colunas": [
+            "Age",
+            "Sex",
+            "ChestPainType",
+            "RestingBP",
+            "Cholesterol",
+            "FastingBS",
+            "RestingECG",
+            "MaxHR",
+            "ExerciseAngina",
+            "Oldpeak",
+            "ST_Slope",
+            "HeartDisease"
+        ],
+        "classes": {
+            "0": 410,
+            "1": 508
+        },
+        "sha256": "948420b084d8a3a0ca42b8419fce9aee175879e43f8aedf712377899a67aa49b"
+    },
+    "etapas_ml": [
+        "Preparacao dos dados",
+        "Analise exploratoria",
+        "Treinamento",
+        "Avaliacao",
+        "Inferencia",
+        "Monitoramento"
+    ],
+    "modelos_treinados_nesta_aula": 0,
+    "recursos_aws_criados": 0
+}

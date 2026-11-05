@@ -1,0 +1,16 @@
+{
+    "aula": 16,
+    "crawler": "crawler-alura",
+    "database": "raw-data",
+    "agendamento": "ON_DEMAND",
+    "estado_local": "READY",
+    "ultima_execucao_local": "SUCESSO",
+    "executado_em_utc": "2026-11-05T15:06:51.760239+00:00",
+    "tabelas": [
+        "heart"
+    ],
+    "total_tabelas": 1,
+    "heart_registros": 918,
+    "heart_colunas": 12,
+    "recursos_aws_criados": 0
+}

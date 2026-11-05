@@ -1,0 +1,15 @@
+{
+    "aula": 6,
+    "modo": "local",
+    "bucket": "hospital-dados",
+    "key": "raw/heart.csv",
+    "registros": 918,
+    "sha256": "948420b084d8a3a0ca42b8419fce9aee175879e43f8aedf712377899a67aa49b",
+    "integridade": true,
+    "custo_aws": 0,
+    "areas": [
+        "raw",
+        "process",
+        "predictions"
+    ]
+}

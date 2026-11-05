@@ -1,0 +1,48 @@
+{
+    "database": "processed_data",
+    "tabela": "glue_heart",
+    "formato": "parquet",
+    "compressao": "snappy",
+    "localizacao_local": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\s3_local\\hospital-dados\\processed\\glue_heart\\heart_processed.parquet",
+    "s3_uri_ilustrativa": "s3://aws-alura-ds22-local/processed/glue_heart/heart_processed.parquet",
+    "registros": 918,
+    "colunas": [
+        {
+            "nome": "Age",
+            "tipo": "int64",
+            "nulos": 0
+        },
+        {
+            "nome": "Sex",
+            "tipo": "str",
+            "nulos": 0
+        },
+        {
+            "nome": "ChestPainType",
+            "tipo": "str",
+            "nulos": 0
+        },
+        {
+            "nome": "RestingBP",
+            "tipo": "int64",
+            "nulos": 0
+        },
+        {
+            "nome": "Cholesterol",
+            "tipo": "int64",
+            "nulos": 0
+        },
+        {
+            "nome": "FastingBS",
+            "tipo": "int64",
+            "nulos": 0
+        },
+        {
+            "nome": "HeartDisease",
+            "tipo": "int64",
+            "nulos": 0
+        }
+    ],
+    "sha256": "626f0a802ec885f46a09d59c1734cd700605bed796a14fce4398eb85feb10490",
+    "catalogo_aws_real": false
+}

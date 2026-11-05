@@ -1,0 +1,17 @@
+﻿{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LerDadosBrutos",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::aws-alura-ds22-local/raw/*"
+    },
+    {
+      "Sid": "GravarDadosTratados",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject"],
+      "Resource": "arn:aws:s3:::aws-alura-ds22-local/processed/*"
+    }
+  ]
+}

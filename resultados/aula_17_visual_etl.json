@@ -1,0 +1,35 @@
+{
+    "aula": 17,
+    "job": "glue_alura",
+    "executado_em_utc": "2026-11-05T15:10:26.649170+00:00",
+    "registros_origem": 918,
+    "duplicatas_removidas": 0,
+    "registros_destino": 918,
+    "colunas_origem": 12,
+    "colunas_destino": 7,
+    "colunas_mantidas": [
+        "Age",
+        "Sex",
+        "ChestPainType",
+        "RestingBP",
+        "Cholesterol",
+        "FastingBS",
+        "HeartDisease"
+    ],
+    "colunas_removidas": [
+        "MaxHR",
+        "ExerciseAngina",
+        "RestingECG",
+        "Oldpeak",
+        "ST_Slope"
+    ],
+    "colesterol_zero_preservado": 172,
+    "pressao_zero_preservada": 1,
+    "formato": "parquet",
+    "compressao": "snappy",
+    "database_destino": "processed_data",
+    "tabela_destino": "glue_heart",
+    "arquivo_destino": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\s3_local\\hospital-dados\\processed\\glue_heart\\heart_processed.parquet",
+    "parquet_sha256": "626f0a802ec885f46a09d59c1734cd700605bed796a14fce4398eb85feb10490",
+    "recursos_aws_criados": 0
+}

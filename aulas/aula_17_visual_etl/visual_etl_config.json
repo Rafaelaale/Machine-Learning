@@ -1,0 +1,42 @@
+{
+    "job": "glue_alura",
+    "modo": "simulacao_local",
+    "nodes": [
+        {
+            "nome": "Data Catalog",
+            "tipo": "source",
+            "database": "raw-data",
+            "table": "heart"
+        },
+        {
+            "nome": "Drop Duplicates",
+            "tipo": "transform"
+        },
+        {
+            "nome": "Change Schema",
+            "tipo": "transform",
+            "manter": [
+                "Age",
+                "Sex",
+                "ChestPainType",
+                "RestingBP",
+                "Cholesterol",
+                "FastingBS",
+                "HeartDisease"
+            ],
+            "remover": [
+                "MaxHR",
+                "ExerciseAngina",
+                "RestingECG",
+                "Oldpeak",
+                "ST_Slope"
+            ]
+        },
+        {
+            "nome": "Parquet Snappy",
+            "tipo": "target",
+            "database": "processed_data",
+            "table": "glue_heart"
+        }
+    ]
+}

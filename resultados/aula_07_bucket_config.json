@@ -1,0 +1,22 @@
+{
+    "nome_logico": "aws-alura-ds22-local",
+    "diretorio_local": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\s3_local\\hospital-dados",
+    "tipo": "general-purpose",
+    "regiao_referencia": "eu-north-1",
+    "acls_desabilitadas": true,
+    "block_public_access": {
+        "BlockPublicAcls": true,
+        "IgnorePublicAcls": true,
+        "BlockPublicPolicy": true,
+        "RestrictPublicBuckets": true
+    },
+    "versionamento": "Disabled",
+    "criptografia_referencia": "SSE-S3",
+    "pastas": [
+        "raw",
+        "processed",
+        "predictions"
+    ],
+    "modo": "simulacao_local",
+    "configuracoes_aws_aplicadas": false
+}

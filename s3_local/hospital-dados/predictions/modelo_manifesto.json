@@ -1,0 +1,61 @@
+{
+    "aula": 14,
+    "projeto": "Heart Disease",
+    "modo": "local",
+    "bucket_simulado": "aws-alura-ds22-local",
+    "prefixo": "predictions",
+    "modelo": "LogisticRegression",
+    "parametros": {
+        "max_iter": 1000,
+        "random_state": 42
+    },
+    "treinamento": 688,
+    "teste": 230,
+    "features": [
+        "Age",
+        "RestingBP",
+        "Cholesterol",
+        "FastingBS",
+        "MaxHR",
+        "ExerciseAngina",
+        "Oldpeak",
+        "ChestPainType_ASY",
+        "ChestPainType_ATA",
+        "ChestPainType_NAP",
+        "ChestPainType_TA",
+        "Sex_F",
+        "RestingECG_LVH",
+        "RestingECG_Normal",
+        "RestingECG_ST",
+        "ST_Slope_Down",
+        "ST_Slope_Up"
+    ],
+    "metricas": {
+        "acuracia": 0.8869565217391304,
+        "precisao": 0.8914728682170543,
+        "recall": 0.905511811023622,
+        "f1_score": 0.8984375
+    },
+    "matriz_confusao": [
+        [
+            89,
+            14
+        ],
+        [
+            12,
+            115
+        ]
+    ],
+    "falsos_negativos": 12,
+    "falsos_positivos": 14,
+    "verdadeiros_negativos": 89,
+    "verdadeiros_positivos": 115,
+    "sklearn_version": "1.9.1",
+    "modelo_sha256": "5697713b3336f392aac54e640f65f287cbc1fdbed6e88108c29c0108afd60c56",
+    "preprocessador_aula12": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\resultados\\aula_12_preprocessador.joblib",
+    "preprocessador_sha256": "68c2628a7e098b7651ebf35d660aff374e8d516408d9eb1e1b7dc95c394f3b2c",
+    "modelo_inclui_preprocessamento": false,
+    "recarregamento_validado": true,
+    "recursos_aws_criados": 0,
+    "uso_clinico_autorizado": false
+}

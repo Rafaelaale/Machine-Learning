@@ -1,0 +1,14 @@
+{
+    "aula": 7,
+    "bucket_simulado": "aws-alura-ds22-local",
+    "regiao": "eu-north-1",
+    "objeto": "raw/heart.csv",
+    "uri_s3_ilustrativa": "s3://aws-alura-ds22-local/raw/heart.csv",
+    "registros": 918,
+    "sha256": "948420b084d8a3a0ca42b8419fce9aee175879e43f8aedf712377899a67aa49b",
+    "raw_existe": true,
+    "processed_existe": true,
+    "predictions_existe": true,
+    "configuracao_aws_real": false,
+    "recursos_aws_criados": 0
+}

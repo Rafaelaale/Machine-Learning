@@ -1,0 +1,245 @@
+{
+    "aula": 19,
+    "ferramenta": "DuckDB",
+    "tabela": "processed_data.glue_heart",
+    "registros": 918,
+    "consultas_executadas": 8,
+    "resultados": {
+        "01_primeiros_registros": [
+            {
+                "Age": 40,
+                "Sex": "M",
+                "ChestPainType": "ATA",
+                "RestingBP": 140,
+                "Cholesterol": 289,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            },
+            {
+                "Age": 49,
+                "Sex": "F",
+                "ChestPainType": "NAP",
+                "RestingBP": 160,
+                "Cholesterol": 180,
+                "FastingBS": 0,
+                "HeartDisease": 1
+            },
+            {
+                "Age": 37,
+                "Sex": "M",
+                "ChestPainType": "ATA",
+                "RestingBP": 130,
+                "Cholesterol": 283,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            },
+            {
+                "Age": 48,
+                "Sex": "F",
+                "ChestPainType": "ASY",
+                "RestingBP": 138,
+                "Cholesterol": 214,
+                "FastingBS": 0,
+                "HeartDisease": 1
+            },
+            {
+                "Age": 54,
+                "Sex": "M",
+                "ChestPainType": "NAP",
+                "RestingBP": 150,
+                "Cholesterol": 195,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            },
+            {
+                "Age": 39,
+                "Sex": "M",
+                "ChestPainType": "NAP",
+                "RestingBP": 120,
+                "Cholesterol": 339,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            },
+            {
+                "Age": 45,
+                "Sex": "F",
+                "ChestPainType": "ATA",
+                "RestingBP": 130,
+                "Cholesterol": 237,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            },
+            {
+                "Age": 54,
+                "Sex": "M",
+                "ChestPainType": "ATA",
+                "RestingBP": 110,
+                "Cholesterol": 208,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            },
+            {
+                "Age": 37,
+                "Sex": "M",
+                "ChestPainType": "ASY",
+                "RestingBP": 140,
+                "Cholesterol": 207,
+                "FastingBS": 0,
+                "HeartDisease": 1
+            },
+            {
+                "Age": 48,
+                "Sex": "F",
+                "ChestPainType": "ATA",
+                "RestingBP": 120,
+                "Cholesterol": 284,
+                "FastingBS": 0,
+                "HeartDisease": 0
+            }
+        ],
+        "02_doenca_por_sexo": [
+            {
+                "Sex": "F",
+                "HeartDisease": 0,
+                "total_pacientes": 143
+            },
+            {
+                "Sex": "F",
+                "HeartDisease": 1,
+                "total_pacientes": 50
+            },
+            {
+                "Sex": "M",
+                "HeartDisease": 0,
+                "total_pacientes": 267
+            },
+            {
+                "Sex": "M",
+                "HeartDisease": 1,
+                "total_pacientes": 458
+            }
+        ],
+        "03_colesterol_por_classe": [
+            {
+                "HeartDisease": 0,
+                "media_colesterol": 238.77,
+                "max_colesterol": 564,
+                "registros_validos": 390
+            },
+            {
+                "HeartDisease": 1,
+                "media_colesterol": 251.06,
+                "max_colesterol": 603,
+                "registros_validos": 356
+            }
+        ],
+        "04_dor_no_peito": [
+            {
+                "ChestPainType": "ASY",
+                "HeartDisease": 0,
+                "total_pacientes": 96
+            },
+            {
+                "ChestPainType": "ASY",
+                "HeartDisease": 1,
+                "total_pacientes": 274
+            },
+            {
+                "ChestPainType": "ATA",
+                "HeartDisease": 0,
+                "total_pacientes": 145
+            },
+            {
+                "ChestPainType": "ATA",
+                "HeartDisease": 1,
+                "total_pacientes": 21
+            },
+            {
+                "ChestPainType": "NAP",
+                "HeartDisease": 0,
+                "total_pacientes": 123
+            },
+            {
+                "ChestPainType": "NAP",
+                "HeartDisease": 1,
+                "total_pacientes": 46
+            },
+            {
+                "ChestPainType": "TA",
+                "HeartDisease": 0,
+                "total_pacientes": 26
+            },
+            {
+                "ChestPainType": "TA",
+                "HeartDisease": 1,
+                "total_pacientes": 15
+            }
+        ],
+        "05_percentual_por_sexo": [
+            {
+                "Sex": "F",
+                "total_grupo": 193,
+                "casos_positivos": 50.0,
+                "percentual_positivo": 25.91
+            },
+            {
+                "Sex": "M",
+                "total_grupo": 725,
+                "casos_positivos": 458.0,
+                "percentual_positivo": 63.17
+            }
+        ],
+        "06_faixas_etarias": [
+            {
+                "faixa_etaria": "Abaixo de 40",
+                "total_pacientes": 80,
+                "casos_positivos": 26.0,
+                "percentual_positivo": 32.5
+            },
+            {
+                "faixa_etaria": "40 a 49",
+                "total_pacientes": 211,
+                "casos_positivos": 85.0,
+                "percentual_positivo": 40.28
+            },
+            {
+                "faixa_etaria": "50 a 59",
+                "total_pacientes": 374,
+                "casos_positivos": 212.0,
+                "percentual_positivo": 56.68
+            },
+            {
+                "faixa_etaria": "60 ou mais",
+                "total_pacientes": 253,
+                "casos_positivos": 185.0,
+                "percentual_positivo": 73.12
+            }
+        ],
+        "07_pressao_por_classe": [
+            {
+                "HeartDisease": 0,
+                "registros_validos": 410,
+                "media_pressao": 130.18,
+                "minima_pressao": 80,
+                "maxima_pressao": 190
+            },
+            {
+                "HeartDisease": 1,
+                "registros_validos": 507,
+                "media_pressao": 134.45,
+                "minima_pressao": 92,
+                "maxima_pressao": 200
+            }
+        ],
+        "08_qualidade_dados": [
+            {
+                "total_registros": 918,
+                "colesterol_zero": 172.0,
+                "pressao_zero": 1.0,
+                "repeticoes_sete_colunas": 7
+            }
+        ]
+    },
+    "observacao": "Analise descritiva de dataset historico. Associacoes nao demonstram causalidade nem fornecem estimativas clinicas individuais.",
+    "recursos_aws_criados": 0
+}

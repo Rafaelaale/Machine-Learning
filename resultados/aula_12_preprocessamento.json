@@ -1,0 +1,18 @@
+{
+    "aula": 12,
+    "modo": "local",
+    "treino": 688,
+    "teste": 230,
+    "colunas_features": 17,
+    "medianas_aprendidas_no_treino": {
+        "Cholesterol": 237.5,
+        "RestingBP": 130.0
+    },
+    "colunas_removidas": [
+        "Sex_M",
+        "ST_Slope_Flat"
+    ],
+    "escalonador_ajustado_somente_no_treino": true,
+    "colunas_treino_teste_identicas": true,
+    "custo_aws": 0
+}

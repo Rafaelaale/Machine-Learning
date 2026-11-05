@@ -1,0 +1,100 @@
+{
+  "aula": 11,
+  "dataset": "F:\\AWS-CIENCIA-DE-DADOS-SEGURANCA-CUSTOS\\s3_local\\hospital-dados\\raw\\heart.csv",
+  "total_registros": 918,
+  "colunas": [
+    "Age",
+    "Sex",
+    "ChestPainType",
+    "RestingBP",
+    "Cholesterol",
+    "FastingBS",
+    "RestingECG",
+    "MaxHR",
+    "ExerciseAngina",
+    "Oldpeak",
+    "ST_Slope",
+    "HeartDisease"
+  ],
+  "variavel_alvo": "HeartDisease",
+  "duplicatas": 0,
+  "valores_nulos": {
+    "Age": 0,
+    "Sex": 0,
+    "ChestPainType": 0,
+    "RestingBP": 0,
+    "Cholesterol": 0,
+    "FastingBS": 0,
+    "RestingECG": 0,
+    "MaxHR": 0,
+    "ExerciseAngina": 0,
+    "Oldpeak": 0,
+    "ST_Slope": 0,
+    "HeartDisease": 0
+  },
+  "zeros_investigados": {
+    "RestingBP": 1,
+    "Cholesterol": 172,
+    "Oldpeak": 368
+  },
+  "distribuicao_alvo": {
+    "0": 410,
+    "1": 508
+  },
+  "estatisticas_continuas": {
+    "Age": {
+      "count": 918.0,
+      "mean": 53.510893246187365,
+      "std": 9.43261650673201,
+      "min": 28.0,
+      "25%": 47.0,
+      "50%": 54.0,
+      "75%": 60.0,
+      "max": 77.0
+    },
+    "RestingBP": {
+      "count": 918.0,
+      "mean": 132.39651416122004,
+      "std": 18.5141541199078,
+      "min": 0.0,
+      "25%": 120.0,
+      "50%": 130.0,
+      "75%": 140.0,
+      "max": 200.0
+    },
+    "Cholesterol": {
+      "count": 918.0,
+      "mean": 198.7995642701525,
+      "std": 109.38414455220348,
+      "min": 0.0,
+      "25%": 173.25,
+      "50%": 223.0,
+      "75%": 267.0,
+      "max": 603.0
+    },
+    "MaxHR": {
+      "count": 918.0,
+      "mean": 136.80936819172112,
+      "std": 25.4603341382503,
+      "min": 60.0,
+      "25%": 120.0,
+      "50%": 138.0,
+      "75%": 156.0,
+      "max": 202.0
+    },
+    "Oldpeak": {
+      "count": 918.0,
+      "mean": 0.8873638344226579,
+      "std": 1.0665701510493257,
+      "min": -2.6,
+      "25%": 0.0,
+      "50%": 0.6,
+      "75%": 1.5,
+      "max": 6.2
+    }
+  },
+  "treino": 688,
+  "teste": 230,
+  "preprocessamento_aplicado": false,
+  "recursos_aws_criados": 0
+}
