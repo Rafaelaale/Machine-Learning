@@ -1,0 +1,16 @@
+﻿camada,database,nome_tabela,nome_coluna,camada_valida,database_formato_valido,database_camada_coerente,privacidade_preenchida,privacidade_valida,confidencialidade_preenchida,confidencialidade_valida,descricao_preenchida
+bz,bz_data_science,previsoes_de_venda_diario,data_referencia,True,True,True,True,True,False,False,True
+bz,bz_data_science,previsoes_de_venda_diario,produto_id,True,True,True,False,False,False,False,True
+bz,bz_data_science,previsoes_de_venda_diario,previsao_vendas,True,True,True,False,False,False,False,False
+bz,bz_data_science,previsoes_de_venda_diario,modelo_utilizado,True,True,True,False,False,True,True,False
+bz,bz_data_science,previsoes_de_venda_diario,intervalo_confianca,True,True,True,False,False,False,False,True
+sl,sl_data_science,sl_data_science_previsoes_de_venda,data_referencia,True,True,True,False,False,False,False,True
+sl,sl_data_science,sl_data_science_previsoes_de_venda,produto_id,True,True,True,False,False,False,False,True
+sl,sl_data_science,sl_data_science_previsoes_de_venda,previsao_corrigida,True,True,True,False,False,False,False,True
+sl,sl_data_science,sl_data_science_previsoes_de_venda,erro_estimado,True,True,True,False,False,False,False,True
+sl,sl_data_science,sl_data_science_previsoes_de_venda,versao_modelo,True,True,True,False,False,True,True,True
+gd,gd_novo_produto,previsoes_de_venda,data_referencia,True,True,True,False,False,False,False,False
+gd,gd_novo_produto,previsoes_de_venda,produto_id,True,True,True,False,False,False,False,False
+gd,gd_novo_produto,previsoes_de_venda,previsao_vendas,True,True,True,False,False,False,False,False
+gd,gd_novo_produto,previsoes_de_venda,acuracia_modelo,True,True,True,False,False,False,False,False
+gd,gd_novo_produto,previsoes_de_venda,tendencia,True,True,True,True,True,False,False,False

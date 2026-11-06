@@ -1,0 +1,45 @@
+{
+    "tipo": "tabela",
+    "name": "sl_data_science_previsoes_de_venda",
+    "database": "sl_data_science",
+    "descricao": "Tabela refinada contendo previsões de vendas ajustadas.",
+    "schema": [
+        {
+            "type": "coluna",
+            "name": "data_referencia",
+            "datatype": "date",
+            "descricao": "Data da referência da previsão"
+        },
+        {
+            "type": "coluna",
+            "name": "produto_id",
+            "datatype": "string",
+            "descricao": "Identificador único do produto"
+        },
+        {
+            "type": "coluna",
+            "name": "previsao_corrigida",
+            "datatype": "float",
+            "descricao": "Previsão após ajustes de qualidade."
+        },
+        {
+            "type": "coluna",
+            "name": "erro_estimado",
+            "datatype": "float",
+            "descricao": "Estimativa de erro do modelo"
+        },
+        {
+            "type": "coluna",
+            "name": "versao_modelo",
+            "datatype": "string",
+            "confidencialidade": "restrito",
+            "descricao": "Versão do modelo"
+        }
+    ],
+    "linhagem": [
+        {
+            "tipo": "origem",
+            "referencia": "bz_data_science.previsoes_de_venda_diario"
+        }
+    ]
+}

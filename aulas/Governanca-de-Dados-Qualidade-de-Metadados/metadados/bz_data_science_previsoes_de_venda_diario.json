@@ -1,0 +1,39 @@
+{
+    "tipo": "tabela",
+    "name": "previsoes_de_venda_diario",
+    "database": "bz_data_science",
+    "descricao": "Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.",
+    "schema": [
+        {
+            "type": "coluna",
+            "name": "data_referencia",
+            "datatype": "date",
+            "descricao": "Data da previsão",
+            "privacidade": "dado impessoal"
+        },
+        {
+            "type": "coluna",
+            "name": "produto_id",
+            "datatype": "string",
+            "descricao": "Identificador do produto"
+        },
+        {
+            "type": "coluna",
+            "name": "previsao_vendas",
+            "datatype": "float"
+        },
+        {
+            "type": "coluna",
+            "name": "modelo_utilizado",
+            "datatype": "string",
+            "confidencialidade": "confidencial"
+        },
+        {
+            "type": "coluna",
+            "name": "intervalo_confianca",
+            "datatype": "float",
+            "descricao": "Intervalo de confiança da previsão"
+        }
+    ],
+    "linhagem": []
+}

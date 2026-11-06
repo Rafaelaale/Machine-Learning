@@ -1,0 +1,16 @@
+﻿camada,database,nome_tabela,nome_coluna,descricao_coluna,quantidade_palavras,descricao_preenchida,revisao_sugerida,qualidade_semantica_validada
+bz,bz_data_science,previsoes_de_venda_diario,data_referencia,Data da previsão,3,True,Revisar contexto,False
+bz,bz_data_science,previsoes_de_venda_diario,produto_id,Identificador do produto,3,True,Revisar contexto,False
+bz,bz_data_science,previsoes_de_venda_diario,previsao_vendas,,0,False,Verificar ausencia,False
+bz,bz_data_science,previsoes_de_venda_diario,modelo_utilizado,,0,False,Verificar ausencia,False
+bz,bz_data_science,previsoes_de_venda_diario,intervalo_confianca,Intervalo de confiança da previsão,5,True,Validar com Data Owner,False
+sl,sl_data_science,sl_data_science_previsoes_de_venda,data_referencia,Data da referência da previsão,5,True,Validar com Data Owner,False
+sl,sl_data_science,sl_data_science_previsoes_de_venda,produto_id,Identificador único do produto,4,True,Validar com Data Owner,False
+sl,sl_data_science,sl_data_science_previsoes_de_venda,previsao_corrigida,Previsão após ajustes de qualidade.,5,True,Validar com Data Owner,False
+sl,sl_data_science,sl_data_science_previsoes_de_venda,erro_estimado,Estimativa de erro do modelo,5,True,Validar com Data Owner,False
+sl,sl_data_science,sl_data_science_previsoes_de_venda,versao_modelo,Versão do modelo,3,True,Revisar contexto,False
+gd,gd_novo_produto,previsoes_de_venda,data_referencia,,0,False,Verificar ausencia,False
+gd,gd_novo_produto,previsoes_de_venda,produto_id,,0,False,Verificar ausencia,False
+gd,gd_novo_produto,previsoes_de_venda,previsao_vendas,,0,False,Verificar ausencia,False
+gd,gd_novo_produto,previsoes_de_venda,acuracia_modelo,,0,False,Verificar ausencia,False
+gd,gd_novo_produto,previsoes_de_venda,tendencia,,0,False,Verificar ausencia,False

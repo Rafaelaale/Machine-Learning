@@ -1,0 +1,16 @@
+﻿camada,nome_tabela,nome_coluna,descricao_coluna,descricao_preenchida,quantidade_caracteres
+bz,previsoes_de_venda_diario,data_referencia,Data da previsão,True,16
+bz,previsoes_de_venda_diario,produto_id,Identificador do produto,True,24
+bz,previsoes_de_venda_diario,previsao_vendas,,False,0
+bz,previsoes_de_venda_diario,modelo_utilizado,,False,0
+bz,previsoes_de_venda_diario,intervalo_confianca,Intervalo de confiança da previsão,True,34
+sl,sl_data_science_previsoes_de_venda,data_referencia,Data da referência da previsão,True,30
+sl,sl_data_science_previsoes_de_venda,produto_id,Identificador único do produto,True,30
+sl,sl_data_science_previsoes_de_venda,previsao_corrigida,Previsão após ajustes de qualidade.,True,35
+sl,sl_data_science_previsoes_de_venda,erro_estimado,Estimativa de erro do modelo,True,28
+sl,sl_data_science_previsoes_de_venda,versao_modelo,Versão do modelo,True,16
+gd,previsoes_de_venda,data_referencia,,False,0
+gd,previsoes_de_venda,produto_id,,False,0
+gd,previsoes_de_venda,previsao_vendas,,False,0
+gd,previsoes_de_venda,acuracia_modelo,,False,0
+gd,previsoes_de_venda,tendencia,,False,0

@@ -1,0 +1,40 @@
+{
+    "tipo": "tabela",
+    "name": "previsoes_de_venda",
+    "database": "gd_novo_produto",
+    "descricao": "Projeções de desempenho futuro do novo produto.",
+    "schema": [
+        {
+            "type": "coluna",
+            "name": "data_referencia",
+            "datatype": "date"
+        },
+        {
+            "type": "coluna",
+            "name": "produto_id",
+            "datatype": "string"
+        },
+        {
+            "type": "coluna",
+            "name": "previsao_vendas",
+            "datatype": "float"
+        },
+        {
+            "type": "coluna",
+            "name": "acuracia_modelo",
+            "datatype": "float"
+        },
+        {
+            "type": "coluna",
+            "name": "tendencia",
+            "datatype": "string",
+            "privacidade": "dado impessoal"
+        }
+    ],
+    "linhagem": [
+        {
+            "tipo": "origem",
+            "referencia": "sl_data_science_previsoes_de_venda"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+﻿nome_tabela,database,camada,descricao_tabela,nome_coluna,datatype_coluna,descricao_coluna,privacidade_coluna,confidencialidade_coluna,tamanho_descricao
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,data_referencia,date,Data da previsão,dado impessoal,,3
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,produto_id,string,Identificador do produto,,,3
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,versao_modelo,string,Versão do modelo,,restrito,3

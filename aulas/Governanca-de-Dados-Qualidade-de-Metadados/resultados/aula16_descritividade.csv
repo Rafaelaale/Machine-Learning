@@ -1,0 +1,9 @@
+﻿nome_tabela,database,camada,descricao_tabela,nome_coluna,datatype_coluna,descricao_coluna,privacidade_coluna,confidencialidade_coluna,quantidade_palavras,quantidade_caracteres,indice_especificidade
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,data_referencia,date,Data da previsão,dado impessoal,,3,16,0.8989898989898991
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,produto_id,string,Identificador do produto,,,3,24,0.9191919191919192
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,intervalo_confianca,float,Intervalo de confiança da previsão,,,5,34,0.9212121212121213
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,data_referencia,date,Data da referência da previsão,,,5,30,0.9090909090909092
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,produto_id,string,Identificador único do produto,,,4,30,0.9318181818181819
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,previsao_corrigida,float,Previsão após ajustes de qualidade.,,,5,35,0.9393939393939394
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,erro_estimado,float,Estimativa de erro do modelo,,,5,28,0.9333333333333333
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,versao_modelo,string,Versão do modelo,,restrito,3,16,0.9292929292929294

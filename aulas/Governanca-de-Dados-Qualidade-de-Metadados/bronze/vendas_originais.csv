@@ -1,0 +1,8 @@
+id_venda,produto,quantidade,preco_unitario
+1,Cereal Infantil,10,12.5
+2,Cereal Infantil,15,12.5
+3,Cereal Chocolate,8,15.0
+3,Cereal Chocolate,8,15.0
+4,Cereal Infantil,-5,12.5
+5,Cereal Chocolate,20,15.0
+6,Cereal Infantil,12,12.5

@@ -1,0 +1,10 @@
+﻿campo,total_registros,preenchidos,ausentes,percentual_preenchido
+nome_tabela,15,15,0,100.0
+database,15,15,0,100.0
+camada,15,15,0,100.0
+descricao_tabela,15,15,0,100.0
+nome_coluna,15,15,0,100.0
+datatype_coluna,15,15,0,100.0
+descricao_coluna,15,8,7,53.33
+privacidade_coluna,15,2,13,13.33
+confidencialidade_coluna,15,2,13,13.33

@@ -1,0 +1,20 @@
+{
+    "camadas_validas": [
+        "bz",
+        "sl",
+        "gd"
+    ],
+    "privacidade_valida": [
+        "dado impessoal",
+        "dado pessoal",
+        "dado pessoal sensível"
+    ],
+    "confidencialidade_valida": [
+        "aberto",
+        "confidencial",
+        "restrito",
+        "segredo de mercado"
+    ],
+    "padrao_database": "^(bz|sl|gd)_[a-z0-9]+(?:_[a-z0-9]+)*$",
+    "descricao": "Regras propostas para avaliacao da qualidade dos metadados"
+}

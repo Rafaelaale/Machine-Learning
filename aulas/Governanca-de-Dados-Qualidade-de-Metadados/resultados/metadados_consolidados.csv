@@ -1,0 +1,16 @@
+﻿nome_tabela,database,camada,descricao_tabela,nome_coluna,datatype_coluna,descricao_coluna,privacidade_coluna,confidencialidade_coluna
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,data_referencia,date,Data da previsão,dado impessoal,
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,produto_id,string,Identificador do produto,,
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,previsao_vendas,float,,,
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,modelo_utilizado,string,,,confidencial
+previsoes_de_venda_diario,bz_data_science,bz,Previsões diárias de vendas geradas por modelos estatísticos ou de machine learning.,intervalo_confianca,float,Intervalo de confiança da previsão,,
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,data_referencia,date,Data da referência da previsão,,
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,produto_id,string,Identificador único do produto,,
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,previsao_corrigida,float,Previsão após ajustes de qualidade.,,
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,erro_estimado,float,Estimativa de erro do modelo,,
+sl_data_science_previsoes_de_venda,sl_data_science,sl,Tabela refinada contendo previsões de vendas ajustadas.,versao_modelo,string,Versão do modelo,,restrito
+previsoes_de_venda,gd_novo_produto,gd,Projeções de desempenho futuro do novo produto.,data_referencia,date,,,
+previsoes_de_venda,gd_novo_produto,gd,Projeções de desempenho futuro do novo produto.,produto_id,string,,,
+previsoes_de_venda,gd_novo_produto,gd,Projeções de desempenho futuro do novo produto.,previsao_vendas,float,,,
+previsoes_de_venda,gd_novo_produto,gd,Projeções de desempenho futuro do novo produto.,acuracia_modelo,float,,,
+previsoes_de_venda,gd_novo_produto,gd,Projeções de desempenho futuro do novo produto.,tendencia,string,,dado impessoal,
