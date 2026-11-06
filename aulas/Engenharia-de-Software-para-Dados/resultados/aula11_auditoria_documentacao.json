@@ -1,0 +1,17 @@
+{
+  "documentos": {
+    "total_esperado": 8,
+    "ausentes": [],
+    "vazios": [],
+    "aprovado": true
+  },
+  "links": {
+    "links_locais": 7,
+    "links_quebrados": [],
+    "aprovado": true
+  },
+  "resumo_executivo": {
+    "termos_ausentes": [],
+    "aprovado": true
+  }
+}

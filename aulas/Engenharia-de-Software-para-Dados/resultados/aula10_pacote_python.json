@@ -1,0 +1,32 @@
+{
+  "aula": 10,
+  "tema": "Convertendo notebooks em pacotes Python",
+  "pacote": "pre_processamento",
+  "versao": "0.1.0",
+  "amostra_ficticia": {
+    "entrada": "clientes_teste_aula10.csv",
+    "saida": "clientes_teste_aula10_processados.csv",
+    "linhas": 4,
+    "colunas_entrada": 13,
+    "colunas_saida": 21,
+    "nulos_churn": 1,
+    "fidelidade_criada": true,
+    "score_gasto_criado": true
+  },
+  "amostra_alura": {
+    "entrada": "dados_corretos2.csv",
+    "saida": "clientes_alura_aula10_processados.csv",
+    "linhas": 10000,
+    "colunas_entrada": 13,
+    "colunas_saida": 22,
+    "nulos_churn": 0,
+    "fidelidade_criada": true,
+    "score_gasto_criado": true
+  },
+  "limitacoes": [
+    "Os dados ficticios sao apenas demonstrativos.",
+    "Nenhum modelo de ML foi treinado nesta aula.",
+    "Valores desconhecidos de churn ficam ausentes.",
+    "Medianas e categorias ainda nao sao ajustadas separadamente em treino e teste."
+  ]
+}

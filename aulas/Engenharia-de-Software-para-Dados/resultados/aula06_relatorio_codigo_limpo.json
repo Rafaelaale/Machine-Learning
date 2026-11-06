@@ -1,0 +1,54 @@
+{
+    "aula": 6,
+    "tema": "Entendendo codigo limpo",
+    "referencia": "PEP 8 e principios de Clean Code",
+    "registros": 6,
+    "colunas": [
+        "pedido_id",
+        "quantidade_pedida",
+        "categoria",
+        "data_pedido",
+        "valor_compra",
+        "tempo_pedido_anos",
+        "valor_compra_normalizado"
+    ],
+    "ano_referencia": 2026,
+    "nulos_antes": {
+        "pedido_id": 0,
+        "quantidade_pedida": 2,
+        "categoria": 2,
+        "data_pedido": 0,
+        "valor_compra": 0
+    },
+    "nulos_depois": {
+        "pedido_id": 0,
+        "quantidade_pedida": 0,
+        "categoria": 0,
+        "data_pedido": 0,
+        "valor_compra": 0,
+        "tempo_pedido_anos": 0,
+        "valor_compra_normalizado": 0
+    },
+    "funcoes": [
+        "validar_colunas",
+        "preencher_valores_ausentes",
+        "calcular_tempo_do_pedido",
+        "normalizar_valor_da_compra",
+        "preprocessar_pedidos"
+    ],
+    "principios": [
+        "KISS",
+        "funcoes com responsabilidade clara",
+        "nomes descritivos",
+        "docstrings",
+        "type hints",
+        "tratamento de casos extremos",
+        "preservacao do DataFrame original"
+    ],
+    "limitacoes": [
+        "Dados de pedidos totalmente ficticios.",
+        "Nao foi treinado modelo de churn.",
+        "Normalizacao ajustada apenas para a demonstracao.",
+        "Em ML, ajustar o escalonamento somente no treino."
+    ]
+}

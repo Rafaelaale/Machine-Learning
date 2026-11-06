@@ -1,0 +1,66 @@
+{
+    "aula": 4,
+    "tema": "ML vs Software tradicional",
+    "tipo": "laboratorio didatico",
+    "treinamento": 8,
+    "teste": 4,
+    "software_tradicional": {
+        "amostras": 4,
+        "acertos": 4,
+        "acuracia": 1.0
+    },
+    "sistema_ml": {
+        "modelo": {
+            "algoritmo": "centroide_mais_proximo",
+            "atributos": [
+                "dias_sem_compra",
+                "reclamacoes_90d"
+            ],
+            "centroides": {
+                "0": [
+                    0.1875,
+                    0.08333333333333333
+                ],
+                "1": [
+                    0.7749999999999999,
+                    0.49999999999999994
+                ]
+            },
+            "amostras_treinamento": 8
+        },
+        "avaliacao": {
+            "amostras": 4,
+            "acertos": 4,
+            "acuracia": 1.0
+        }
+    },
+    "verificacao_esquema": {
+        "esquema_valido": false,
+        "colunas_ausentes": [
+            "reclamacoes_90d"
+        ]
+    },
+    "monitoramento": {
+        "media_referencia": 48.12,
+        "media_atual": 135.0,
+        "diferenca": 86.88,
+        "alerta": true
+    },
+    "etapas_sistema_ml": [
+        "definicao_do_problema",
+        "carregamento_dos_dados",
+        "validacao_do_esquema",
+        "separacao_treino_teste",
+        "treinamento",
+        "previsao",
+        "avaliacao",
+        "monitoramento_simulado"
+    ],
+    "limitacoes": [
+        "Dados e rotulos de churn ficticios.",
+        "Algoritmo simplificado de centroides.",
+        "Acuracia deste exemplo nao e evidência de desempenho em dados reais.",
+        "O alerta por media nao comprova drift estatistico.",
+        "Nenhum sistema foi colocado em producao."
+    ]
+}

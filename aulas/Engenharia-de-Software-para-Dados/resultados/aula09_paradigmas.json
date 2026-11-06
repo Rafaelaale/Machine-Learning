@@ -1,0 +1,19 @@
+{
+    "aula": 9,
+    "tema": "POO e programacao funcional",
+    "fonte": "CSV oficial da Alura",
+    "referencia": "2026-11-06",
+    "resultado": {
+        "total_clientes": 10000,
+        "clientes_em_risco": 894,
+        "clientes_sem_risco": 9106,
+        "percentual_risco": 8.94
+    },
+    "observacoes": [
+        "Classificacao baseada em regra didatica.",
+        "Nenhum modelo de ML foi treinado nesta aula.",
+        "Nenhuma notificacao real foi enviada.",
+        "Produto e primeira compra desconhecidos na entidade.",
+        "A base original foi preservada."
+    ]
+}

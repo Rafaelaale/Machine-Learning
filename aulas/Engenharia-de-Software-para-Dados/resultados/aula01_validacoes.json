@@ -1,0 +1,36 @@
+{
+    "aula": 1,
+    "curso": "Engenharia de software para dados",
+    "tema": "Importancia da engenharia em projetos de dados",
+    "gerado_em_utc": "2026-11-06T16:56:18.718576+00:00",
+    "casos_estudados": [
+        "Google Flu Trends",
+        "Amazon Hiring Tool",
+        "McDonald's - IA no drive-thru"
+    ],
+    "simulacoes": {
+        "mudanca_dados": {
+            "referencia": 0.12,
+            "atual": 0.35,
+            "diferenca": 0.23,
+            "alerta": true
+        },
+        "disparidade_grupos": {
+            "grupo_a": 0.8,
+            "grupo_b": 0.5,
+            "diferenca": 0.3,
+            "investigar": true
+        },
+        "robustez_voz": {
+            "confianca": 0.55,
+            "ruido": 0.7,
+            "acao": "SOLICITAR_CONFIRMACAO"
+        }
+    },
+    "limitacoes": [
+        "Todos os numeros sao inventados.",
+        "Nao foram usados dados dos casos reais.",
+        "Nao foi treinado modelo de ML.",
+        "Alertas requerem investigacao e contexto."
+    ]
+}

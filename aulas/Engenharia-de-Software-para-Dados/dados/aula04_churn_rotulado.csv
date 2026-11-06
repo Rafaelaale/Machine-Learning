@@ -1,0 +1,13 @@
+cliente_id,dias_sem_compra,reclamacoes_90d,churn,conjunto
+C001,10,0,0,treino
+C002,20,0,0,treino
+C003,15,1,0,treino
+C004,30,0,0,treino
+C005,75,1,1,treino
+C006,90,2,1,treino
+C007,65,2,1,treino
+C008,80,1,1,treino
+C009,12,0,0,teste
+C010,72,1,1,teste
+C011,40,0,0,teste
+C012,85,2,1,teste

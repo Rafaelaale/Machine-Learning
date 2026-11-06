@@ -1,0 +1,64 @@
+{
+  "aula": 14,
+  "tema": "Fluxo de Trabalho Colaborativo",
+  "comparacao": {
+    "gitflow": {
+      "id": "CHURN-014",
+      "estrategia": "gitflow",
+      "branch": "feature/preprocessamento",
+      "destino_producao": false,
+      "aprovada": true,
+      "impedimentos": [],
+      "alertas": [],
+      "cobertura_minima": 85.0,
+      "recall_minimo": null
+    },
+    "trunk": {
+      "id": "CHURN-014",
+      "estrategia": "trunk",
+      "branch": "feature/preprocessamento",
+      "destino_producao": false,
+      "aprovada": true,
+      "impedimentos": [],
+      "alertas": [],
+      "cobertura_minima": 90.0,
+      "recall_minimo": null
+    }
+  },
+  "falha_nos_testes": {
+    "id": "CHURN-015",
+    "estrategia": "trunk",
+    "branch": "fix/erro-dados",
+    "destino_producao": false,
+    "aprovada": false,
+    "impedimentos": [
+      "Testes automatizados falharam"
+    ],
+    "alertas": [],
+    "cobertura_minima": 90.0,
+    "recall_minimo": null
+  },
+  "modelo_para_producao": {
+    "id": "CHURN-016",
+    "estrategia": "trunk",
+    "branch": "feature/modelo-churn",
+    "destino_producao": true,
+    "aprovada": false,
+    "impedimentos": [
+      "Recall abaixo do criterio de negocio"
+    ],
+    "alertas": [],
+    "cobertura_minima": 90.0,
+    "recall_minimo": 0.6
+  },
+  "sugestoes": {
+    "entregas_frequentes": "trunk",
+    "releases_planejadas": "gitflow"
+  },
+  "observacoes": [
+    "Simulacoes sem comandos Git.",
+    "Limites de cobertura sao configuraveis.",
+    "Recall minimo de 0.60 e somente didatico.",
+    "Nenhum merge ou deploy foi realizado."
+  ]
+}

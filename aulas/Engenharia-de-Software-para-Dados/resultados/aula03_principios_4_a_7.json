@@ -1,0 +1,110 @@
+{
+    "aula": 3,
+    "curso": "Engenharia de software para dados",
+    "principios": [
+        "O que um produz, outros consomem",
+        "Esteja aberto para o futuro",
+        "Planeje com antecedencia",
+        "Pense antes de agir"
+    ],
+    "tipo": "laboratorio didatico",
+    "clientes_analisados": 8,
+    "catalogo": {
+        "P100": "Eletronicos",
+        "P200": "Livros",
+        "P300": "Vestuario"
+    },
+    "resultados": [
+        {
+            "cliente_id": "C001",
+            "produto_codigo": "P100",
+            "produto_nome": "Eletronicos",
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        },
+        {
+            "cliente_id": "C002",
+            "produto_codigo": "P100",
+            "produto_nome": "Eletronicos",
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C003",
+            "produto_codigo": "P200",
+            "produto_nome": "Livros",
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C004",
+            "produto_codigo": "P200",
+            "produto_nome": "Livros",
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C005",
+            "produto_codigo": "P300",
+            "produto_nome": "Vestuario",
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        },
+        {
+            "cliente_id": "C006",
+            "produto_codigo": "P300",
+            "produto_nome": "Vestuario",
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C007",
+            "produto_codigo": "P100",
+            "produto_nome": "Eletronicos",
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        },
+        {
+            "cliente_id": "C008",
+            "produto_codigo": "P200",
+            "produto_nome": "Livros",
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        }
+    ],
+    "resumo_por_produto": {
+        "P100": {
+            "total": 3,
+            "revisar": 1,
+            "normal": 2
+        },
+        "P200": {
+            "total": 3,
+            "revisar": 2,
+            "normal": 1
+        },
+        "P300": {
+            "total": 2,
+            "revisar": 1,
+            "normal": 1
+        }
+    },
+    "hipoteses": [
+        {
+            "limite_dias": 30,
+            "total": 8,
+            "clientes_para_revisao": 4,
+            "percentual_revisao": 50.0
+        },
+        {
+            "limite_dias": 60,
+            "total": 8,
+            "clientes_para_revisao": 4,
+            "percentual_revisao": 50.0
+        },
+        {
+            "limite_dias": 90,
+            "total": 8,
+            "clientes_para_revisao": 3,
+            "percentual_revisao": 37.5
+        }
+    ],
+    "limitacoes": [
+        "Clientes e produtos ficticios.",
+        "Nenhum modelo de ML foi treinado.",
+        "As regras nao estimam risco real de churn.",
+        "Nenhuma alteracao de producao foi realizada."
+    ]
+}

@@ -1,0 +1,96 @@
+{
+    "aula": 2,
+    "principios": [
+        "Razao de existir",
+        "KISS",
+        "Manter a visao"
+    ],
+    "arquitetura": {
+        "objetivo": "Identificar clientes ficticios que merecem uma revisao de relacionamento.",
+        "entrada": "dados/aula02_clientes_ficticios.csv",
+        "modulo": "src/aula02_churn.py",
+        "execucao": "aulas/aula02_principios_1_a_3.py",
+        "testes": "tests/test_aula02_principios.py",
+        "saida": "resultados/aula02_analise_churn.json",
+        "restricoes": [
+            "Usar apenas dados ficticios.",
+            "Nao calcular probabilidade de churn.",
+            "Nao substituir avaliacao humana.",
+            "Preservar regras simples e testaveis."
+        ]
+    },
+    "resumo": {
+        "total_clientes": 8,
+        "clientes_para_revisao": 4,
+        "acompanhamento_normal": 4,
+        "percentual_revisao": 50.0
+    },
+    "clientes": [
+        {
+            "cliente_id": "C001",
+            "dias_sem_compra": 15,
+            "compras_90d": 5,
+            "reclamacoes_90d": 0,
+            "valor_total": 1200.0,
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        },
+        {
+            "cliente_id": "C002",
+            "dias_sem_compra": 75,
+            "compras_90d": 0,
+            "reclamacoes_90d": 0,
+            "valor_total": 450.0,
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C003",
+            "dias_sem_compra": 10,
+            "compras_90d": 8,
+            "reclamacoes_90d": 2,
+            "valor_total": 2500.0,
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C004",
+            "dias_sem_compra": 90,
+            "compras_90d": 0,
+            "reclamacoes_90d": 1,
+            "valor_total": 800.0,
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C005",
+            "dias_sem_compra": 20,
+            "compras_90d": 3,
+            "reclamacoes_90d": 0,
+            "valor_total": 560.0,
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        },
+        {
+            "cliente_id": "C006",
+            "dias_sem_compra": 30,
+            "compras_90d": 2,
+            "reclamacoes_90d": 2,
+            "valor_total": 1400.0,
+            "classificacao": "REVISAR_RELACIONAMENTO"
+        },
+        {
+            "cliente_id": "C007",
+            "dias_sem_compra": 5,
+            "compras_90d": 12,
+            "reclamacoes_90d": 0,
+            "valor_total": 3200.0,
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        },
+        {
+            "cliente_id": "C008",
+            "dias_sem_compra": 65,
+            "compras_90d": 1,
+            "reclamacoes_90d": 0,
+            "valor_total": 970.0,
+            "classificacao": "ACOMPANHAMENTO_NORMAL"
+        }
+    ],
+    "tipo": "laboratorio didatico",
+    "observacao": "Classificacao por regras ficticias; nao e previsao estatistica de churn."
+}

@@ -1,0 +1,53 @@
+{
+    "aula": 7,
+    "tema": "Escrevendo codigo limpo",
+    "fonte": "Alura - Churn-antes/dados_corretos2.csv",
+    "pipeline": {
+        "registros_utilizados": 10000,
+        "registros_treino": 7500,
+        "registros_teste": 2500,
+        "atributos": [
+            "total_spent",
+            "num_orders",
+            "days_since_last_purchase"
+        ],
+        "distribuicao_churn": {
+            "0": 6980,
+            "1": 3020
+        },
+        "metricas": {
+            "0": {
+                "precision": 0.698,
+                "recall": 1.0,
+                "f1-score": 0.8221436984687868,
+                "support": 1745.0
+            },
+            "1": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 755.0
+            },
+            "accuracy": 0.698,
+            "macro avg": {
+                "precision": 0.349,
+                "recall": 0.5,
+                "f1-score": 0.4110718492343934,
+                "support": 2500.0
+            },
+            "weighted avg": {
+                "precision": 0.48720399999999997,
+                "recall": 0.698,
+                "f1-score": 0.5738563015312131,
+                "support": 2500.0
+            }
+        }
+    },
+    "observacoes": [
+        "O CSV oficial nao foi modificado.",
+        "Funcoes possuem responsabilidades separadas.",
+        "Divisao reproduzivel entre treino e teste.",
+        "Resultados representam apenas este dataset.",
+        "O codigo nao foi colocado em producao."
+    ]
+}

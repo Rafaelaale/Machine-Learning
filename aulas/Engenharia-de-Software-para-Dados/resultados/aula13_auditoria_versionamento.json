@@ -1,0 +1,67 @@
+{
+  "total_arquivos": 29,
+  "classificacao": {
+    "candidato": 18,
+    "revisar": 6,
+    "nao_publicar": 5
+  },
+  "exemplos_que_exigem_atencao": [
+    {
+      "arquivo": "__pycache__\\setup.cpython-314.pyc",
+      "status": "nao_publicar",
+      "motivo": "Ambiente ou cache local"
+    },
+    {
+      "arquivo": "src\\data\\carregamento.py",
+      "status": "revisar",
+      "motivo": "Dados, direitos de uso ou resultados"
+    },
+    {
+      "arquivo": "src\\tratamentos\\pre_processamento_churn_alura.egg-info\\PKG-INFO",
+      "status": "revisar",
+      "motivo": "Formato nao classificado"
+    },
+    {
+      "arquivo": "src\\tratamentos\\__pycache__\\setup.cpython-314.pyc",
+      "status": "nao_publicar",
+      "motivo": "Ambiente ou cache local"
+    },
+    {
+      "arquivo": "src\\tratamentos\\pre_processamento\\__pycache__\\core.cpython-314.pyc",
+      "status": "nao_publicar",
+      "motivo": "Ambiente ou cache local"
+    },
+    {
+      "arquivo": "src\\tratamentos\\pre_processamento\\__pycache__\\__init__.cpython-314.pyc",
+      "status": "nao_publicar",
+      "motivo": "Ambiente ou cache local"
+    },
+    {
+      "arquivo": "src\\data\\__pycache__\\carregamento.cpython-314.pyc",
+      "status": "nao_publicar",
+      "motivo": "Ambiente ou cache local"
+    },
+    {
+      "arquivo": "data\\processed\\clientes_alura_aula10_processados.csv",
+      "status": "revisar",
+      "motivo": "Dados, direitos de uso ou resultados"
+    },
+    {
+      "arquivo": "data\\processed\\clientes_teste_aula10_processados.csv",
+      "status": "revisar",
+      "motivo": "Dados, direitos de uso ou resultados"
+    },
+    {
+      "arquivo": "data\\raw\\clientes_teste_aula10.csv",
+      "status": "revisar",
+      "motivo": "Dados, direitos de uso ou resultados"
+    },
+    {
+      "arquivo": "data\\raw\\dados_corretos2.csv",
+      "status": "revisar",
+      "motivo": "Dados, direitos de uso ou resultados"
+    }
+  ],
+  "publicacao_realizada": false,
+  "nota": "Triagem preliminar. Nao inspeciona conteudo nem comprova seguranca ou direitos de uso."
+}

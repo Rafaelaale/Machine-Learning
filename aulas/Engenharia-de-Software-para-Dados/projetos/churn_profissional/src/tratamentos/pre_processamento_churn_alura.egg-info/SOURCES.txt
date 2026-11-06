@@ -1,0 +1,8 @@
+setup.py
+pre_processamento/__init__.py
+pre_processamento/core.py
+pre_processamento_churn_alura.egg-info/PKG-INFO
+pre_processamento_churn_alura.egg-info/SOURCES.txt
+pre_processamento_churn_alura.egg-info/dependency_links.txt
+pre_processamento_churn_alura.egg-info/requires.txt
+pre_processamento_churn_alura.egg-info/top_level.txt
