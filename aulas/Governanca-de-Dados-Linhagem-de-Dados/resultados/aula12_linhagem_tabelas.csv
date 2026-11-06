@@ -1,0 +1,8 @@
+﻿origem,destino,operacao,tipo,simulado
+sor_assinantes,sot_clientes_tratados,validacao de qualidade,tabela,False
+sot_clientes_tratados,spec_clientes_ativos,filtrar clientes ativos,tabela,False
+spec_clientes_ativos,spec_ativos_mais_6_meses,filtrar tempo de assinatura,tabela,False
+spec_ativos_mais_6_meses,spec_clientes_sp,filtrar estado SP,tabela,False
+spec_clientes_ativos,relatorio_regulatorio_ficticio,geracao de relatorio simulado,relatorio,True
+spec_clientes_ativos,dashboard_assinantes_ficticio,visualizacao de assinantes,dashboard,True
+spec_clientes_ativos,modelo_ml_retencao_ficticio,consumo analitico ilustrativo,modelo_ml,True

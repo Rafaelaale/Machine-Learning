@@ -1,0 +1,38 @@
+{
+    "aula": 4,
+    "tema": "Niveis de especializacao",
+    "data_referencia": "2026-11-06",
+    "camadas": [
+        {
+            "nivel": "SOR",
+            "ativo": "sor_assinantes",
+            "origem": null,
+            "transformacao": "Ingestao dos registros brutos"
+        },
+        {
+            "nivel": "SOT",
+            "ativo": "sot_clientes_tratados",
+            "origem": "sor_assinantes",
+            "transformacao": "Validacao de campos e remocao de registros invalidos ou duplicados"
+        },
+        {
+            "nivel": "SPEC",
+            "ativo": "spec_clientes_ativos",
+            "origem": "sot_clientes_tratados",
+            "transformacao": "Filtrar status ativo"
+        },
+        {
+            "nivel": "SPEC",
+            "ativo": "spec_ativos_mais_6_meses",
+            "origem": "spec_clientes_ativos",
+            "transformacao": "Filtrar inicio anterior a seis meses da data de referencia"
+        },
+        {
+            "nivel": "SPEC",
+            "ativo": "spec_clientes_sp",
+            "origem": "spec_ativos_mais_6_meses",
+            "transformacao": "Filtrar estado SP"
+        }
+    ],
+    "observacao": "Dados ficticios. Validacao de email simplificada. SOT preserva clientes validos de ambos os status; SPEC representa filtros de negocio."
+}

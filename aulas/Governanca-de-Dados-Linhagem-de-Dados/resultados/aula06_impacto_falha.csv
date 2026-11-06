@@ -1,0 +1,4 @@
+﻿base,quantidade_original,quantidade_com_falha,diferenca,clientes_ausentes
+spec_clientes_ativos,5,4,1,C001
+spec_ativos_mais_6_meses,3,2,1,C001
+spec_clientes_sp,2,1,1,C001

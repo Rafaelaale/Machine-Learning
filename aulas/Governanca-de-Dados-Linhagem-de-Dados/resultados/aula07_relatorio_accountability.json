@@ -1,0 +1,103 @@
+{
+    "aula": 7,
+    "tema": "Accountability",
+    "tipo": "auditoria didatica de metadados",
+    "gerado_em_utc": "2026-11-06T13:45:21.352680+00:00",
+    "fonte": "aula06_rastreabilidade.json",
+    "ativo_final": "spec_clientes_sp",
+    "ativo_com_falha": "spec_clientes_ativos",
+    "origens_e_transformacoes": [
+        {
+            "origem": "sor_assinantes",
+            "destino": "sot_clientes_tratados",
+            "operacao": "validacao de qualidade",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "sot_clientes_tratados",
+            "destino": "spec_clientes_ativos",
+            "operacao": "filtrar clientes ativos",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "spec_ativos_mais_6_meses",
+            "operacao": "filtrar tempo de assinatura",
+            "area_responsavel_exemplo": "Marketing"
+        },
+        {
+            "origem": "spec_ativos_mais_6_meses",
+            "destino": "spec_clientes_sp",
+            "operacao": "filtrar estado SP",
+            "area_responsavel_exemplo": "Marketing"
+        }
+    ],
+    "impacto_simulado": [
+        {
+            "base": "spec_clientes_ativos",
+            "quantidade_original": 5,
+            "quantidade_com_falha": 4,
+            "diferenca": 1,
+            "clientes_ausentes": "C001"
+        },
+        {
+            "base": "spec_ativos_mais_6_meses",
+            "quantidade_original": 3,
+            "quantidade_com_falha": 2,
+            "diferenca": 1,
+            "clientes_ausentes": "C001"
+        },
+        {
+            "base": "spec_clientes_sp",
+            "quantidade_original": 2,
+            "quantidade_com_falha": 1,
+            "diferenca": 1,
+            "clientes_ausentes": "C001"
+        }
+    ],
+    "responsabilidades": [
+        {
+            "ativo": "sot_clientes_tratados",
+            "origem": "sor_assinantes",
+            "operacao": "validacao de qualidade",
+            "area_indicada": "Engenharia de Dados",
+            "responsavel_formal_confirmado": false
+        },
+        {
+            "ativo": "spec_clientes_ativos",
+            "origem": "sot_clientes_tratados",
+            "operacao": "filtrar clientes ativos",
+            "area_indicada": "Engenharia de Dados",
+            "responsavel_formal_confirmado": false
+        },
+        {
+            "ativo": "spec_ativos_mais_6_meses",
+            "origem": "spec_clientes_ativos",
+            "operacao": "filtrar tempo de assinatura",
+            "area_indicada": "Marketing",
+            "responsavel_formal_confirmado": false
+        },
+        {
+            "ativo": "spec_clientes_sp",
+            "origem": "spec_ativos_mais_6_meses",
+            "operacao": "filtrar estado SP",
+            "area_indicada": "Marketing",
+            "responsavel_formal_confirmado": false
+        }
+    ],
+    "verificacoes": {
+        "origem_identificada": true,
+        "transformacoes_documentadas": true,
+        "impacto_documentado": true,
+        "cenario_identificado": true,
+        "responsavel_formal_confirmado": false,
+        "conformidade_legal_verificada": false,
+        "controles_de_privacidade_auditados": false
+    },
+    "limitacoes": [
+        "Dados e responsabilidades sao ficticios.",
+        "Nao foram auditados dados pessoais reais.",
+        "Nao foi realizada auditoria juridica.",
+        "A linhagem auxilia, mas nao garante conformidade legal."
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "aula": 5,
+    "tipo": "linhagem_por_tabela",
+    "relacoes": [
+        {
+            "origem": "precos_imoveis",
+            "destino": "vw_avaliacao_imobiliaria",
+            "relacao": "fornece precos por metro quadrado"
+        },
+        {
+            "origem": "transacoes_cartorio",
+            "destino": "vw_avaliacao_imobiliaria",
+            "relacao": "fornece negocios do mes atual"
+        },
+        {
+            "origem": "analises_anteriores",
+            "destino": "vw_avaliacao_imobiliaria",
+            "relacao": "fornece negocios do mes anterior"
+        }
+    ]
+}

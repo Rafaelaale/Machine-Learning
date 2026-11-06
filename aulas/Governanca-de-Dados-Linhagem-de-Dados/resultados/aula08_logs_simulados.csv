@@ -1,0 +1,4 @@
+﻿evento_id,data_hora_utc,identidade_ficticia,grupo,ativo,operacao,autorizado,resultado,tipo_registro
+E001,2026-11-06T10:00:00Z,usuario_teste_01,marketing,spec_ativos_mais_6_meses,SELECT,True,ACESSO_PERMITIDO,SIMULADO
+E002,2026-11-06T10:05:00Z,usuario_teste_02,engenharia_dados,spec_ativos_mais_6_meses,SELECT,True,ACESSO_PERMITIDO,SIMULADO
+E003,2026-11-06T10:10:00Z,usuario_teste_03,visitante,spec_ativos_mais_6_meses,SELECT,False,ACESSO_NEGADO,SIMULADO

@@ -1,0 +1,363 @@
+{
+    "aula": 12,
+    "tema": "Linhagem de dados na OpenMetadata",
+    "tipo": "laboratorio local didatico",
+    "ativo_analisado": "spec_clientes_ativos",
+    "upstream": [
+        {
+            "ativo": "sot_clientes_tratados",
+            "distancia": 1
+        },
+        {
+            "ativo": "sor_assinantes",
+            "distancia": 2
+        }
+    ],
+    "downstream": [
+        {
+            "ativo": "spec_ativos_mais_6_meses",
+            "distancia": 1
+        },
+        {
+            "ativo": "relatorio_regulatorio_ficticio",
+            "distancia": 1
+        },
+        {
+            "ativo": "dashboard_assinantes_ficticio",
+            "distancia": 1
+        },
+        {
+            "ativo": "modelo_ml_retencao_ficticio",
+            "distancia": 1
+        },
+        {
+            "ativo": "spec_clientes_sp",
+            "distancia": 2
+        }
+    ],
+    "linhagem_tabelas": [
+        {
+            "origem": "sor_assinantes",
+            "destino": "sot_clientes_tratados",
+            "operacao": "validacao de qualidade",
+            "tipo": "tabela",
+            "simulado": false
+        },
+        {
+            "origem": "sot_clientes_tratados",
+            "destino": "spec_clientes_ativos",
+            "operacao": "filtrar clientes ativos",
+            "tipo": "tabela",
+            "simulado": false
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "spec_ativos_mais_6_meses",
+            "operacao": "filtrar tempo de assinatura",
+            "tipo": "tabela",
+            "simulado": false
+        },
+        {
+            "origem": "spec_ativos_mais_6_meses",
+            "destino": "spec_clientes_sp",
+            "operacao": "filtrar estado SP",
+            "tipo": "tabela",
+            "simulado": false
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "relatorio_regulatorio_ficticio",
+            "operacao": "geracao de relatorio simulado",
+            "tipo": "relatorio",
+            "simulado": true
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "dashboard_assinantes_ficticio",
+            "operacao": "visualizacao de assinantes",
+            "tipo": "dashboard",
+            "simulado": true
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "modelo_ml_retencao_ficticio",
+            "operacao": "consumo analitico ilustrativo",
+            "tipo": "modelo_ml",
+            "simulado": true
+        }
+    ],
+    "esquemas_sqlite": {
+        "sor_assinantes": [
+            "registro_id",
+            "cliente_id",
+            "nome",
+            "email",
+            "estado",
+            "data_inicio",
+            "status"
+        ],
+        "sot_clientes_tratados": [
+            "cliente_id",
+            "nome",
+            "email",
+            "estado",
+            "data_inicio",
+            "status"
+        ],
+        "spec_clientes_ativos": [
+            "cliente_id",
+            "nome",
+            "email",
+            "estado",
+            "data_inicio",
+            "status"
+        ],
+        "spec_ativos_mais_6_meses": [
+            "cliente_id",
+            "nome",
+            "email",
+            "estado",
+            "data_inicio",
+            "status"
+        ],
+        "spec_clientes_sp": [
+            "cliente_id",
+            "nome",
+            "email",
+            "estado",
+            "data_inicio",
+            "status"
+        ]
+    },
+    "linhagem_colunas_candidata": [
+        {
+            "tabela_origem": "sor_assinantes",
+            "coluna_origem": "cliente_id",
+            "tabela_destino": "sot_clientes_tratados",
+            "coluna_destino": "cliente_id",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sor_assinantes",
+            "coluna_origem": "data_inicio",
+            "tabela_destino": "sot_clientes_tratados",
+            "coluna_destino": "data_inicio",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sor_assinantes",
+            "coluna_origem": "email",
+            "tabela_destino": "sot_clientes_tratados",
+            "coluna_destino": "email",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sor_assinantes",
+            "coluna_origem": "estado",
+            "tabela_destino": "sot_clientes_tratados",
+            "coluna_destino": "estado",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sor_assinantes",
+            "coluna_origem": "nome",
+            "tabela_destino": "sot_clientes_tratados",
+            "coluna_destino": "nome",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sor_assinantes",
+            "coluna_origem": "status",
+            "tabela_destino": "sot_clientes_tratados",
+            "coluna_destino": "status",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sot_clientes_tratados",
+            "coluna_origem": "cliente_id",
+            "tabela_destino": "spec_clientes_ativos",
+            "coluna_destino": "cliente_id",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sot_clientes_tratados",
+            "coluna_origem": "data_inicio",
+            "tabela_destino": "spec_clientes_ativos",
+            "coluna_destino": "data_inicio",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sot_clientes_tratados",
+            "coluna_origem": "email",
+            "tabela_destino": "spec_clientes_ativos",
+            "coluna_destino": "email",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sot_clientes_tratados",
+            "coluna_origem": "estado",
+            "tabela_destino": "spec_clientes_ativos",
+            "coluna_destino": "estado",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sot_clientes_tratados",
+            "coluna_origem": "nome",
+            "tabela_destino": "spec_clientes_ativos",
+            "coluna_destino": "nome",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "sot_clientes_tratados",
+            "coluna_origem": "status",
+            "tabela_destino": "spec_clientes_ativos",
+            "coluna_destino": "status",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_clientes_ativos",
+            "coluna_origem": "cliente_id",
+            "tabela_destino": "spec_ativos_mais_6_meses",
+            "coluna_destino": "cliente_id",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_clientes_ativos",
+            "coluna_origem": "data_inicio",
+            "tabela_destino": "spec_ativos_mais_6_meses",
+            "coluna_destino": "data_inicio",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_clientes_ativos",
+            "coluna_origem": "email",
+            "tabela_destino": "spec_ativos_mais_6_meses",
+            "coluna_destino": "email",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_clientes_ativos",
+            "coluna_origem": "estado",
+            "tabela_destino": "spec_ativos_mais_6_meses",
+            "coluna_destino": "estado",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_clientes_ativos",
+            "coluna_origem": "nome",
+            "tabela_destino": "spec_ativos_mais_6_meses",
+            "coluna_destino": "nome",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_clientes_ativos",
+            "coluna_origem": "status",
+            "tabela_destino": "spec_ativos_mais_6_meses",
+            "coluna_destino": "status",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_ativos_mais_6_meses",
+            "coluna_origem": "cliente_id",
+            "tabela_destino": "spec_clientes_sp",
+            "coluna_destino": "cliente_id",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_ativos_mais_6_meses",
+            "coluna_origem": "data_inicio",
+            "tabela_destino": "spec_clientes_sp",
+            "coluna_destino": "data_inicio",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_ativos_mais_6_meses",
+            "coluna_origem": "email",
+            "tabela_destino": "spec_clientes_sp",
+            "coluna_destino": "email",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_ativos_mais_6_meses",
+            "coluna_origem": "estado",
+            "tabela_destino": "spec_clientes_sp",
+            "coluna_destino": "estado",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_ativos_mais_6_meses",
+            "coluna_origem": "nome",
+            "tabela_destino": "spec_clientes_sp",
+            "coluna_destino": "nome",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        },
+        {
+            "tabela_origem": "spec_ativos_mais_6_meses",
+            "coluna_origem": "status",
+            "tabela_destino": "spec_clientes_sp",
+            "coluna_destino": "status",
+            "metodo": "correspondencia_nominal",
+            "validacao_sql": "PENDENTE"
+        }
+    ],
+    "analise_impacto": [
+        {
+            "ativo": "sot_clientes_tratados",
+            "distancia": 1
+        },
+        {
+            "ativo": "spec_clientes_ativos",
+            "distancia": 2
+        },
+        {
+            "ativo": "spec_ativos_mais_6_meses",
+            "distancia": 3
+        },
+        {
+            "ativo": "relatorio_regulatorio_ficticio",
+            "distancia": 3
+        },
+        {
+            "ativo": "dashboard_assinantes_ficticio",
+            "distancia": 3
+        },
+        {
+            "ativo": "modelo_ml_retencao_ficticio",
+            "distancia": 3
+        },
+        {
+            "ativo": "spec_clientes_sp",
+            "distancia": 4
+        }
+    ],
+    "observacoes": [
+        "Nao houve conexao com OpenMetadata.",
+        "Produtos regulatorios, de BI e ML foram acrescentados como exemplos ficticios.",
+        "O banco SQLite original nao foi modificado.",
+        "Dependencias por coluna foram inferidas por igualdade de nomes e requerem confirmacao das transformacoes SQL.",
+        "Dependencia nao significa impacto comprovado em um incidente real."
+    ]
+}

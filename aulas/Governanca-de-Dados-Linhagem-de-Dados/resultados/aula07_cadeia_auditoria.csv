@@ -1,0 +1,5 @@
+﻿origem,destino,operacao,area_responsavel_exemplo
+sor_assinantes,sot_clientes_tratados,validacao de qualidade,Engenharia de Dados
+sot_clientes_tratados,spec_clientes_ativos,filtrar clientes ativos,Engenharia de Dados
+spec_clientes_ativos,spec_ativos_mais_6_meses,filtrar tempo de assinatura,Marketing
+spec_ativos_mais_6_meses,spec_clientes_sp,filtrar estado SP,Marketing

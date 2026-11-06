@@ -1,0 +1,73 @@
+{
+    "aula": 6,
+    "tema": "Beneficios da linhagem de dados",
+    "data_referencia": "2026-11-06",
+    "cenario": "simulacao didatica de falha",
+    "banco_origem": "aula04_especializacao.sqlite3",
+    "ativo_com_falha": "spec_clientes_ativos",
+    "cliente_omitido": "C001",
+    "dependencias": [
+        {
+            "origem": "sor_assinantes",
+            "destino": "sot_clientes_tratados",
+            "operacao": "validacao de qualidade",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "sot_clientes_tratados",
+            "destino": "spec_clientes_ativos",
+            "operacao": "filtrar clientes ativos",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "spec_ativos_mais_6_meses",
+            "operacao": "filtrar tempo de assinatura",
+            "area_responsavel_exemplo": "Marketing"
+        },
+        {
+            "origem": "spec_ativos_mais_6_meses",
+            "destino": "spec_clientes_sp",
+            "operacao": "filtrar estado SP",
+            "area_responsavel_exemplo": "Marketing"
+        }
+    ],
+    "impacto": [
+        {
+            "base": "spec_clientes_ativos",
+            "quantidade_original": 5,
+            "quantidade_com_falha": 4,
+            "diferenca": 1,
+            "clientes_ausentes": "C001"
+        },
+        {
+            "base": "spec_ativos_mais_6_meses",
+            "quantidade_original": 3,
+            "quantidade_com_falha": 2,
+            "diferenca": 1,
+            "clientes_ausentes": "C001"
+        },
+        {
+            "base": "spec_clientes_sp",
+            "quantidade_original": 2,
+            "quantidade_com_falha": 1,
+            "diferenca": 1,
+            "clientes_ausentes": "C001"
+        }
+    ],
+    "beneficios": [
+        "eficiencia",
+        "transparencia",
+        "rastreabilidade",
+        "auditoria",
+        "visibilidade",
+        "atribuicao de responsabilidades"
+    ],
+    "observacoes": [
+        "O banco SQLite original nao foi modificado.",
+        "A falha foi simulada apenas em memoria.",
+        "O relatorio permite investigar o impacto.",
+        "Responsabilidades sao exemplos didaticos.",
+        "A linhagem apoia auditorias, mas nao garante conformidade por si so."
+    ]
+}

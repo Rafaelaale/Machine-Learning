@@ -1,0 +1,32 @@
+{
+    "aula": 3,
+    "titulo": "Como nascem novas bases",
+    "origem": {
+        "nome": "assinantes_cadastrados",
+        "tipo": "tabela SQLite",
+        "registros": 8
+    },
+    "transformacoes": [
+        {
+            "nome": "filtrar_ativos",
+            "criterio": "status = ativo",
+            "destino": "vw_clientes_ativos"
+        },
+        {
+            "nome": "filtrar_inativos",
+            "criterio": "status = inativo",
+            "destino": "vw_clientes_inativos"
+        },
+        {
+            "nome": "filtrar_cancelamentos_curtos",
+            "criterio": "assinantes cancelados apos 1 a 3 meses completos de calendario",
+            "destino": "vw_clientes_cancelamento_1_a_3_meses"
+        }
+    ],
+    "observacoes": [
+        "Dados inteiramente ficticios.",
+        "Meses completos definidos por diferenca de ano e mes, ajustada pelo dia do mes.",
+        "As tres bases derivadas sao VIEWs SQL, exportadas tambem para CSV.",
+        "A aula nao define uma regra operacional para calculo do periodo; a utilizada aqui e uma escolha didatica."
+    ]
+}

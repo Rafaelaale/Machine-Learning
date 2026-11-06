@@ -1,0 +1,136 @@
+{
+    "aula": 9,
+    "tema": "Incidentes de dados",
+    "tipo": "simulacao didatica",
+    "registrado_em_utc": "2026-11-06T13:51:55.435571+00:00",
+    "origem_incidente": "sor_assinantes",
+    "causa_simulada": "Omissao artificial do identificador C001",
+    "identificador_ficticio": "C001",
+    "relatorio_regulatorio": {
+        "nome": "relatorio_regulatorio_ficticio",
+        "carater": "ficticio",
+        "interrupcao": "simulada"
+    },
+    "dependencias": [
+        {
+            "origem": "sor_assinantes",
+            "destino": "sot_clientes_tratados",
+            "operacao": "validacao de qualidade",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "sot_clientes_tratados",
+            "destino": "spec_clientes_ativos",
+            "operacao": "filtrar clientes ativos",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "spec_ativos_mais_6_meses",
+            "operacao": "filtrar tempo de assinatura",
+            "area_responsavel_exemplo": "Marketing"
+        },
+        {
+            "origem": "spec_ativos_mais_6_meses",
+            "destino": "spec_clientes_sp",
+            "operacao": "filtrar estado SP",
+            "area_responsavel_exemplo": "Marketing"
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "relatorio_regulatorio_ficticio",
+            "operacao": "geracao de relatorio regulatorio simulado",
+            "area_responsavel_exemplo": "Prevencao a Lavagem de Dinheiro"
+        }
+    ],
+    "destinos_dependentes": [
+        "sot_clientes_tratados",
+        "spec_clientes_ativos",
+        "spec_ativos_mais_6_meses",
+        "relatorio_regulatorio_ficticio",
+        "spec_clientes_sp"
+    ],
+    "impacto": [
+        {
+            "ativo": "sor_assinantes",
+            "registros_originais": 9,
+            "registros_simulados": 8,
+            "diferenca": 1,
+            "status": "IMPACTADO"
+        },
+        {
+            "ativo": "sot_clientes_tratados",
+            "registros_originais": 7,
+            "registros_simulados": 6,
+            "diferenca": 1,
+            "status": "IMPACTADO"
+        },
+        {
+            "ativo": "spec_clientes_ativos",
+            "registros_originais": 5,
+            "registros_simulados": 4,
+            "diferenca": 1,
+            "status": "IMPACTADO"
+        },
+        {
+            "ativo": "spec_ativos_mais_6_meses",
+            "registros_originais": 3,
+            "registros_simulados": 2,
+            "diferenca": 1,
+            "status": "IMPACTADO"
+        },
+        {
+            "ativo": "spec_clientes_sp",
+            "registros_originais": 2,
+            "registros_simulados": 1,
+            "diferenca": 1,
+            "status": "IMPACTADO"
+        },
+        {
+            "ativo": "relatorio_regulatorio_ficticio",
+            "registros_originais": 5,
+            "registros_simulados": 4,
+            "diferenca": 1,
+            "status": "IMPACTADO"
+        }
+    ],
+    "plano_recuperacao": [
+        {
+            "etapa": 1,
+            "acao": "Registrar o incidente e seu impacto",
+            "status": "documentado no laboratorio"
+        },
+        {
+            "etapa": 2,
+            "acao": "Identificar a origem usando a linhagem",
+            "status": "identificada na simulacao"
+        },
+        {
+            "etapa": 3,
+            "acao": "Acionar a equipe responsavel pela SOR",
+            "status": "acao proposta, nao executada"
+        },
+        {
+            "etapa": 4,
+            "acao": "Corrigir a origem e reprocessar as bases",
+            "status": "acao proposta, nao executada"
+        },
+        {
+            "etapa": 5,
+            "acao": "Revalidar os dados e o relatorio",
+            "status": "acao proposta, nao executada"
+        },
+        {
+            "etapa": 6,
+            "acao": "Registrar evidencias e encerrar o incidente",
+            "status": "pendente de recuperacao real"
+        }
+    ],
+    "ressalvas": [
+        "Nenhum banco original foi modificado.",
+        "Nenhum orgao regulador foi contatado.",
+        "Nenhum reprocessamento real foi realizado.",
+        "A causa foi definida na simulacao; nao foi descoberta em incidente real.",
+        "A linhagem indica dependencias, mas nao prova sozinha a causa de incidentes reais."
+    ]
+}

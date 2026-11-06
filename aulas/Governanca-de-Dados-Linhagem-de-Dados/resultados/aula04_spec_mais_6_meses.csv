@@ -1,0 +1,4 @@
+﻿cliente_id,nome,email,estado,data_inicio,status
+C001,Ana,ana@exemplo.com,SP,2025-01-10,ativo
+C002,Bruno,bruno@exemplo.com,BA,2026-01-15,ativo
+C005,Eva,eva@exemplo.com,SP,2026-03-01,ativo

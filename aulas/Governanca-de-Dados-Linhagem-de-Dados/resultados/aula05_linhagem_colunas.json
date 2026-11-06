@@ -1,0 +1,62 @@
+{
+    "aula": 5,
+    "tipo": "linhagem_por_coluna",
+    "destino": "vw_avaliacao_imobiliaria",
+    "colunas": [
+        {
+            "coluna_destino": "cidade",
+            "origens": [
+                {
+                    "tabela": "transacoes_cartorio",
+                    "coluna": "cidade"
+                }
+            ],
+            "transformacao": "SELECT"
+        },
+        {
+            "coluna_destino": "preco_m2",
+            "origens": [
+                {
+                    "tabela": "precos_imoveis",
+                    "coluna": "preco_m2"
+                }
+            ],
+            "transformacao": "SELECT"
+        },
+        {
+            "coluna_destino": "negocios_mes_atual",
+            "origens": [
+                {
+                    "tabela": "transacoes_cartorio",
+                    "coluna": "negocios_mes_atual"
+                }
+            ],
+            "transformacao": "SELECT"
+        },
+        {
+            "coluna_destino": "negocios_mes_anterior",
+            "origens": [
+                {
+                    "tabela": "analises_anteriores",
+                    "coluna": "negocios_mes_anterior"
+                }
+            ],
+            "transformacao": "SELECT"
+        },
+        {
+            "coluna_destino": "variacao_pct",
+            "origens": [
+                {
+                    "tabela": "transacoes_cartorio",
+                    "coluna": "negocios_mes_atual"
+                },
+                {
+                    "tabela": "analises_anteriores",
+                    "coluna": "negocios_mes_anterior"
+                }
+            ],
+            "transformacao": "(atual - anterior) / anterior * 100; NULL se anterior = 0"
+        }
+    ],
+    "observacao": "Exemplo didatico com dados ficticios. Chaves de cidade tambem participam dos JOINs."
+}

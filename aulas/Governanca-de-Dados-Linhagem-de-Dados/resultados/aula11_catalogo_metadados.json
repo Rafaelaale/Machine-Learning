@@ -1,0 +1,82 @@
+{
+    "aula": 11,
+    "ferramenta_estudada": "OpenMetadata",
+    "tipo_laboratorio": "simulacao local em SQLite",
+    "base": "sor_assinantes",
+    "tecnologia": "SQLite",
+    "quantidade_registros": 10,
+    "colunas": [
+        {
+            "nome": "registro_id",
+            "tipo": "INTEGER",
+            "descricao": "Identificador do registro bruto",
+            "tags_didaticas": []
+        },
+        {
+            "nome": "cliente_id",
+            "tipo": "TEXT",
+            "descricao": "Identificador do cliente ficticio",
+            "tags_didaticas": [
+                "Identificador"
+            ]
+        },
+        {
+            "nome": "nome",
+            "tipo": "TEXT",
+            "descricao": "Nome do assinante",
+            "tags_didaticas": [
+                "DadoPessoal"
+            ]
+        },
+        {
+            "nome": "email",
+            "tipo": "TEXT",
+            "descricao": "Email do assinante",
+            "tags_didaticas": [
+                "DadoPessoal"
+            ]
+        },
+        {
+            "nome": "estado",
+            "tipo": "TEXT",
+            "descricao": "Unidade federativa cadastrada",
+            "tags_didaticas": []
+        },
+        {
+            "nome": "data_inicio",
+            "tipo": "TEXT",
+            "descricao": "Data de inicio da assinatura",
+            "tags_didaticas": []
+        },
+        {
+            "nome": "status",
+            "tipo": "TEXT",
+            "descricao": "Situacao da assinatura",
+            "tags_didaticas": []
+        }
+    ],
+    "linhagem_ilustrativa": [
+        {
+            "origem": "sor_assinantes",
+            "destino": "sot_clientes_tratados",
+            "transformacao": "tratamento de qualidade"
+        },
+        {
+            "origem": "sot_clientes_tratados",
+            "destino": "spec_clientes_ativos",
+            "transformacao": "filtro de clientes ativos"
+        }
+    ],
+    "consultas_exemplo": [
+        "SELECT * FROM sor_assinantes",
+        "SELECT COUNT(*) FROM sor_assinantes",
+        "SELECT status, COUNT(*) FROM sor_assinantes GROUP BY status"
+    ],
+    "observacoes": [
+        "Catalogo gerado localmente, sem API do OpenMetadata.",
+        "Dados de clientes inteiramente ficticios.",
+        "Tags de exemplo, sem classificacao juridica validada.",
+        "Mascaramento aplicado somente na amostra exportada.",
+        "Estatisticas calculadas sobre os registros ficticios."
+    ]
+}

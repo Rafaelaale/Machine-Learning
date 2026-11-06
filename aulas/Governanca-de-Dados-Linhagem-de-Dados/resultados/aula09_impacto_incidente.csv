@@ -1,0 +1,7 @@
+﻿ativo,registros_originais,registros_simulados,diferenca,status
+sor_assinantes,9,8,1,IMPACTADO
+sot_clientes_tratados,7,6,1,IMPACTADO
+spec_clientes_ativos,5,4,1,IMPACTADO
+spec_ativos_mais_6_meses,3,2,1,IMPACTADO
+spec_clientes_sp,2,1,1,IMPACTADO
+relatorio_regulatorio_ficticio,5,4,1,IMPACTADO

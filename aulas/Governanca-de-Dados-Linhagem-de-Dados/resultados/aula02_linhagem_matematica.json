@@ -1,0 +1,22 @@
+{
+    "aula": 2,
+    "equacao_simples": "V = Q(D)",
+    "equacao_multiplas_origens": "V = Q1(D1) + Q2(D2) + Q3(D3)",
+    "origens": {
+        "D1": "precos_imoveis",
+        "D2": "transacoes_cartorio",
+        "D3": "analises_anteriores"
+    },
+    "transformacoes": {
+        "Q1": "SELECT dos precos por m2",
+        "Q2": "GROUP BY e SUM de compras e vendas",
+        "Q3": "SELECT das analises anteriores",
+        "combinacao": [
+            "INNER JOIN pela cidade",
+            "Calculo do saldo das transacoes",
+            "Classificacao didatica ficticia"
+        ]
+    },
+    "destino": "vw_avaliacao_ativos",
+    "observacao": "Exercicio didatico com dados ficticios. Nao constitui recomendacao de investimento."
+}

@@ -1,0 +1,24 @@
+{
+  "aula": 10,
+  "nome": "Politica didatica de linhagem de dados",
+  "versao": "1.0",
+  "status": "proposta de laboratorio",
+  "objetivo": "Documentar origens, transformacoes e destinos dos ativos de dados.",
+  "responsavel_sugerido": "Engenharia de Dados",
+  "responsavel_formal_confirmado": false,
+  "capacitacao_necessaria": true,
+  "niveis": {
+    "SOR": "dispensada inicialmente da linhagem interna",
+    "SOT": "tabela",
+    "SPEC": "tabela"
+  },
+  "nivel_para_processos_regulatorios": "coluna",
+  "criterios": [
+    "SOR registra o sistema externo ou operacional de origem quando conhecido.",
+    "SOT deve documentar pelo menos uma dependencia de tabela.",
+    "SPEC deve documentar pelo menos uma dependencia de tabela.",
+    "Processos regulatorios devem documentar a linhagem por coluna.",
+    "A equipe deve conhecer a politica antes de sua aplicacao."
+  ],
+  "observacao": "Regras propostas para o exemplo do curso. Nao representam obrigacoes universais ou requisitos legais."
+}

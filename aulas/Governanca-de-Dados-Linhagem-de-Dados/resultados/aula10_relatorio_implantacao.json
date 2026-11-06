@@ -1,0 +1,85 @@
+{
+    "aula": 10,
+    "politica": "Politica didatica de linhagem de dados",
+    "total_ativos": 6,
+    "avaliacoes": [
+        {
+            "ativo": "sor_assinantes",
+            "camada": "SOR",
+            "regulatorio": false,
+            "origens": "",
+            "nivel_exigido": "dispensado",
+            "nivel_documentado": "nenhum",
+            "situacao": "DISPENSADO_NESTA_POLITICA"
+        },
+        {
+            "ativo": "sot_clientes_tratados",
+            "camada": "SOT",
+            "regulatorio": false,
+            "origens": "sor_assinantes",
+            "nivel_exigido": "tabela",
+            "nivel_documentado": "tabela",
+            "situacao": "ATENDE_POLITICA_DIDATICA"
+        },
+        {
+            "ativo": "spec_clientes_ativos",
+            "camada": "SPEC",
+            "regulatorio": false,
+            "origens": "sot_clientes_tratados",
+            "nivel_exigido": "tabela",
+            "nivel_documentado": "tabela",
+            "situacao": "ATENDE_POLITICA_DIDATICA"
+        },
+        {
+            "ativo": "spec_ativos_mais_6_meses",
+            "camada": "SPEC",
+            "regulatorio": false,
+            "origens": "spec_clientes_ativos",
+            "nivel_exigido": "tabela",
+            "nivel_documentado": "tabela",
+            "situacao": "ATENDE_POLITICA_DIDATICA"
+        },
+        {
+            "ativo": "spec_clientes_sp",
+            "camada": "SPEC",
+            "regulatorio": false,
+            "origens": "spec_ativos_mais_6_meses",
+            "nivel_exigido": "tabela",
+            "nivel_documentado": "tabela",
+            "situacao": "ATENDE_POLITICA_DIDATICA"
+        },
+        {
+            "ativo": "relatorio_regulatorio_ficticio",
+            "camada": "SPEC",
+            "regulatorio": true,
+            "origens": "spec_clientes_ativos",
+            "nivel_exigido": "coluna",
+            "nivel_documentado": "tabela",
+            "situacao": "PENDENTE_LINHAGEM_COLUNA"
+        }
+    ],
+    "pendencias": [
+        {
+            "ativo": "relatorio_regulatorio_ficticio",
+            "camada": "SPEC",
+            "regulatorio": true,
+            "origens": "spec_clientes_ativos",
+            "nivel_exigido": "coluna",
+            "nivel_documentado": "tabela",
+            "situacao": "PENDENTE_LINHAGEM_COLUNA"
+        }
+    ],
+    "recomendacoes": [
+        "Capacitar os engenheiros de dados.",
+        "Formalizar os responsaveis pelas bases.",
+        "Registrar a linhagem por tabela para SOT e SPEC.",
+        "Detalhar a linhagem por coluna nos processos regulatorios.",
+        "Revisar periodicamente a politica."
+    ],
+    "limitacoes": [
+        "Inventario e criterios didaticos.",
+        "Responsaveis formais nao confirmados.",
+        "Nenhuma conformidade legal certificada.",
+        "O relatorio regulatorio e ficticio."
+    ]
+}

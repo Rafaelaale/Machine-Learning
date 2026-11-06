@@ -1,0 +1,17 @@
+{
+    "aula": 1,
+    "tema": "Conhecendo a linhagem de dados",
+    "origens": [
+        "precos_de_imoveis_por_m2",
+        "compras_e_vendas_de_imoveis",
+        "analises_anteriores"
+    ],
+    "transformacoes": [
+        "Relacionamento pela cidade",
+        "Juncao das informacoes",
+        "Calculo compras menos vendas",
+        "Classificacao didatica ficticia"
+    ],
+    "destino": "avaliacao_didatica_de_ativos.csv",
+    "observacao": "Dados e classificacoes ficticios. Nao representam orientacao de investimento."
+}

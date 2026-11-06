@@ -1,0 +1,7 @@
+﻿ativo,camada,regulatorio,origens,nivel_exigido,nivel_documentado,situacao
+sor_assinantes,SOR,False,,dispensado,nenhum,DISPENSADO_NESTA_POLITICA
+sot_clientes_tratados,SOT,False,sor_assinantes,tabela,tabela,ATENDE_POLITICA_DIDATICA
+spec_clientes_ativos,SPEC,False,sot_clientes_tratados,tabela,tabela,ATENDE_POLITICA_DIDATICA
+spec_ativos_mais_6_meses,SPEC,False,spec_clientes_ativos,tabela,tabela,ATENDE_POLITICA_DIDATICA
+spec_clientes_sp,SPEC,False,spec_ativos_mais_6_meses,tabela,tabela,ATENDE_POLITICA_DIDATICA
+relatorio_regulatorio_ficticio,SPEC,True,spec_clientes_ativos,coluna,tabela,PENDENTE_LINHAGEM_COLUNA

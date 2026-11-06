@@ -1,0 +1,108 @@
+{
+    "aula": 8,
+    "tema": "Accountability by Design",
+    "tipo": "demonstracao didatica",
+    "fonte": "aula07_relatorio_accountability.json",
+    "catalogo": {
+        "ativo": "spec_ativos_mais_6_meses",
+        "origem": "sor_assinantes",
+        "colunas": [
+            "cliente_id",
+            "nome",
+            "email",
+            "estado",
+            "data_inicio",
+            "status"
+        ],
+        "contexto": "assinaturas de newsletter ficticias",
+        "possui_dados_relacionados_a_pessoas": true,
+        "identificacao_titular_por_registro": "nao verificada neste laboratorio",
+        "responsavel_formal": null,
+        "classificacao_privacidade_validada": false
+    },
+    "grupos_permissoes": {
+        "engenharia_dados": [
+            "sot_clientes_tratados",
+            "spec_ativos_mais_6_meses",
+            "spec_clientes_ativos"
+        ],
+        "marketing": [
+            "spec_ativos_mais_6_meses"
+        ],
+        "visitante": []
+    },
+    "linhagem": [
+        {
+            "origem": "sor_assinantes",
+            "destino": "sot_clientes_tratados",
+            "operacao": "validacao de qualidade",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "sot_clientes_tratados",
+            "destino": "spec_clientes_ativos",
+            "operacao": "filtrar clientes ativos",
+            "area_responsavel_exemplo": "Engenharia de Dados"
+        },
+        {
+            "origem": "spec_clientes_ativos",
+            "destino": "spec_ativos_mais_6_meses",
+            "operacao": "filtrar tempo de assinatura",
+            "area_responsavel_exemplo": "Marketing"
+        }
+    ],
+    "logs": [
+        {
+            "evento_id": "E001",
+            "data_hora_utc": "2026-11-06T10:00:00Z",
+            "identidade_ficticia": "usuario_teste_01",
+            "grupo": "marketing",
+            "ativo": "spec_ativos_mais_6_meses",
+            "operacao": "SELECT",
+            "autorizado": true,
+            "resultado": "ACESSO_PERMITIDO",
+            "tipo_registro": "SIMULADO"
+        },
+        {
+            "evento_id": "E002",
+            "data_hora_utc": "2026-11-06T10:05:00Z",
+            "identidade_ficticia": "usuario_teste_02",
+            "grupo": "engenharia_dados",
+            "ativo": "spec_ativos_mais_6_meses",
+            "operacao": "SELECT",
+            "autorizado": true,
+            "resultado": "ACESSO_PERMITIDO",
+            "tipo_registro": "SIMULADO"
+        },
+        {
+            "evento_id": "E003",
+            "data_hora_utc": "2026-11-06T10:10:00Z",
+            "identidade_ficticia": "usuario_teste_03",
+            "grupo": "visitante",
+            "ativo": "spec_ativos_mais_6_meses",
+            "operacao": "SELECT",
+            "autorizado": false,
+            "resultado": "ACESSO_NEGADO",
+            "tipo_registro": "SIMULADO"
+        }
+    ],
+    "verificacoes": {
+        "dados_identificados": true,
+        "origem_documentada": true,
+        "transformacoes_documentadas": true,
+        "regras_de_acesso_simuladas": true,
+        "logs_de_teste_disponiveis": true,
+        "logs_reais_de_acesso_disponiveis": false,
+        "responsavel_formal_confirmado": false,
+        "titulares_individualmente_verificados": false,
+        "conformidade_legal_auditada": false
+    },
+    "limitacoes": [
+        "Dados, identidades e acessos ficticios.",
+        "Permissoes apenas simuladas em Python.",
+        "Nao foram coletados logs de acesso reais.",
+        "A identidade de titulares nao foi auditada.",
+        "Responsaveis formais nao foram confirmados.",
+        "Nenhuma conformidade legal foi certificada."
+    ]
+}
