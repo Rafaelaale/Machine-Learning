@@ -1,0 +1,376 @@
+{
+  "data_auditoria": "2026-11-07T12:53:52",
+  "projeto": "C:\\Users\\rafal\\Desktop\\Series-Temporais-Python-ARIMA-SARIMAX",
+  "arquivos_verificados": 49,
+  "arquivos_aprovados": 29,
+  "arquivos_com_pendencias": 20,
+  "aulas": {
+    "Aula 02": {
+      "arquivos_esperados": 10,
+      "arquivos_ok": 1,
+      "pendencias": [
+        "src/preparacao_bikes.py",
+        "aulas/aula02_validacao_preparacao.py",
+        "tests/test_aula02_validacao_preparacao.py",
+        "anotacoes/aula02_validacao_preparacao.md",
+        "notebooks/01_validacao_ambiente.ipynb",
+        "notebooks/02_preparacao_bikes.ipynb",
+        "dados/bike_tratado.csv",
+        "graficos/demanda_bicicletas.html",
+        "resultados/aula02_validacao.json"
+      ],
+      "testes": {
+        "status": "NAO ENCONTRADOS",
+        "quantidade_arquivos": 0
+      }
+    },
+    "Aula 03": {
+      "arquivos_esperados": 12,
+      "arquivos_ok": 1,
+      "pendencias": [
+        "src/analise_exploratoria.py",
+        "aulas/aula03_analise_exploratoria.py",
+        "tests/test_aula03_analise_exploratoria.py",
+        "anotacoes/aula03_analise_exploratoria.md",
+        "notebooks/03_analise_exploratoria_temporal.ipynb",
+        "resultados/aula03_analise_exploratoria.json",
+        "graficos/01_demanda_horaria.html",
+        "graficos/02_demanda_diaria.html",
+        "graficos/03_media_por_hora.html",
+        "graficos/04_media_por_dia_semana.html",
+        "graficos/05_media_por_mes.html"
+      ],
+      "testes": {
+        "status": "NAO ENCONTRADOS",
+        "quantidade_arquivos": 0
+      }
+    },
+    "Aula 04": {
+      "arquivos_esperados": 10,
+      "arquivos_ok": 10,
+      "pendencias": [],
+      "testes": {
+        "status": "APROVADO",
+        "quantidade_arquivos": 1,
+        "log": "resultados\\auditoria_testes_aula04.txt"
+      }
+    },
+    "Aula 05": {
+      "arquivos_esperados": 7,
+      "arquivos_ok": 7,
+      "pendencias": [],
+      "testes": {
+        "status": "APROVADO",
+        "quantidade_arquivos": 1,
+        "log": "resultados\\auditoria_testes_aula05.txt"
+      }
+    },
+    "Aula 06": {
+      "arquivos_esperados": 10,
+      "arquivos_ok": 10,
+      "pendencias": [],
+      "testes": {
+        "status": "APROVADO",
+        "quantidade_arquivos": 1,
+        "log": "resultados\\auditoria_testes_aula06.txt"
+      }
+    }
+  },
+  "detalhes": [
+    {
+      "aula": "Aula 02",
+      "arquivo": "src/visual_utils.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "src/preparacao_bikes.py",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "aulas/aula02_validacao_preparacao.py",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "tests/test_aula02_validacao_preparacao.py",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "anotacoes/aula02_validacao_preparacao.md",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "notebooks/01_validacao_ambiente.ipynb",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "notebooks/02_preparacao_bikes.ipynb",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "dados/bike_tratado.csv",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "graficos/demanda_bicicletas.html",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 02",
+      "arquivo": "resultados/aula02_validacao.json",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "src/analise_exploratoria.py",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "aulas/aula03_analise_exploratoria.py",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "tests/test_aula03_analise_exploratoria.py",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "anotacoes/aula03_analise_exploratoria.md",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "notebooks/03_analise_exploratoria_temporal.ipynb",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "resultados/serie_diaria_bike.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "resultados/aula03_analise_exploratoria.json",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "graficos/01_demanda_horaria.html",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "graficos/02_demanda_diaria.html",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "graficos/03_media_por_hora.html",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "graficos/04_media_por_dia_semana.html",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 03",
+      "arquivo": "graficos/05_media_por_mes.html",
+      "status": "AUSENTE",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "src/aula04_decomposicao.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "aulas/aula04_decomposicao.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "tests/test_aula04_decomposicao.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "anotacoes/aula04_decomposicao.md",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "notebooks/04_tendencia_sazonalidade_ruido.ipynb",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "resultados/aula04_media_movel.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "resultados/aula04_componentes.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "resultados/aula04_decomposicao.json",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "graficos/aula04_media_movel.html",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 04",
+      "arquivo": "graficos/aula04_decomposicao.html",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "src/aula05_adf.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "aulas/aula05_adf.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "tests/test_aula05_adf.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "anotacoes/aula05_adf.md",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "notebooks/05_teste_adf.ipynb",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "resultados/resultados_adf_original.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 05",
+      "arquivo": "resultados/aula05_adf.json",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "src/aula06_diferenciacao.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "aulas/aula06_diferenciacao.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "tests/test_aula06_diferenciacao.py",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "anotacoes/aula06_diferenciacao.md",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "notebooks/06_diferenciacao_estacionariedade.ipynb",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "resultados/aula06_serie_diferenciada.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "resultados/aula06_adf_diferenciado.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "resultados/aula06_comparacao_adf.csv",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "resultados/aula06_diferenciacao.json",
+      "status": "OK",
+      "detalhe": ""
+    },
+    {
+      "aula": "Aula 06",
+      "arquivo": "graficos/aula06_original_vs_diferenciada.html",
+      "status": "OK",
+      "detalhe": ""
+    }
+  ],
+  "observacoes": []
+}

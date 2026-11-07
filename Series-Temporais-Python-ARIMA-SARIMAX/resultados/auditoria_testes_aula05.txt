@@ -1,0 +1,26 @@
+
+C:\Users\rafal\Desktop\Series-Temporais-Python-ARIMA-SARIMAX\src\aula05_adf.py:41: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  resultado = adfuller(valores, autolag="AIC")
+test_01_serie_carregada (test_aula05_adf.TestAula05.test_01_serie_carregada) ... ok
+test_02_demanda_presente (test_aula05_adf.TestAula05.test_02_demanda_presente) ... ok
+test_03_colunas_tabela (test_aula05_adf.TestAula05.test_03_colunas_tabela) ... ok
+test_04_estatistica_adf (test_aula05_adf.TestAula05.test_04_estatistica_adf) ... ok
+test_05_p_valor_valido (test_aula05_adf.TestAula05.test_05_p_valor_valido) ... ok
+test_06_lags (test_aula05_adf.TestAula05.test_06_lags) ... ok
+test_07_observacoes (test_aula05_adf.TestAula05.test_07_observacoes) ... ok
+test_08_valor_critico_1 (test_aula05_adf.TestAula05.test_08_valor_critico_1) ... ok
+test_09_valor_critico_5 (test_aula05_adf.TestAula05.test_09_valor_critico_5) ... ok
+test_10_valor_critico_10 (test_aula05_adf.TestAula05.test_10_valor_critico_10) ... ok
+test_11_sete_metricas (test_aula05_adf.TestAula05.test_11_sete_metricas) ... ok
+test_12_serie_com_nulos (test_aula05_adf.TestAula05.test_12_serie_com_nulos) ... C:\Users\rafal\Desktop\Series-Temporais-Python-ARIMA-SARIMAX\src\aula05_adf.py:41: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  resultado = adfuller(valores, autolag="AIC")
+ok
+test_13_serie_constante (test_aula05_adf.TestAula05.test_13_serie_constante) ... ok
+test_14_interpretacao (test_aula05_adf.TestAula05.test_14_interpretacao) ... ok
+test_15_interpretacao_limiar (test_aula05_adf.TestAula05.test_15_interpretacao_limiar) ... ok
+test_16_arquivos_salvos (test_aula05_adf.TestAula05.test_16_arquivos_salvos) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.025s
+
+OK

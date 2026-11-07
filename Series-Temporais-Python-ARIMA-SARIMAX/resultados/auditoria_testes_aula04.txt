@@ -1,0 +1,22 @@
+
+test_01_csv_original (test_aula04_decomposicao.TestAula04.test_01_csv_original) ... ok
+test_02_serie_diaria (test_aula04_decomposicao.TestAula04.test_02_serie_diaria) ... ok
+test_03_colunas (test_aula04_decomposicao.TestAula04.test_03_colunas) ... ok
+test_04_datas_datetime (test_aula04_decomposicao.TestAula04.test_04_datas_datetime) ... ok
+test_05_datas_ordenadas (test_aula04_decomposicao.TestAula04.test_05_datas_ordenadas) ... ok
+test_06_datas_unicas (test_aula04_decomposicao.TestAula04.test_06_datas_unicas) ... ok
+test_07_media_movel_primeiros_nan (test_aula04_decomposicao.TestAula04.test_07_media_movel_primeiros_nan) ... ok
+test_08_primeira_media (test_aula04_decomposicao.TestAula04.test_08_primeira_media) ... ok
+test_09_media_nao_e_previsao (test_aula04_decomposicao.TestAula04.test_09_media_nao_e_previsao) ... ok
+test_10_colunas_componentes (test_aula04_decomposicao.TestAula04.test_10_colunas_componentes) ... ok
+test_11_quantidade_componentes (test_aula04_decomposicao.TestAula04.test_11_quantidade_componentes) ... ok
+test_12_modelo_aditivo (test_aula04_decomposicao.TestAula04.test_12_modelo_aditivo) ... ok
+test_13_nans_nas_extremidades (test_aula04_decomposicao.TestAula04.test_13_nans_nas_extremidades) ... ok
+test_14_calendario (test_aula04_decomposicao.TestAula04.test_14_calendario) ... ok
+test_15_graficos (test_aula04_decomposicao.TestAula04.test_15_graficos) ... ok
+test_16_arquivos_gerados (test_aula04_decomposicao.TestAula04.test_16_arquivos_gerados) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.247s
+
+OK

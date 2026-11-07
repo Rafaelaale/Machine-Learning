@@ -1,0 +1,40 @@
+{
+  "aula": 15,
+  "modelo": "SARIMAX(1,1,1)x(1,0,1,7)",
+  "ordem": [
+    1,
+    1,
+    1
+  ],
+  "ordem_sazonal": [
+    1,
+    0,
+    1,
+    7
+  ],
+  "variaveis_externas": [
+    "temperatura_media",
+    "sensacao_termica_media",
+    "umidade_media",
+    "velocidade_vento_media",
+    "feriado",
+    "dia_util",
+    "dia_semana_1",
+    "dia_semana_2",
+    "dia_semana_3",
+    "dia_semana_4",
+    "dia_semana_5",
+    "dia_semana_6"
+  ],
+  "treino": 396,
+  "teste": 60,
+  "convergiu": true,
+  "avisos": [],
+  "mape_sarimax": 18.16574925161745,
+  "mape_baseline": 31.813722860400013,
+  "reducao_relativa_mape_vs_baseline_pct": 42.89964324097013,
+  "melhor_modelo_por_mape": "SARIMAX(1,1,1)x(1,0,1,7)",
+  "dias_ausentes": 263,
+  "observacao_calendario": "s=7 corresponde a sete observacoes, nao necessariamente sete dias.",
+  "limitacao": "Clima do teste historico ja conhecido. Previsao operacional depende de dados climaticos futuros disponiveis."
+}

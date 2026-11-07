@@ -1,0 +1,42 @@
+{
+  "aula": 7,
+  "tema": "ACF e PACF",
+  "serie": "demanda_diff",
+  "observacoes": 455,
+  "numero_lags": 30,
+  "metodo_pacf": "ywm",
+  "limite_referencia_aproximado": 0.0918862172639451,
+  "lags_acf_fora_faixa": [
+    1,
+    4,
+    9,
+    21,
+    22,
+    23,
+    29
+  ],
+  "lags_pacf_fora_faixa": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    17,
+    22,
+    24,
+    26,
+    28
+  ],
+  "intervalos_maiores_que_um_dia": 23,
+  "observacoes_metodologicas": [
+    "Lag zero nao deve ser usado na selecao de parametros.",
+    "A faixa de referencia 1.96/sqrt(n) e aproximada.",
+    "Lags significam observacoes anteriores.",
+    "Lacunas no calendario podem comprometer a leitura em dias.",
+    "ACF e PACF geram hipoteses de p e q, nao escolhem o melhor modelo."
+  ],
+  "modelo_arima_treinado": false
+}

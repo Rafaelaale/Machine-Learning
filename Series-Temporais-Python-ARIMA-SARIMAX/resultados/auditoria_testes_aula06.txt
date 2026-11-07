@@ -1,0 +1,26 @@
+
+C:\Users\rafal\Desktop\Series-Temporais-Python-ARIMA-SARIMAX\src\aula05_adf.py:41: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  resultado = adfuller(valores, autolag="AIC")
+C:\Users\rafal\Desktop\Series-Temporais-Python-ARIMA-SARIMAX\src\aula05_adf.py:41: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  resultado = adfuller(valores, autolag="AIC")
+test_01_coluna_diferenca (test_aula06_diferenciacao.TestAula06.test_01_coluna_diferenca) ... ok
+test_02_primeiro_nan (test_aula06_diferenciacao.TestAula06.test_02_primeiro_nan) ... ok
+test_03_uma_linha_removida (test_aula06_diferenciacao.TestAula06.test_03_uma_linha_removida) ... ok
+test_04_sem_nan_diferenciado (test_aula06_diferenciacao.TestAula06.test_04_sem_nan_diferenciado) ... ok
+test_05_primeira_diferenca (test_aula06_diferenciacao.TestAula06.test_05_primeira_diferenca) ... ok
+test_06_diferencas_manuais (test_aula06_diferenciacao.TestAula06.test_06_diferencas_manuais) ... ok
+test_07_soma_telescopica (test_aula06_diferenciacao.TestAula06.test_07_soma_telescopica) ... ok
+test_08_datas_ordenadas (test_aula06_diferenciacao.TestAula06.test_08_datas_ordenadas) ... ok
+test_09_intervalos_presentes (test_aula06_diferenciacao.TestAula06.test_09_intervalos_presentes) ... ok
+test_10_resultados_adf (test_aula06_diferenciacao.TestAula06.test_10_resultados_adf) ... ok
+test_11_duas_series_comparadas (test_aula06_diferenciacao.TestAula06.test_11_duas_series_comparadas) ... ok
+test_12_p_valores_validos (test_aula06_diferenciacao.TestAula06.test_12_p_valores_validos) ... ok
+test_13_decisoes_validas (test_aula06_diferenciacao.TestAula06.test_13_decisoes_validas) ... ok
+test_14_grafico_duas_series (test_aula06_diferenciacao.TestAula06.test_14_grafico_duas_series) ... ok
+test_15_csv_diferenciado (test_aula06_diferenciacao.TestAula06.test_15_csv_diferenciado) ... ok
+test_16_relatorios_e_grafico (test_aula06_diferenciacao.TestAula06.test_16_relatorios_e_grafico) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.178s
+
+OK

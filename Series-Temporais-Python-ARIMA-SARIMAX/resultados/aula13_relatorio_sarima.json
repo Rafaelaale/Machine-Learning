@@ -1,0 +1,57 @@
+{
+  "aula": 13,
+  "modelo": "SARIMA",
+  "ordem": [
+    1,
+    1,
+    1
+  ],
+  "ordem_sazonal": [
+    1,
+    0,
+    1,
+    7
+  ],
+  "observacoes_treino": 396,
+  "observacoes_teste": 60,
+  "convergiu": true,
+  "avisos_ajuste": [],
+  "aic": 6280.387705401498,
+  "bic": 6300.1668922488225,
+  "metricas_sarima": {
+    "modelo": "SARIMA(1,1,1)x(1,0,1,7)",
+    "MAE": 1775.684557546486,
+    "RMSE": 2077.5038792126,
+    "MAPE": 35.53058852069213
+  },
+  "melhor_modelo_por_mape": "Baseline",
+  "ranking_modelos": [
+    {
+      "modelo": "Baseline",
+      "MAE": 1585.1833333333334,
+      "RMSE": 1865.908942937284,
+      "MAPE": 31.813722860400013
+    },
+    {
+      "modelo": "ARIMA(1,1,1)",
+      "MAE": 1730.6497039849667,
+      "RMSE": 2031.357449344821,
+      "MAPE": 34.67906448369613
+    },
+    {
+      "modelo": "SARIMA(1,1,1)x(1,0,1,7)",
+      "MAE": 1775.684557546486,
+      "RMSE": 2077.5038792126,
+      "MAPE": 35.53058852069213
+    }
+  ],
+  "calendario": {
+    "datas_ausentes": 263,
+    "ciclo_sazonal": 7,
+    "ciclo_corresponde_a_semana_regular": false,
+    "interpretacao": "Com lacunas, s=7 representa sete observacoes anteriores, e nao necessariamente sete dias de calendario."
+  },
+  "variaveis_exogenas_utilizadas": false,
+  "modelo_salvo": "C:\\Users\\rafal\\Desktop\\Series-Temporais-Python-ARIMA-SARIMAX\\modelos\\aula13_sarima_111_1017.pkl",
+  "proxima_aula": "Introducao as variaveis exogenas para SARIMAX."
+}

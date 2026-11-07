@@ -1,0 +1,20 @@
+{
+  "aula": 4,
+  "assunto": "Tendencia, sazonalidade e ruido",
+  "periodo": 7,
+  "modelo_decomposicao": "aditivo",
+  "calendario": {
+    "dias_observados": 456,
+    "dias_no_calendario": 719,
+    "dias_sem_observacao": 263,
+    "primeiro_dia": "2011-01-01",
+    "ultimo_dia": "2012-12-19",
+    "calendario_diario_completo": false
+  },
+  "primeiras_medias_ausentes": 6,
+  "tendencia_ausente": 6,
+  "residuo_ausente": 6,
+  "erro_maximo_reconstrucao": 0.0,
+  "observacao": "Com lacunas no calendario, period=7 representa sete observacoes, nao uma sazonalidade semanal validada.",
+  "modelo_preditivo_treinado": false
+}

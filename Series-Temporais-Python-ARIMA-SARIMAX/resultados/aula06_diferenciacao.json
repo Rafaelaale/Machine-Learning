@@ -1,0 +1,15 @@
+{
+  "aula": 6,
+  "tema": "Diferenciacao e estacionariedade",
+  "ordem_diferenciacao": 1,
+  "linhas_originais": 456,
+  "linhas_diferenciadas": 455,
+  "intervalos_maiores_que_um_dia": 23,
+  "p_valor_original": 0.2854915020281234,
+  "p_valor_diferenciado": 1.2057220051150929e-21,
+  "nivel_significancia": 0.05,
+  "rejeita_h0_original": false,
+  "rejeita_h0_diferenciado": true,
+  "alerta_calendario": "diff() subtrai observacoes consecutivas na tabela. Se houver dias faltantes, algumas diferencas abrangem mais de um dia.",
+  "modelo_treinado": false
+}

@@ -1,0 +1,37 @@
+{
+  "aula": 10,
+  "titulo": "Criando baseline e treinando ARIMA",
+  "modelo": "ARIMA",
+  "ordem": [
+    1,
+    1,
+    1
+  ],
+  "treinamento_realizado": true,
+  "observacoes_treino": 396,
+  "observacoes_teste": 60,
+  "ultimo_valor_treino": 7333.0,
+  "baseline": "Repete o ultimo valor do treino em todo o periodo de teste.",
+  "previsoes_geradas": 60,
+  "arima_convergiu": true,
+  "aic": 6416.542383725671,
+  "bic": 6428.479041020375,
+  "diagnostico_calendario": {
+    "observacoes_totais": 456,
+    "observacoes_treino": 396,
+    "observacoes_teste": 60,
+    "data_inicial": "2011-01-01",
+    "data_final": "2012-12-19",
+    "inicio_treino": "2011-01-01",
+    "fim_treino": "2012-09-16",
+    "inicio_teste": "2012-09-17",
+    "fim_teste": "2012-12-19",
+    "dias_calendario_no_intervalo_total": 719,
+    "dias_ausentes_no_intervalo_total": 263,
+    "dias_calendario_cobertos_pelo_teste": 94,
+    "teste_pos_treino": true,
+    "observacao": "O teste tem 60 observacoes. Com lacunas na base, ele pode abranger mais de 60 dias de calendario."
+  },
+  "aviso": "Como ha possiveis dias ausentes, o modelo usa a ordem das observacoes e nao uma frequencia diaria regular. As previsoes sao alinhadas as datas observadas no conjunto de teste.",
+  "metricas_de_erro_calculadas": false
+}

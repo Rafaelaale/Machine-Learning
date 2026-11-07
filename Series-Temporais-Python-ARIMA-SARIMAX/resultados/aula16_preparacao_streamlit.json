@@ -1,0 +1,21 @@
+{
+  "aula": 16,
+  "titulo": "Preparando dados para aplicacao Streamlit",
+  "arquivos_aplicacao": {
+    "historico": "C:\\Users\\rafal\\Desktop\\Series-Temporais-Python-ARIMA-SARIMAX\\outputs\\tabelas\\serie_historica.csv",
+    "metricas": "C:\\Users\\rafal\\Desktop\\Series-Temporais-Python-ARIMA-SARIMAX\\outputs\\tabelas\\metricas.csv",
+    "previsoes": "C:\\Users\\rafal\\Desktop\\Series-Temporais-Python-ARIMA-SARIMAX\\outputs\\tabelas\\previsoes.csv",
+    "resumo": "C:\\Users\\rafal\\Desktop\\Series-Temporais-Python-ARIMA-SARIMAX\\outputs\\tabelas\\resumo_projeto.csv"
+  },
+  "melhor_modelo_por_mape": "SARIMAX(1,1,1)x(1,0,1,7)",
+  "mae_melhor_modelo": 909.0046524643527,
+  "rmse_melhor_modelo": 1093.524944088988,
+  "mape_melhor_modelo": 18.16574925161745,
+  "observacoes_historico": 456,
+  "observacoes_teste": 60,
+  "dias_calendario_ausentes": 263,
+  "sarimax_convergiu": true,
+  "modelos_treinados_novamente": false,
+  "limitacao": "A avaliacao SARIMAX utilizou clima historico observado durante o teste. Previsoes futuras exigem dados exogenos futuros disponiveis.",
+  "proxima_aula": "Construir app.py com Streamlit"
+}

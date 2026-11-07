@@ -1,0 +1,2 @@
+﻿modelo_final,MAE,RMSE,MAPE,inicio_historico,fim_historico,dias_historico,dias_teste
+"SARIMAX(1,1,1)x(1,0,1,7)",909.0046524643527,1093.524944088988,18.16574925161745,2011-01-01,2012-12-19,456,60

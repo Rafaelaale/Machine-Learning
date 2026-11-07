@@ -1,0 +1,29 @@
+{
+  "aula": 5,
+  "tema": "Teste ADF de estacionariedade",
+  "serie": "demanda diaria observada",
+  "quantidade_dias_observados": 456,
+  "estatistica_adf": -2.002469176220278,
+  "p_valor": 0.2854915020281234,
+  "lags_utilizados": 9,
+  "observacoes_teste": 446,
+  "interpretacao": {
+    "p_valor": 0.2854915020281234,
+    "alfa": 0.05,
+    "decisao": "Nao rejeitar H0",
+    "interpretacao": "Nao ha evidencia suficiente para rejeitar a hipotese de raiz unitaria.",
+    "evidencia_estacionariedade": false,
+    "alerta": "O ADF testa raiz unitaria sob suas hipoteses; nao demonstra sozinho todas as propriedades de estacionariedade."
+  },
+  "calendario": {
+    "dias_observados": 456,
+    "dias_no_calendario": 719,
+    "dias_sem_observacao": 263,
+    "primeiro_dia": "2011-01-01",
+    "ultimo_dia": "2012-12-19",
+    "calendario_diario_completo": false
+  },
+  "componentes_copiados": true,
+  "diferenciacao_aplicada": false,
+  "modelo_treinado": false
+}

@@ -1,0 +1,73 @@
+{
+  "aula": 8,
+  "titulo": "Conectando ACF e PACF ao ARIMA",
+  "parametros_iniciais": [
+    {
+      "parametro": "p",
+      "ideia": "Memória dos valores passados",
+      "Ponto de partida": "Avaliar pela PACF"
+    },
+    {
+      "parametro": "d",
+      "ideia": "Número de diferenciações",
+      "Ponto de partida": "1"
+    },
+    {
+      "parametro": "q",
+      "ideia": "Memória dos erros passados",
+      "Ponto de partida": "Avaliar pela ACF"
+    }
+  ],
+  "componentes": {
+    "AR": {
+      "nome": "Autoregressive",
+      "conceito": "Utiliza valores passados da própria série para explicar valores atuais.",
+      "parametro": "p",
+      "referencia": "PACF"
+    },
+    "MA": {
+      "nome": "Moving Average",
+      "conceito": "Utiliza erros passados do modelo. Não é a média móvel de suavização.",
+      "parametro": "q",
+      "referencia": "ACF"
+    },
+    "ARMA": {
+      "nome": "Autoregressive Moving Average",
+      "conceito": "Combina valores passados da série e erros passados do modelo.",
+      "componentes": [
+        "AR",
+        "MA"
+      ]
+    },
+    "ARIMA": {
+      "nome": "Autoregressive Integrated Moving Average",
+      "conceito": "Combina autorregressão, diferenciação e média móvel dos erros.",
+      "parametros": [
+        "p",
+        "d",
+        "q"
+      ]
+    }
+  },
+  "evidencias_anteriores": {
+    "acf_pacf_disponivel": true,
+    "adf_disponivel": true,
+    "p_valor_original": 0.2854915020281234,
+    "p_valor_diferenciado": 1.2057220051150929e-21,
+    "d_inicial": 1,
+    "p_definitivo": null,
+    "q_definitivo": null,
+    "lags_disponiveis": 30,
+    "rejeita_h0_original": false,
+    "rejeita_h0_diferenciado": true
+  },
+  "interpretacao": "PACF ajuda a investigar p; ACF ajuda a investigar q; d=1 e um ponto de partida associado a primeira diferenciacao.",
+  "cuidados": [
+    "ACF e PACF nao escolhem automaticamente o modelo.",
+    "O parametro d=1 ainda deve ser avaliado na modelagem.",
+    "Lacunas de calendario exigem cuidado com os lags.",
+    "Treino e teste devem respeitar a ordem temporal."
+  ],
+  "modelo_treinado": false,
+  "previsoes_geradas": false
+}

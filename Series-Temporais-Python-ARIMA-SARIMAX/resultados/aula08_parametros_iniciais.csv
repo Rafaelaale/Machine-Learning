@@ -1,0 +1,4 @@
+﻿parametro,ideia,Ponto de partida
+p,Memória dos valores passados,Avaliar pela PACF
+d,Número de diferenciações,1
+q,Memória dos erros passados,Avaliar pela ACF

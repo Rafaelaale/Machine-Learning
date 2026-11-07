@@ -1,0 +1,53 @@
+{
+  "aula": 14,
+  "titulo": "Incorporando variaveis exogenas no SARIMAX",
+  "linhas_horarias": 10886,
+  "dias_observados": 456,
+  "treino": 396,
+  "teste": 60,
+  "variaveis_externas": [
+    "temperatura_media",
+    "sensacao_termica_media",
+    "umidade_media",
+    "velocidade_vento_media",
+    "feriado",
+    "dia_util",
+    "dia_semana_1",
+    "dia_semana_2",
+    "dia_semana_3",
+    "dia_semana_4",
+    "dia_semana_5",
+    "dia_semana_6"
+  ],
+  "quantidade_variaveis_externas": 12,
+  "colunas_dummy": [
+    "dia_semana_1",
+    "dia_semana_2",
+    "dia_semana_3",
+    "dia_semana_4",
+    "dia_semana_5",
+    "dia_semana_6"
+  ],
+  "agregacoes": {
+    "demanda": "sum",
+    "temperatura": "mean",
+    "sensacao_termica": "mean",
+    "umidade": "mean",
+    "velocidade_vento": "mean",
+    "feriado": "max",
+    "dia_util": "max",
+    "dia_semana": "first",
+    "mes": "first"
+  },
+  "divisao_compativel_aula12": true,
+  "calendario": {
+    "observacoes_diarias": 456,
+    "dias_ausentes": 263,
+    "indice_diario_regular": false,
+    "nota": "Datas ausentes nao foram preenchidas. O ciclo s=7 dos modelos anteriores representa sete observacoes, nao necessariamente sete dias de calendario."
+  },
+  "variaveis_climaticas_teste": "Valores historicos observados. Uma previsao futura real dependera de informacoes meteorologicas disponiveis no momento da previsao.",
+  "sarimax_treinado": false,
+  "previsoes_sarimax_geradas": false,
+  "proxima_aula": "Treinar SARIMAX com variaveis externas"
+}

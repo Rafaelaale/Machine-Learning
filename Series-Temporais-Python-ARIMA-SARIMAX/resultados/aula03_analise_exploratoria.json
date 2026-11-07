@@ -1,0 +1,15 @@
+{
+  "aula": 3,
+  "observacoes_horarias": 10886,
+  "dias_observados": 456,
+  "demanda_total_original": 2085476,
+  "demanda_total_diaria": 2085476,
+  "graficos_gerados": [
+    "01_demanda_horaria",
+    "02_demanda_diaria",
+    "03_media_por_hora",
+    "04_media_por_dia_semana",
+    "05_media_por_mes"
+  ],
+  "modelo_treinado": false
+}

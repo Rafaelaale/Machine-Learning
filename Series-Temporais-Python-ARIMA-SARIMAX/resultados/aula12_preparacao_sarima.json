@@ -1,0 +1,31 @@
+{
+  "aula": 12,
+  "titulo": "Entendendo sazonalidade e preparando SARIMA",
+  "modelo_anterior": "ARIMA(1,1,1)",
+  "novo_modelo": "SARIMA",
+  "biblioteca_disponivel": "statsmodels SARIMAX",
+  "componente_sazonal": "Ciclo recorrente que pode ser modelado com parametros sazonais.",
+  "ciclo_semanal_candidato": 7,
+  "ciclo_semanal_validado": false,
+  "comparacao_com_arima": "Os conjuntos de treino e teste sao identicos aos da Aula 09.",
+  "diagnostico": {
+    "observacoes_total": 456,
+    "observacoes_treino": 396,
+    "observacoes_teste": 60,
+    "inicio_treino": "2011-01-01",
+    "fim_treino": "2012-09-16",
+    "inicio_teste": "2012-09-17",
+    "fim_teste": "2012-12-19",
+    "dias_calendario_treino": 625,
+    "dias_calendario_teste": 94,
+    "dias_ausentes_total": 263,
+    "serie_diaria_regular": false,
+    "divisao_preserva_ordem": true,
+    "ciclo_semanal_a_investigar": 7,
+    "nota_metodologica": "Uma sazonalidade de sete observacoes nao equivale necessariamente a sete dias de calendario quando ha lacunas. A regularizacao requer decisao metodologica antes de ajustar SARIMA."
+  },
+  "sarima_treinado": false,
+  "previsoes_sarima_geradas": false,
+  "dados_externos_utilizados": false,
+  "proxima_aula": "Definir parametros sazonais e treinar SARIMA"
+}

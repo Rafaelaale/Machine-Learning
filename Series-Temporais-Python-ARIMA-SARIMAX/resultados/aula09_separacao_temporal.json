@@ -1,0 +1,29 @@
+{
+  "aula": 9,
+  "titulo": "Separando treino e teste para ARIMA",
+  "tamanho_teste": 60,
+  "diagnostico": {
+    "observacoes_totais": 456,
+    "observacoes_treino": 396,
+    "observacoes_teste": 60,
+    "data_inicial": "2011-01-01",
+    "data_final": "2012-12-19",
+    "inicio_treino": "2011-01-01",
+    "fim_treino": "2012-09-16",
+    "inicio_teste": "2012-09-17",
+    "fim_teste": "2012-12-19",
+    "dias_calendario_no_intervalo_total": 719,
+    "dias_ausentes_no_intervalo_total": 263,
+    "dias_calendario_cobertos_pelo_teste": 94,
+    "teste_pos_treino": true,
+    "observacao": "O teste tem 60 observacoes. Com lacunas na base, ele pode abranger mais de 60 dias de calendario."
+  },
+  "colunas_modelagem": [
+    "data_hora",
+    "demanda"
+  ],
+  "separacao_aleatoria": false,
+  "modelo_treinado": false,
+  "previsoes_geradas": false,
+  "proxima_etapa": "Baseline de previsao"
+}
