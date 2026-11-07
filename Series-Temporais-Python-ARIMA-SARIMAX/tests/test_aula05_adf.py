@@ -8,7 +8,7 @@ import pandas as pd
 
 from src.aula05_adf import (
     carregar_serie_diaria,
-    teste_adf,
+    teste_adf as _teste_adf,
     extrair_metrica,
     interpretar_adf,
     CSV_ADF,
@@ -21,7 +21,7 @@ class TestAula05(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.df = carregar_serie_diaria()
-        cls.resultado = teste_adf(cls.df["demanda"])
+        cls.resultado = _teste_adf(cls.df["demanda"])
 
     def test_01_serie_carregada(self):
         self.assertGreater(len(self.df), 100)
@@ -81,12 +81,12 @@ class TestAula05(unittest.TestCase):
     def test_12_serie_com_nulos(self):
         serie = self.df["demanda"].copy()
         serie.iloc[0] = np.nan
-        resultado = teste_adf(serie)
+        resultado = _teste_adf(serie)
         self.assertEqual(len(resultado), 7)
 
     def test_13_serie_constante(self):
         with self.assertRaises(ValueError):
-            teste_adf(pd.Series([1] * 30))
+            _teste_adf(pd.Series([1] * 30))
 
     def test_14_interpretacao(self):
         resposta = interpretar_adf(self.resultado)
