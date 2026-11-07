@@ -1,0 +1,31 @@
+{
+  "aula": 9,
+  "titulo": "Explorando Dependency Injection",
+  "dataclass": {
+    "nome": "Juliano",
+    "email": "juliano@example.com",
+    "telefone": "71999990000"
+  },
+  "composition_root": {
+    "usuario": "Maria",
+    "email": "maria@example.com",
+    "telefone": "71999999999",
+    "sender": "EmailSender",
+    "composicao_externa": true
+  },
+  "fake_sender": {
+    "usuario": "Carlos",
+    "mensagens": [
+      "Olá, Carlos!"
+    ],
+    "sender_injetado": true
+  },
+  "fastapi": {
+    "get_status": 200,
+    "post_status": 200,
+    "usuario_criado": {
+      "name": "Maria"
+    }
+  },
+  "envio_real": false
+}

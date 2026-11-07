@@ -1,0 +1,63 @@
+{
+  "aula": 16,
+  "titulo": "Registry",
+  "pagamentos": {
+    "pix": {
+      "classe": "PedidoPixFactory",
+      "mensagem": "Pagamento via PIX de R$ 100 processado."
+    },
+    "cartao": {
+      "classe": "PedidoCartaoFactory",
+      "mensagem": "Pagamento no cartão de R$ 100 processado."
+    },
+    "boleto": {
+      "classe": "PedidoBoletoFactory",
+      "mensagem": "Pagamento via boleto de R$ 100 processado."
+    }
+  },
+  "registro_dinamico": {
+    "antes": [
+      "boleto",
+      "cartao",
+      "pix"
+    ],
+    "depois": [
+      "boleto",
+      "cartao",
+      "pix",
+      "transferencia"
+    ],
+    "factory": "PedidoTransferenciaFactory",
+    "produto": "PagamentoTransferencia",
+    "registry_foi_modificado": false
+  },
+  "transferencia": {
+    "classe": "PedidoTransferenciaFactory",
+    "mensagem": "Pagamento via transferência de R$ 200 processado."
+  },
+  "tipo_invalido_rejeitado": true,
+  "substituicao": {
+    "classe_antes": "PedidoPixFactory",
+    "classe_depois": "PedidoCartaoFactory",
+    "total_chaves": 1,
+    "sobrescreveu": true
+  },
+  "analise": {
+    "aula": 16,
+    "titulo": "Registry",
+    "metodos": [
+      "registrar",
+      "criar"
+    ],
+    "tipos_iniciais": [
+      "pix",
+      "cartao",
+      "boleto"
+    ],
+    "registro_em_tempo_de_execucao": true,
+    "permite_sobrescrever_chaves": true,
+    "adicao_sem_editar_registry": true,
+    "registro_por_decorator": false,
+    "pagamentos_reais": false
+  }
+}

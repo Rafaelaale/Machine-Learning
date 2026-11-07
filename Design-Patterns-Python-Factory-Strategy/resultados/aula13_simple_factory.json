@@ -1,0 +1,31 @@
+{
+  "aula": 13,
+  "titulo": "Simple Factory",
+  "factory_funcao": {
+    "cartao": "ServicoDeCartao",
+    "pix": "ServicoDePix",
+    "mensagem_pedido": "Pagamento via PIX de R$ 200 processado."
+  },
+  "factory_classe": {
+    "cartao": "Pagamento de R$ 200 processado.",
+    "pix": "Pagamento via PIX de R$ 200 processado.",
+    "pix_150": "Pagamento via PIX de R$ 150 processado."
+  },
+  "erro_tipo_invalido": true,
+  "analise": {
+    "aula": 13,
+    "padrao": "Simple Factory",
+    "implementacoes": [
+      "Funcao",
+      "Classe com metodo estatico"
+    ],
+    "tipos_suportados": [
+      "cartao",
+      "pix"
+    ],
+    "criacao_centralizada": true,
+    "pedido_instancia_servicos_concretos": false,
+    "factory_precisa_mudar_para_novos_tipos": true,
+    "pagamentos_reais": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "aula": 6,
+  "titulo": "Casos de uso do Singleton",
+  "none": {
+    "none_is_none": true,
+    "a_is_b": true,
+    "a_is_c": true
+  },
+  "booleanos": {
+    "true_unico": true,
+    "false_unico": true,
+    "true_diferente_false": true
+  },
+  "fluxos": {
+    "stdin_reutilizado": true,
+    "stdout_reutilizado": true,
+    "stderr_reutilizado": true,
+    "fluxos_disponiveis": true
+  },
+  "logging": {
+    "nome": "design_patterns.aula06",
+    "mesmo_objeto": true,
+    "mesmo_id": true,
+    "tipo": "Logger"
+  },
+  "sqlalchemy": {
+    "mesma_thread_mesma_sessao": true,
+    "outra_thread_mesma_sessao": false,
+    "remove_cria_nova_sessao": true,
+    "escopo": "thread-local",
+    "banco": "SQLite em memoria"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "aula": 14,
+  "titulo": "Factory Method",
+  "pagamentos": {
+    "pix": "Pagamento via PIX de R$ 250 processado.",
+    "cartao": "Pagamento no cartão de R$ 180 processado.",
+    "boleto": "Pagamento via boleto de R$ 120 processado."
+  },
+  "analise": {
+    "aula": 14,
+    "padrao": "Factory Method",
+    "criador_abstrato": "ServicoDePedidoFactory",
+    "metodo_fabrica": "criar_pagamento",
+    "metodo_comum": "finalizar_pedido",
+    "fabricas": [
+      "PedidoCartaoFactory",
+      "PedidoPixFactory"
+    ],
+    "extensao_didatica": "PedidoBoletoFactory",
+    "principio_open_closed": true,
+    "necessita_editar_fabrica_existente_para_boleto": false,
+    "criacao_dinamica_por_json": false,
+    "pagamentos_reais": false
+  }
+}

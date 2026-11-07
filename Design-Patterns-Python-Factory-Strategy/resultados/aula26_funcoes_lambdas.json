@@ -1,0 +1,85 @@
+{
+  "aula": 26,
+  "titulo": "Aproveitando funcoes de primeira classe e lambdas",
+  "estrategias": [
+    {
+      "estrategia": "vip",
+      "total": 200,
+      "preco": 160.0
+    },
+    {
+      "estrategia": "novo",
+      "total": 200,
+      "preco": 180.0
+    },
+    {
+      "estrategia": "funcionario",
+      "total": 200,
+      "preco": 140.0
+    },
+    {
+      "estrategia": "sem_desconto",
+      "total": 200,
+      "preco": 200
+    },
+    {
+      "estrategia": "estudante",
+      "total": 200,
+      "preco": 170.0
+    },
+    {
+      "estrategia": "black_friday",
+      "total": 600,
+      "preco": 540.0
+    },
+    {
+      "estrategia": "empresa_x",
+      "total": 200,
+      "preco": 160.0
+    },
+    {
+      "estrategia": "empresa_y",
+      "total": 200,
+      "preco": 165.0
+    }
+  ],
+  "soma_lambda": 8,
+  "lambda_inline": 225.0,
+  "funcoes_primeira_classe": {
+    "preco_vip": 160.0,
+    "preco_novo": 180.0,
+    "precos_lista": [
+      160.0,
+      180.0,
+      200
+    ],
+    "precos_dicionario": {
+      "vip": 160.0,
+      "novo": 180.0,
+      "estudante": 170.0
+    }
+  },
+  "estrategia_retornada": 120.0,
+  "black_friday": {
+    "total": 600,
+    "resultado_formula_transcrita": 540.0,
+    "resultado_citado_na_transcricao": 270.0,
+    "valores_coincidem": false,
+    "formula_da_aula_24_para_600": 270.0
+  },
+  "analise": {
+    "aula": 26,
+    "titulo": "Aproveitando funcoes de primeira classe e lambdas",
+    "padrao": "Strategy",
+    "usa_classes_de_estrategia": false,
+    "funcoes_primeira_classe": true,
+    "lambda": true,
+    "troca_dinamica": true,
+    "funcoes_em_colecoes": true,
+    "funcoes_retornadas_por_funcoes": true,
+    "black_friday_formula_literal": true,
+    "black_friday_600_formula": 540.0,
+    "black_friday_600_texto": 270.0,
+    "proximo_tema": "Template Method"
+  }
+}

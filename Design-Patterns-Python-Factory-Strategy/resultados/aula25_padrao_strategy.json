@@ -1,0 +1,86 @@
+{
+  "aula": 25,
+  "titulo": "Padrao Strategy",
+  "estrategias": [
+    {
+      "estrategia": "DescontoVip",
+      "total": 200,
+      "preco": 160.0
+    },
+    {
+      "estrategia": "DescontoNovo",
+      "total": 200,
+      "preco": 180.0
+    },
+    {
+      "estrategia": "DescontoFuncionario",
+      "total": 200,
+      "preco": 140.0
+    },
+    {
+      "estrategia": "SemDesconto",
+      "total": 200,
+      "preco": 200
+    }
+  ],
+  "clientes": [
+    {
+      "chave": "maria",
+      "nome": "Maria",
+      "estrategia": "DescontoVip",
+      "total": 200,
+      "preco": 160.0
+    },
+    {
+      "chave": "joao",
+      "nome": "João",
+      "estrategia": "DescontoNovo",
+      "total": 200,
+      "preco": 180.0
+    },
+    {
+      "chave": "ana",
+      "nome": "Ana",
+      "estrategia": "SemDesconto",
+      "total": 200,
+      "preco": 200
+    },
+    {
+      "chave": "funcionario",
+      "nome": "Funcionário",
+      "estrategia": "DescontoFuncionario",
+      "total": 200,
+      "preco": 140.0
+    }
+  ],
+  "troca_de_estrategia": {
+    "cliente": "Maria",
+    "preco_com_vip": 160.0,
+    "preco_com_novo": 180.0,
+    "estrategia_atual": "DescontoNovo"
+  },
+  "extensibilidade": {
+    "estrategia": "DescontoEspecial",
+    "total_original": 200,
+    "preco_final": 120.0
+  },
+  "analise": {
+    "aula": 25,
+    "titulo": "Padrao Strategy",
+    "contrato": "RegraDeDesconto",
+    "metodo_abstrato": "calcular",
+    "estrategias": [
+      "DescontoVip",
+      "DescontoNovo",
+      "DescontoFuncionario",
+      "SemDesconto"
+    ],
+    "composicao": true,
+    "polimorfismo": true,
+    "estrategias_intercambiaveis": true,
+    "extensibilidade": true,
+    "baixo_acoplamento": true,
+    "responsabilidades_separadas": true,
+    "strategy_com_funcoes": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "aula": 12,
+  "titulo": "Criando objetos do jeito errado",
+  "criacao_rigida": {
+    "servico": "ServicoDePagamento",
+    "mensagem": "Pagamento de R$ 120 processado."
+  },
+  "cartao": {
+    "servico": "ServicoDePagamento",
+    "mensagem": "Pagamento de R$ 120 processado."
+  },
+  "pix": {
+    "servico": "ServicoDePix",
+    "mensagem": "Pagamento via PIX de R$ 120 processado."
+  },
+  "tipo_padrao": "cartao",
+  "erro_tipo_invalido": true,
+  "analise": {
+    "abordagem_rigida": {
+      "pedido_cria_dependencia": true,
+      "aceita_pix": false,
+      "servico": "ServicoDePagamento"
+    },
+    "abordagem_condicional": {
+      "pedido_cria_dependencia": true,
+      "tipos": [
+        "cartao",
+        "pix"
+      ],
+      "usa_if_elif": true,
+      "exige_alterar_pedido_para_novo_tipo": true
+    },
+    "factory_implementado": false,
+    "pagamentos_reais": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "aula": 17,
+  "titulo": "Entendendo o que sao decoradores",
+  "originais": {
+    "somar": {
+      "resultado": 8,
+      "log": ""
+    },
+    "dividir": {
+      "resultado": 5.0,
+      "log": ""
+    }
+  },
+  "manuais": {
+    "somar_com_log": {
+      "resultado": 8,
+      "log": "Somando 3 + 5 = 8"
+    },
+    "somar_com_log_2": {
+      "resultado": 8,
+      "log": "Somando 3 + 5 = 8"
+    },
+    "dividir_com_log": {
+      "resultado": 5.0,
+      "log": "Dividindo 10 / 2 = 5.0"
+    }
+  },
+  "decoradas": {
+    "somar": {
+      "resultado": 8,
+      "log": "Executando somar(3, 5) = 8"
+    },
+    "dividir": {
+      "resultado": 5.0,
+      "log": "Executando dividir(10, 2) = 5.0"
+    }
+  },
+  "dinamica": {
+    "resultado": 15,
+    "log": "Executando somar(7, 8) = 15"
+  },
+  "analise": {
+    "aula": 17,
+    "padrao": "Decorator",
+    "funcoes_originais": [
+      "somar",
+      "dividir"
+    ],
+    "decorator": "adicionar_log",
+    "wrapper": "wrapper",
+    "adiciona_log": true,
+    "preserva_resultado": true,
+    "modifica_funcoes_originais": false,
+    "sintaxe_arroba": false,
+    "functools_wraps": false
+  }
+}

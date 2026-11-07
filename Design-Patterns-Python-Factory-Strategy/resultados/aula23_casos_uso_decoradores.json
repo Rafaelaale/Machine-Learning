@@ -1,0 +1,76 @@
+{
+  "aula": 23,
+  "fastapi": {
+    "rota": "/users",
+    "metodo": "GET",
+    "endpoint": "listar",
+    "resposta": [
+      {
+        "id": 1,
+        "nome": "Maria"
+      }
+    ]
+  },
+  "decoradores_nativos": {
+    "dataclass": {
+      "nome": "Maria",
+      "idade": 30,
+      "representacao": "Usuario(nome='Maria', idade=30)"
+    },
+    "property": {
+      "nome": "Ana",
+      "idade": 25,
+      "ano_nascimento": 2001
+    },
+    "staticmethod": {
+      "dobro_de_5": 10
+    },
+    "classmethod": {
+      "instancia_valida": true
+    }
+  },
+  "lru_cache": {
+    "resultados": [
+      6,
+      6,
+      20,
+      20,
+      20
+    ],
+    "hits": 3,
+    "misses": 2,
+    "maxsize": 32,
+    "currsize": 2
+  },
+  "saida_cache": [
+    "Calculando 2 * 3",
+    "Calculando 4 * 5"
+  ],
+  "exemplos_adicionais": [
+    "exemplos/aula23_flask.py",
+    "exemplos/aula23_click.py",
+    "exemplos/aula23_django.py",
+    "exemplos/aula23_celery.py"
+  ],
+  "analise": {
+    "aula": 23,
+    "titulo": "Casos de uso de decoradores",
+    "frameworks": [
+      "FastAPI",
+      "Flask",
+      "Click",
+      "Django",
+      "Celery"
+    ],
+    "decoradores_nativos": [
+      "dataclass",
+      "property",
+      "staticmethod",
+      "classmethod",
+      "lru_cache"
+    ],
+    "fastapi_registry": true,
+    "cache_maxsize": 32,
+    "frameworks_opcionais_em_arquivos_separados": true
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "aula": 27,
+  "ordenacao": {
+    "original": [
+      "maçã",
+      "banana",
+      "abacaxi",
+      "laranja",
+      "uva"
+    ],
+    "por_tamanho": [
+      "uva",
+      "maçã",
+      "banana",
+      "abacaxi",
+      "laranja"
+    ],
+    "alfabetica": [
+      "abacaxi",
+      "banana",
+      "laranja",
+      "maçã",
+      "uva"
+    ],
+    "por_lambda": [
+      "uva",
+      "maçã",
+      "banana",
+      "abacaxi",
+      "laranja"
+    ]
+  },
+  "comparacoes": {
+    "alice_menor_que_bob": false,
+    "bob_menor_que_alice": true,
+    "alice_igual_outra_alice": true,
+    "alice_igual_bob": false
+  },
+  "backends_django": [
+    "django.contrib.auth.backends.ModelBackend",
+    "django.contrib.auth.backends.RemoteUserBackend"
+  ],
+  "serializadores_celery": [
+    "json",
+    "pickle"
+  ],
+  "formularios_didaticos": {
+    "valido": true,
+    "dados_validos": {
+      "nome": "Maria",
+      "email": "maria@example.com",
+      "mensagem": "Olá!"
+    },
+    "invalido": false,
+    "erros_invalidos": {
+      "email": "Email deve ser do domínio example.com"
+    }
+  },
+  "teste_setup": {
+    "executados": 1,
+    "aprovado": true
+  },
+  "arquivos_extras": [
+    "exemplos/aula27_django_forms.py",
+    "exemplos/aula27_configuracoes_frameworks.py",
+    "exemplos/aula27_unittest_setup.py"
+  ],
+  "analise": {
+    "aula": 27,
+    "titulo": "Casos de uso do Strategy e Template Method",
+    "strategy": [
+      "sort com key",
+      "funcoes",
+      "lambda",
+      "comparacao de objetos",
+      "backends Django",
+      "serializadores Celery"
+    ],
+    "template_method": [
+      "Django full_clean e clean_email",
+      "unittest setUp"
+    ],
+    "django_exemplo_real_separado": true,
+    "formulario_local_e_simulacao": true,
+    "unittest_exemplo_separado": true,
+    "pickle_habilitado": false
+  }
+}

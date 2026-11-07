@@ -1,0 +1,41 @@
+﻿AUDITORIA DAS 26 AULAS
+Projeto: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy
+
+AULA 2 - FALTANDO: tests\test_aula02_introducao_patterns.py
+AULA 3 - FALTANDO: tests\test_aula03_explorando_singleton.py
+AULA 4 - FALTANDO: tests\test_aula04_singleton_pythonico.py
+AULA 5 - ARQUIVOS PRESENTES
+AULA 6 - FALTANDO: tests\test_aula06_casos_uso_singleton.py
+AULA 7 - ARQUIVOS PRESENTES
+AULA 8 - ARQUIVOS PRESENTES
+AULA 9 - ARQUIVOS PRESENTES
+AULA 10 - FALTANDO: aulas\aula10_imediato.py, tests\test_aula10_imediato.py, anotacoes\aula10_imediato.md, resultados\aula10_imediato.json
+AULA 11 - ARQUIVOS PRESENTES
+AULA 12 - ARQUIVOS PRESENTES
+AULA 13 - ARQUIVOS PRESENTES
+AULA 14 - ARQUIVOS PRESENTES
+AULA 15 - ARQUIVOS PRESENTES
+AULA 16 - ARQUIVOS PRESENTES
+AULA 17 - ARQUIVOS PRESENTES
+AULA 18 - ARQUIVOS PRESENTES
+AULA 19 - ARQUIVOS PRESENTES
+AULA 20 - ARQUIVOS PRESENTES
+AULA 21 - ARQUIVOS PRESENTES
+AULA 22 - ARQUIVOS PRESENTES
+AULA 23 - ARQUIVOS PRESENTES
+AULA 24 - ARQUIVOS PRESENTES
+AULA 25 - ARQUIVOS PRESENTES
+AULA 26 - ARQUIVOS PRESENTES
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\singleton1_4.py
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\anotacoes\aula01_singleton_modulos.md
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\aulas\aula01_singleton_modulos.py
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\aulas\__pycache__\aula01_singleton_modulos.cpython-314.pyc
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\tests\test_aula01_singleton.py
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\tests\test_aula01_singleton.py.bak_utf8
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\tests\__pycache__\test_aula01_singleton.cpython-314.pyc
+AULA 01: C:\Users\rafal\Desktop\Design-Patterns-Python-Factory-Strategy\__pycache__\singleton1_4.cpython-314.pyc
+src : 27 arquivos
+aulas : 26 arquivos
+tests : 26 arquivos
+anotacoes : 26 arquivos
+exemplos : 4 arquivos

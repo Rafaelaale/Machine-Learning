@@ -1,0 +1,43 @@
+{
+  "aula": 21,
+  "titulo": "Decorando classes",
+  "singleton": {
+    "valor": 42,
+    "mesma_instancia": true,
+    "nome_decorado": "Configuracao",
+    "wrapper_eh_funcao": true,
+    "wrapper_eh_classe": false,
+    "classe_original": "Configuracao",
+    "tipo_da_instancia": "Configuracao"
+  },
+  "mensagem_de_inicializacao": "Carregando configurações...",
+  "registry": {
+    "chaves": [
+      "cartao",
+      "pix"
+    ],
+    "pix": "PagamentoPix",
+    "cartao": "PagamentoCartao",
+    "pix_preserva_classe": true,
+    "cartao_preserva_classe": true,
+    "instancia_pix": "PagamentoPix",
+    "instancia_cartao": "PagamentoCartao"
+  },
+  "registro_adicional": {
+    "chave": "boleto",
+    "classe": "PagamentoBoleto"
+  },
+  "analise": {
+    "aula": 21,
+    "titulo": "Decorando classes",
+    "singleton_com_decorator": true,
+    "singleton_com_closure": true,
+    "singleton_com_nonlocal": true,
+    "singleton_com_wraps": true,
+    "registry_com_decorator": true,
+    "registry_com_parametro": true,
+    "registro_automatico_na_definicao": true,
+    "chave_duplicada_sobrescreve": true,
+    "singleton_thread_safe": false
+  }
+}

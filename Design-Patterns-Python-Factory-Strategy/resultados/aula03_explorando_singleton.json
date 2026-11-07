@@ -1,0 +1,16 @@
+{
+  "aula": 3,
+  "padrao": "Singleton",
+  "implementacao": "get_instance",
+  "s1_is_s2": true,
+  "s1_is_s3": false,
+  "s1_is_s4": true,
+  "leituras_configuracao": 2,
+  "chaves_configuracao": [
+    "ambiente",
+    "aplicacao",
+    "recursos",
+    "versao"
+  ],
+  "limitacao": "A criacao direta com Config() nao e bloqueada."
+}

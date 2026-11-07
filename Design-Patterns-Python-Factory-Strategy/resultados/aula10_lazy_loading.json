@@ -1,0 +1,37 @@
+{
+  "aula": 10,
+  "titulo": "Lazy Loading",
+  "carregamento_imediato": {
+    "tema": "dark",
+    "leitura_durante_import": true,
+    "leituras": 1
+  },
+  "carregamento_tardio": {
+    "tema": "dark",
+    "leitura_durante_import": false,
+    "leituras": 1,
+    "cache_reutilizado": true
+  },
+  "sqlalchemy": {
+    "autor": "Machado de Assis",
+    "livros": [
+      "Dom Casmurro",
+      "Memórias Póstumas"
+    ],
+    "quantidade_livros": 2,
+    "books_nao_carregados_antes": true,
+    "books_no_dict_antes": false,
+    "books_carregados_depois": true,
+    "books_no_dict_depois": true,
+    "consultas_antes_acesso": 1,
+    "consultas_depois_acesso": 2,
+    "consultas_apos_repeticao": 2,
+    "consulta_extra_ao_acessar_books": 1,
+    "mesma_colecao_reutilizada": true,
+    "sql_executado": [
+      "SELECT authors.id, authors.name \nFROM authors",
+      "SELECT books.id, books.title, books.author_id \nFROM books \nWHERE ? = books.author_id"
+    ],
+    "banco": "SQLite em memoria"
+  }
+}

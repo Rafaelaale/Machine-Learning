@@ -1,0 +1,10 @@
+{
+  "aplicacao": "Design Patterns em Python",
+  "ambiente": "desenvolvimento",
+  "versao": "1.0",
+  "recursos": {
+    "singleton": true,
+    "configuracao_compartilhada": true,
+    "modo_estudo": true
+  }
+}

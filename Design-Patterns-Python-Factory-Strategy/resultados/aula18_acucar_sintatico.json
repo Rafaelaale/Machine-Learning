@@ -1,0 +1,64 @@
+{
+  "aula": 18,
+  "titulo": "Uma pitada de acucar sintatico",
+  "aplicacao_explicita": {
+    "soma": {
+      "resultado": 8,
+      "log": "Executando somar_original(3, 5) = 8"
+    },
+    "divisao": {
+      "resultado": 5.0,
+      "log": "Executando dividir_original(10, 2) = 5.0"
+    }
+  },
+  "sintaxe_arroba": {
+    "soma": {
+      "resultado": 8,
+      "log": "Executando somar(3, 5) = 8"
+    },
+    "divisao": {
+      "resultado": 5.0,
+      "log": "Executando dividir(10, 2) = 5.0"
+    }
+  },
+  "equivalencia": {
+    "explicita": {
+      "resultado": 15,
+      "log": "Executando operacao(7, 8) = 15"
+    },
+    "arroba": {
+      "resultado": 15,
+      "log": "Executando operacao(7, 8) = 15"
+    },
+    "iguais": true
+  },
+  "proxy_vs_decorator": {
+    "proxy": {
+      "objetivo": "Controlar acesso a um objeto",
+      "exemplos": [
+        "Lazy Loading",
+        "Controle de acesso",
+        "Ocultacao de detalhes"
+      ]
+    },
+    "decorator": {
+      "objetivo": "Adicionar funcionalidades",
+      "exemplos": [
+        "Logs",
+        "Comportamento adicional"
+      ]
+    }
+  },
+  "analise": {
+    "aula": 18,
+    "titulo": "Uma pitada de acucar sintatico",
+    "padrao": "Decorator",
+    "sintaxe_explicita": true,
+    "sintaxe_arroba": true,
+    "equivalencia": true,
+    "decorator_reutilizado_da_aula17": true,
+    "funcao_original_preservada": true,
+    "functools_wraps_implementado": false,
+    "args_kwargs_implementado": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "aula": 20,
+  "titulo": "Preservando metadados e empilhando decoradores",
+  "sem_wraps": {
+    "resultado": 5,
+    "saida": "Executando somar_sem_wraps(2, 3) = 5\n"
+  },
+  "com_wraps": {
+    "resultado": 5,
+    "saida": "Executando somar(2, 3) = 5\n"
+  },
+  "divisao": {
+    "resultado": 5.0,
+    "saida": "Executando dividir(10, 2) = 5.0\n"
+  },
+  "empilhada": {
+    "resultado": null,
+    "saida": "[1]: Executando somar_empilhada(2, 3) = 5\n[2]: Executando somar_empilhada(2, 3) = 5\n[3]: Executando somar_empilhada(2, 3) = 5\n"
+  },
+  "ordem_invertida": {
+    "resultado": null,
+    "saida": "[1]: [2]: [3]: Executando wrapper(2, 3) = None\n"
+  },
+  "aplicacao_manual": {
+    "resultado": null,
+    "saida": "[1]: Executando operacao(2, 3) = 5\n[2]: Executando operacao(2, 3) = 5\n[3]: Executando operacao(2, 3) = 5\n"
+  },
+  "metadados": {
+    "sem_wraps": {
+      "nome": "wrapper",
+      "documentacao": null,
+      "possui_wrapped": false
+    },
+    "com_wraps": {
+      "nome": "somar",
+      "documentacao": "Soma dois numeros.",
+      "possui_wrapped": true,
+      "nome_original": "somar"
+    },
+    "empilhada": {
+      "nome": "wrapper",
+      "possui_wrapped": false
+    }
+  },
+  "analise": {
+    "aula": 20,
+    "titulo": "Preservando metadados e empilhando decoradores",
+    "padrao": "Decorator",
+    "functools_wraps": true,
+    "empilhamento": true,
+    "aplicacao_de_baixo_para_cima": true,
+    "repetir_vezes": 3,
+    "decorator_repetir_preserva_retorno": false,
+    "decorator_repetir_usa_wraps": false,
+    "decorators_com_classes": false
+  }
+}

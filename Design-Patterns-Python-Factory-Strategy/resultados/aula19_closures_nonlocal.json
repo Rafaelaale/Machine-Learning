@@ -1,0 +1,77 @@
+{
+  "aula": 19,
+  "titulo": "Decoradores com parametros, closures e nonlocal",
+  "repetir_cinco": {
+    "resultado": null,
+    "linhas": [
+      "[1]: Executando função...",
+      "[2]: Executando função...",
+      "[3]: Executando função...",
+      "[4]: Executando função...",
+      "[5]: Executando função..."
+    ]
+  },
+  "repetir_tres_portugues": {
+    "resultado": null,
+    "linhas": [
+      "[1]: Olá!",
+      "[2]: Olá!",
+      "[3]: Olá!"
+    ]
+  },
+  "repetir_tres_ingles": {
+    "resultado": null,
+    "linhas": [
+      "[1]: Hello!",
+      "[2]: Hello!",
+      "[3]: Hello!"
+    ]
+  },
+  "limite_tres": [
+    {
+      "resultado": null,
+      "linhas": [
+        "Olá!"
+      ]
+    },
+    {
+      "resultado": null,
+      "linhas": [
+        "Olá!"
+      ]
+    },
+    {
+      "resultado": null,
+      "linhas": [
+        "Olá!"
+      ]
+    },
+    {
+      "resultado": null,
+      "linhas": [
+        "Limite de chamadas atingido."
+      ]
+    }
+  ],
+  "contador_nonlocal": [
+    3,
+    2,
+    1,
+    1
+  ],
+  "analise": {
+    "aula": 19,
+    "titulo": "Decoradores com parametros, closures e nonlocal",
+    "decoradores": [
+      "repetir",
+      "limite"
+    ],
+    "fabrica_de_decoradores": true,
+    "utiliza_closure": true,
+    "utiliza_nonlocal": true,
+    "utiliza_args_kwargs": true,
+    "repetir_retorna_resultados": false,
+    "limite_preserva_retorno": true,
+    "metadados_preservados_por_wraps": false
+  }
+}

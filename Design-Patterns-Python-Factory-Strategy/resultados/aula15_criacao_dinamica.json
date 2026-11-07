@@ -1,0 +1,61 @@
+{
+  "aula": 15,
+  "titulo": "Criacao dinamica",
+  "condicional": {
+    "pix": {
+      "factory": "PedidoPixFactory",
+      "mensagem": "Pagamento via PIX de R$ 200 processado."
+    },
+    "cartao": {
+      "factory": "PedidoCartaoFactory",
+      "mensagem": "Pagamento no cartão de R$ 200 processado."
+    },
+    "boleto": {
+      "factory": "PedidoBoletoFactory",
+      "mensagem": "Pagamento via boleto de R$ 200 processado."
+    }
+  },
+  "mapa": {
+    "pix": {
+      "factory": "PedidoPixFactory",
+      "mensagem": "Pagamento via PIX de R$ 100 processado."
+    },
+    "cartao": {
+      "factory": "PedidoCartaoFactory",
+      "mensagem": "Pagamento no cartão de R$ 100 processado."
+    },
+    "boleto": {
+      "factory": "PedidoBoletoFactory",
+      "mensagem": "Pagamento via boleto de R$ 100 processado."
+    }
+  },
+  "entrada_simulada": {
+    "tipo": "pix",
+    "factory": "PedidoPixFactory",
+    "mensagem": "Pagamento via PIX de R$ 150 processado."
+  },
+  "tipo_invalido_rejeitado": true,
+  "analise": {
+    "aula": 15,
+    "padrao_utilizado": "Factory Method",
+    "tema": "Criacao dinamica",
+    "tipos_disponiveis": [
+      "pix",
+      "cartao",
+      "boleto"
+    ],
+    "estrategias": [
+      "condicional",
+      "mapa"
+    ],
+    "mapa": {
+      "pix": "PedidoPixFactory",
+      "cartao": "PedidoCartaoFactory",
+      "boleto": "PedidoBoletoFactory"
+    },
+    "factory_method_reutilizado": true,
+    "mapa_precisa_ser_editado_para_novos_tipos": true,
+    "registro_automatico_implementado": false,
+    "pagamentos_reais": false
+  }
+}

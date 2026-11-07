@@ -1,0 +1,131 @@
+{
+  "aula": 24,
+  "titulo": "Regras de negocio if else ao resgate de novo",
+  "precos_iniciais": [
+    {
+      "cliente": "Ana",
+      "tipo": "vip",
+      "total": 100,
+      "preco": 80.0
+    },
+    {
+      "cliente": "Bruno",
+      "tipo": "novo",
+      "total": 100,
+      "preco": 90.0
+    },
+    {
+      "cliente": "Carla",
+      "tipo": "funcionario",
+      "total": 100,
+      "preco": 70.0
+    },
+    {
+      "cliente": "Diego",
+      "tipo": "comum",
+      "total": 100,
+      "preco": 100
+    }
+  ],
+  "precos_expandidos": [
+    {
+      "cliente": "Ana",
+      "tipo": "vip",
+      "parceiro": null,
+      "total": 100,
+      "preco": 80.0
+    },
+    {
+      "cliente": "Bruno",
+      "tipo": "novo",
+      "parceiro": null,
+      "total": 100,
+      "preco": 90.0
+    },
+    {
+      "cliente": "Carla",
+      "tipo": "funcionario",
+      "parceiro": null,
+      "total": 100,
+      "preco": 70.0
+    },
+    {
+      "cliente": "Diego",
+      "tipo": "comum",
+      "parceiro": null,
+      "total": 100,
+      "preco": 100
+    },
+    {
+      "cliente": "Eva",
+      "tipo": "parceria",
+      "parceiro": null,
+      "total": 100,
+      "preco": 85.0
+    },
+    {
+      "cliente": "Fabio",
+      "tipo": "parceria",
+      "parceiro": "empresa_x",
+      "total": 100,
+      "preco": 75.0
+    },
+    {
+      "cliente": "Gabi",
+      "tipo": "parceria",
+      "parceiro": "empresa_y",
+      "total": 100,
+      "preco": 80.0
+    },
+    {
+      "cliente": "Helena",
+      "tipo": "black_friday",
+      "parceiro": null,
+      "total": 100,
+      "preco": 50.0
+    }
+  ],
+  "limites_black_friday": [
+    {
+      "total": 400,
+      "preco": 200.0
+    },
+    {
+      "total": 500,
+      "preco": 250.0
+    },
+    {
+      "total": 600,
+      "preco": 270.0
+    }
+  ],
+  "analise": {
+    "aula": 24,
+    "titulo": "Regras de negocio if else ao resgate de novo",
+    "problema": "regras comerciais concentradas em if/elif/else",
+    "versao_inicial": [
+      "vip",
+      "novo",
+      "funcionario",
+      "outros"
+    ],
+    "regras_acrescentadas": [
+      "parceria",
+      "empresa_x",
+      "empresa_y",
+      "black_friday"
+    ],
+    "code_smells": [
+      "complexidade crescente",
+      "dificil manutencao",
+      "dificil testabilidade",
+      "violacao do principio aberto/fechado",
+      "baixa coesao",
+      "alto acoplamento",
+      "dificil reutilizacao"
+    ],
+    "principio_afetado": "aberto/fechado",
+    "solucao_proposta": "separar as estrategias de calculo de preco em funcoes ou objetos diferentes",
+    "strategy_implementado": false
+  }
+}

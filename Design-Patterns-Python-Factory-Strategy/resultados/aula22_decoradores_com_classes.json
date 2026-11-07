@@ -1,0 +1,52 @@
+{
+  "aula": 22,
+  "titulo": "Implementando decoradores com classes",
+  "comlog": {
+    "resultado": 8,
+    "linhas": [
+      "Executando somar (3, 5)",
+      "Resultado: 8"
+    ]
+  },
+  "repetir_cinco": {
+    "resultado": null,
+    "linhas": [
+      "[1] Executando função...",
+      "[2] Executando função...",
+      "[3] Executando função...",
+      "[4] Executando função...",
+      "[5] Executando função..."
+    ]
+  },
+  "comlog_manual": {
+    "resultado": 8,
+    "linhas": [
+      "Executando somar_original (3, 5)",
+      "Resultado: 8"
+    ]
+  },
+  "repetir_tres_manual": {
+    "resultado": null,
+    "linhas": [
+      "[1] Executando função...",
+      "[2] Executando função...",
+      "[3] Executando função..."
+    ]
+  },
+  "analise": {
+    "aula": 22,
+    "titulo": "Implementando decoradores com classes",
+    "decoradores": [
+      "ComLog",
+      "Repetir"
+    ],
+    "metodo_especial": "__call__",
+    "comlog_recebe_funcao_no_init": true,
+    "comlog_retorna_resultado": true,
+    "repetir_recebe_vezes_no_init": true,
+    "repetir_recebe_funcao_no_call": true,
+    "repetir_retorna_wrapper": true,
+    "repetir_preserva_retorno": false,
+    "functools_wraps": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "aula": 7,
+  "titulo": "Singleton Thread Safe",
+  "implementacao": "Lock e dupla verificacao",
+  "threads_por_rodada": 100,
+  "rodadas_adicionais": 5,
+  "todas_as_rodadas_aprovadas": true,
+  "instancia_compartilhada": true,
+  "criacoes_por_rodada": 1
+}

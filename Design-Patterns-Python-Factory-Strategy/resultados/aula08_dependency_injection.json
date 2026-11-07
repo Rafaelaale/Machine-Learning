@@ -1,0 +1,27 @@
+{
+  "aula": 8,
+  "titulo": "Entendendo Dependency Injection",
+  "principios": [
+    "Inversao de controle",
+    "Separacao de responsabilidades",
+    "Acoplamento reduzido"
+  ],
+  "contratos": {
+    "email_protocol": true,
+    "sms_protocol": true,
+    "whatsapp_protocol": true,
+    "fake_protocol": true,
+    "email_abc": true,
+    "sms_abc": true,
+    "whatsapp_herda_abc": false
+  },
+  "teste_sem_envio": {
+    "quantidade": 2,
+    "mensagens": [
+      "Olá, Maria!",
+      "Olá, Carlos!"
+    ],
+    "mesmo_sender": true
+  },
+  "envio_real": false
+}

@@ -1,0 +1,28 @@
+{
+  "aula": 11,
+  "titulo": "Padrao Proxy",
+  "objeto_real": {
+    "tema": "ARC",
+    "idioma": "PT-BR",
+    "leituras": 1
+  },
+  "proxy": {
+    "tema": "ARC",
+    "idioma": "PT-BR",
+    "leituras": 1
+  },
+  "logging_proxy": {
+    "leituras": 1,
+    "chaves_acessadas": [
+      "theme",
+      "language",
+      "inexistente"
+    ]
+  },
+  "property": 10,
+  "partial": {
+    "plus_10_com_5": 15,
+    "plus_5_com_10": 15,
+    "objeto_callable": true
+  }
+}

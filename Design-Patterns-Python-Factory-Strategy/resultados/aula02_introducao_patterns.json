@@ -1,0 +1,15 @@
+{
+  "aula": 2,
+  "assunto": "Introducao aos Design Patterns",
+  "categorias": [
+    "criacional",
+    "estrutural",
+    "comportamental"
+  ],
+  "notificacao": "[email] Para: cliente@exemplo.com | Mensagem: Pedido aprovado",
+  "mensagem_original": "Pagamento confirmado",
+  "mensagem_composta": "[MINISHOP] Pagamento confirmado",
+  "preco_original": 100.0,
+  "preco_com_desconto": 90.0,
+  "preco_com_acrescimo": 110.0
+}
