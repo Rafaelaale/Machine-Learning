@@ -1,0 +1,17 @@
+.env
+.env.*
+*.log
+*.db
+*.sqlite*
+*.key
+*.pem
+*.pfx
+*.bak
+*.backup*
+__pycache__/
+.venv/
+data/
+logs/
+config/
+plugins/
+docker-compose.smtp.yaml
