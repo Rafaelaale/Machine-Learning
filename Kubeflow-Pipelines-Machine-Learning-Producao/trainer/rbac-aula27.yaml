@@ -1,0 +1,29 @@
+﻿apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: kfp-aula27-job-manager
+  namespace: kubeflow
+rules:
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create", "get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kfp-aula27-job-manager
+  namespace: kubeflow
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: kubeflow
+- kind: ServiceAccount
+  name: pipeline-runner
+  namespace: kubeflow
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kfp-aula27-job-manager

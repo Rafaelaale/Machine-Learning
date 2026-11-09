@@ -1,0 +1,62 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraude-predictor-compat
+  namespace: kubeflow
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: fraude-predictor-compat
+  template:
+    metadata:
+      labels:
+        app: fraude-predictor-compat
+    spec:
+      containers:
+        - name: predictor
+          image: fraude-serving:3.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MODEL_PATH
+              value: /models/aula26-20261108210412/model.ubj
+            - name: OMP_NUM_THREADS
+              value: "1"
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet:
+              path: /v2/health/ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: models-pvc-kubeflow
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraude-predictor-compat
+  namespace: kubeflow
+spec:
+  type: ClusterIP
+  selector:
+    app: fraude-predictor-compat
+  ports:
+    - port: 80
+      targetPort: 8080

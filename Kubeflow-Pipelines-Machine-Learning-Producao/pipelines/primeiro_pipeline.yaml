@@ -1,0 +1,109 @@
+# PIPELINE DEFINITION
+# Name: primeiro-pipeline-machine-learning
+components:
+  comp-calcular-media:
+    executorLabel: exec-calcular-media
+    inputDefinitions:
+      parameters:
+        valores:
+          parameterType: LIST
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: NUMBER_DOUBLE
+  comp-preparar-dados:
+    executorLabel: exec-preparar-dados
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: LIST
+deploymentSpec:
+  executors:
+    exec-calcular-media:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - calcular_media
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef calcular_media(valores: list) -> float:\n    media = sum(valores)\
+          \ / len(valores)\n    print(f\"Media calculada: {media}\")\n    return media\n\
+          \n"
+        image: python:3.11-slim
+    exec-preparar-dados:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - preparar_dados
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef preparar_dados() -> list:\n    return [2.0, 4.0, 6.0, 8.0, 10.0]\n\
+          \n"
+        image: python:3.11-slim
+pipelineInfo:
+  name: primeiro-pipeline-machine-learning
+root:
+  dag:
+    tasks:
+      calcular-media:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-calcular-media
+        dependentTasks:
+        - preparar-dados
+        inputs:
+          parameters:
+            valores:
+              taskOutputParameter:
+                outputParameterKey: Output
+                producerTask: preparar-dados
+        taskInfo:
+          name: calcular-media
+      preparar-dados:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-preparar-dados
+        taskInfo:
+          name: preparar-dados
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.15.0

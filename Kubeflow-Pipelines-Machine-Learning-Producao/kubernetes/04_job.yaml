@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: treinamento-exemplo
+  namespace: kubeflow-aula02
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: trainer
+          image: busybox:1.37
+          command: [sh, -c]
+          args:
+            - 'echo Iniciando treinamento simulado; sleep 2; echo Concluido'
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

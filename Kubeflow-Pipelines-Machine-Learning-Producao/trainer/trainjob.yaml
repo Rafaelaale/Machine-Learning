@@ -1,0 +1,31 @@
+apiVersion: trainer.kubeflow.org/v1alpha1
+kind: TrainJob
+
+metadata:
+  name: fraude
+  namespace: kubeflow
+
+spec:
+  runtimeRef:
+    apiGroup: trainer.kubeflow.org
+    kind: ClusterTrainingRuntime
+    name: xgboost-fraude
+
+  trainer:
+    numNodes: 1
+
+    env:
+      - name: ETA
+        value: "0.2430296138044891"
+
+      - name: MAX_DEPTH
+        value: "5"
+
+      - name: N_ESTIMATORS
+        value: "194"
+
+      - name: CSV
+        value: "/data/creditcard.csv"
+
+      - name: MODELS_DIR
+        value: "/models"

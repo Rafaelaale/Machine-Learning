@@ -1,0 +1,7 @@
+﻿FROM fraude-trainer:2.3
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir kubernetes==29.0.0
+
+COPY src/ /app/src/

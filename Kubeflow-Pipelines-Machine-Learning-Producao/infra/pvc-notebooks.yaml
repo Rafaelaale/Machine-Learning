@@ -1,0 +1,16 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: notebooks-fraude
+  namespace: kubeflow
+  labels:
+    app: jupyter
+  annotations:
+    description: "PVC persistente para notebooks do JupyterLab"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 5Gi

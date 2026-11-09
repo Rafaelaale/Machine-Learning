@@ -1,0 +1,42 @@
+﻿apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fraude-treino-compat
+  namespace: kubeflow
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: trainer
+          image: fraude-trainer:2.3
+          imagePullPolicy: Never
+          workingDir: /app
+          command:
+            - python
+            - -m
+            - src.train_node
+          env:
+            - name: ETA
+              value: "0.2430296138044891"
+            - name: MAX_DEPTH
+              value: "5"
+            - name: N_ESTIMATORS
+              value: "194"
+            - name: CSV
+              value: "/data/creditcard.csv"
+            - name: MODELS_DIR
+              value: "/models"
+          volumeMounts:
+            - name: dataset
+              mountPath: /data
+            - name: models
+              mountPath: /models
+      volumes:
+        - name: dataset
+          persistentVolumeClaim:
+            claimName: dataset-fraude
+        - name: models
+          persistentVolumeClaim:
+            claimName: models-pvc-kubeflow

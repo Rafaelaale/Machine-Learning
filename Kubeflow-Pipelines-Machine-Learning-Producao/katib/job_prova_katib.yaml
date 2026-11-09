@@ -1,0 +1,36 @@
+﻿apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fraude-hpo-prova
+  namespace: kubeflow
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: training-container
+          image: fraude-trainer:2.2
+          imagePullPolicy: IfNotPresent
+          command:
+            - python
+            - -m
+            - src.train_katib
+            - --eta=0.1
+            - --max-depth=5
+            - --n-estimators=200
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1500Mi
+          volumeMounts:
+            - name: dataset
+              mountPath: /data
+              readOnly: true
+      volumes:
+        - name: dataset
+          persistentVolumeClaim:
+            claimName: dataset-fraude

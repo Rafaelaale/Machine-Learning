@@ -1,0 +1,20 @@
+﻿spec:
+  template:
+    spec:
+      securityContext:
+        fsGroup: 100
+      containers:
+      - name: jupyter
+        volumeMounts:
+        - name: notebooks
+          mountPath: /home/jovyan/work
+        - name: dataset
+          mountPath: /data
+          readOnly: true
+        - name: dataset
+          mountPath: /home/jovyan/data
+          readOnly: true
+      volumes:
+      - name: notebooks
+        persistentVolumeClaim:
+          claimName: notebooks-fraude

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servidor-exemplo
+  namespace: kubeflow-aula02
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servidor-exemplo
+  template:
+    metadata:
+      labels:
+        app: servidor-exemplo
+    spec:
+      containers:
+        - name: servidor
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

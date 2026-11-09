@@ -1,0 +1,582 @@
+# PIPELINE DEFINITION
+# Name: fraude-pipeline
+# Description: Treina 3 modelos XGBoost por segmento de Amount.
+# Inputs:
+#    csv_path: str [Default: '/data/creditcard.csv']
+#    eta: float [Default: 0.1]
+#    max_depth: int [Default: 5.0]
+#    n_estimators: int [Default: 200.0]
+components:
+  comp-preprocess:
+    executorLabel: exec-preprocess
+    inputDefinitions:
+      parameters:
+        csv_path:
+          parameterType: STRING
+        segment:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        output_df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+  comp-preprocess-2:
+    executorLabel: exec-preprocess-2
+    inputDefinitions:
+      parameters:
+        csv_path:
+          parameterType: STRING
+        segment:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        output_df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+  comp-preprocess-3:
+    executorLabel: exec-preprocess-3
+    inputDefinitions:
+      parameters:
+        csv_path:
+          parameterType: STRING
+        segment:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        output_df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+  comp-train-segment:
+    executorLabel: exec-train-segment
+    inputDefinitions:
+      artifacts:
+        df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+      parameters:
+        eta:
+          parameterType: NUMBER_DOUBLE
+        max_depth:
+          parameterType: NUMBER_INTEGER
+        n_estimators:
+          parameterType: NUMBER_INTEGER
+        segment:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        metrics_out:
+          artifactType:
+            schemaTitle: system.Metrics
+            schemaVersion: 0.0.1
+        model_out:
+          artifactType:
+            schemaTitle: system.Model
+            schemaVersion: 0.0.1
+  comp-train-segment-2:
+    executorLabel: exec-train-segment-2
+    inputDefinitions:
+      artifacts:
+        df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+      parameters:
+        eta:
+          parameterType: NUMBER_DOUBLE
+        max_depth:
+          parameterType: NUMBER_INTEGER
+        n_estimators:
+          parameterType: NUMBER_INTEGER
+        segment:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        metrics_out:
+          artifactType:
+            schemaTitle: system.Metrics
+            schemaVersion: 0.0.1
+        model_out:
+          artifactType:
+            schemaTitle: system.Model
+            schemaVersion: 0.0.1
+  comp-train-segment-3:
+    executorLabel: exec-train-segment-3
+    inputDefinitions:
+      artifacts:
+        df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+      parameters:
+        eta:
+          parameterType: NUMBER_DOUBLE
+        max_depth:
+          parameterType: NUMBER_INTEGER
+        n_estimators:
+          parameterType: NUMBER_INTEGER
+        segment:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        metrics_out:
+          artifactType:
+            schemaTitle: system.Metrics
+            schemaVersion: 0.0.1
+        model_out:
+          artifactType:
+            schemaTitle: system.Model
+            schemaVersion: 0.0.1
+deploymentSpec:
+  executors:
+    exec-preprocess:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - preprocess
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef preprocess(\n    csv_path: str,\n    segment: str,\n    output_df:\
+          \ Output[Dataset],\n):\n    import pandas as pd\n\n    if segment not in\
+          \ (\"low\", \"medium\", \"high\"):\n        raise ValueError(f\"Segmento\
+          \ invalido: {segment}\")\n\n    df = pd.read_csv(csv_path)\n\n    q1, q3\
+          \ = df[\"Amount\"].quantile([0.25, 0.75])\n\n    bins = [-float(\"inf\"\
+          ), q1, q3, float(\"inf\")]\n    labels = [\"low\", \"medium\", \"high\"\
+          ]\n\n    df[\"segment\"] = pd.cut(\n        df[\"Amount\"],\n        bins=bins,\n\
+          \        labels=labels,\n    )\n\n    seg_df = (\n        df[df[\"segment\"\
+          ] == segment]\n        .drop(columns=[\"segment\"])\n        .reset_index(drop=True)\n\
+          \    )\n\n    if seg_df.empty:\n        raise ValueError(f\"Segmento vazio:\
+          \ {segment}\")\n\n    seg_df.to_csv(output_df.path, index=False)\n\n   \
+          \ print(f\"Segmento: {segment}\")\n    print(f\"Linhas: {len(seg_df)}\"\
+          )\n    print(f\"Fraudes: {int(seg_df['Class'].sum())}\")\n\n"
+        image: fraude-trainer:1.0
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.073741824
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1Gi
+    exec-preprocess-2:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - preprocess
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef preprocess(\n    csv_path: str,\n    segment: str,\n    output_df:\
+          \ Output[Dataset],\n):\n    import pandas as pd\n\n    if segment not in\
+          \ (\"low\", \"medium\", \"high\"):\n        raise ValueError(f\"Segmento\
+          \ invalido: {segment}\")\n\n    df = pd.read_csv(csv_path)\n\n    q1, q3\
+          \ = df[\"Amount\"].quantile([0.25, 0.75])\n\n    bins = [-float(\"inf\"\
+          ), q1, q3, float(\"inf\")]\n    labels = [\"low\", \"medium\", \"high\"\
+          ]\n\n    df[\"segment\"] = pd.cut(\n        df[\"Amount\"],\n        bins=bins,\n\
+          \        labels=labels,\n    )\n\n    seg_df = (\n        df[df[\"segment\"\
+          ] == segment]\n        .drop(columns=[\"segment\"])\n        .reset_index(drop=True)\n\
+          \    )\n\n    if seg_df.empty:\n        raise ValueError(f\"Segmento vazio:\
+          \ {segment}\")\n\n    seg_df.to_csv(output_df.path, index=False)\n\n   \
+          \ print(f\"Segmento: {segment}\")\n    print(f\"Linhas: {len(seg_df)}\"\
+          )\n    print(f\"Fraudes: {int(seg_df['Class'].sum())}\")\n\n"
+        image: fraude-trainer:1.0
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.073741824
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1Gi
+    exec-preprocess-3:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - preprocess
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef preprocess(\n    csv_path: str,\n    segment: str,\n    output_df:\
+          \ Output[Dataset],\n):\n    import pandas as pd\n\n    if segment not in\
+          \ (\"low\", \"medium\", \"high\"):\n        raise ValueError(f\"Segmento\
+          \ invalido: {segment}\")\n\n    df = pd.read_csv(csv_path)\n\n    q1, q3\
+          \ = df[\"Amount\"].quantile([0.25, 0.75])\n\n    bins = [-float(\"inf\"\
+          ), q1, q3, float(\"inf\")]\n    labels = [\"low\", \"medium\", \"high\"\
+          ]\n\n    df[\"segment\"] = pd.cut(\n        df[\"Amount\"],\n        bins=bins,\n\
+          \        labels=labels,\n    )\n\n    seg_df = (\n        df[df[\"segment\"\
+          ] == segment]\n        .drop(columns=[\"segment\"])\n        .reset_index(drop=True)\n\
+          \    )\n\n    if seg_df.empty:\n        raise ValueError(f\"Segmento vazio:\
+          \ {segment}\")\n\n    seg_df.to_csv(output_df.path, index=False)\n\n   \
+          \ print(f\"Segmento: {segment}\")\n    print(f\"Linhas: {len(seg_df)}\"\
+          )\n    print(f\"Fraudes: {int(seg_df['Class'].sum())}\")\n\n"
+        image: fraude-trainer:1.0
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.073741824
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1Gi
+    exec-train-segment:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - train_segment
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef train_segment(\n    df: Input[Dataset],\n    segment: str,\n\
+          \    eta: float,\n    max_depth: int,\n    n_estimators: int,\n    model_out:\
+          \ Output[Model],\n    metrics_out: Output[Metrics],\n):\n    import shutil\n\
+          \    import tempfile\n    from pathlib import Path\n\n    from src.train\
+          \ import train_from_csv\n\n    with tempfile.TemporaryDirectory() as pasta:\n\
+          \        caminho_modelo = str(Path(pasta) / \"model.ubj\")\n\n        result\
+          \ = train_from_csv(\n            df.path,\n            eta=eta,\n      \
+          \      max_depth=max_depth,\n            n_estimators=n_estimators,\n  \
+          \          model_out=caminho_modelo,\n        )\n\n        shutil.copyfile(\n\
+          \            result.model_path,\n            model_out.path,\n        )\n\
+          \n    model_out.metadata[\"framework\"] = \"xgboost\"\n    model_out.metadata[\"\
+          segment\"] = segment\n    model_out.metadata[\"format\"] = \"ubj\"\n\n \
+          \   for nome, valor in result.val_metrics.items():\n        metrics_out.log_metric(\n\
+          \            f\"val_{nome}\",\n            float(valor),\n        )\n\n\
+          \    for nome, valor in result.test_metrics.items():\n        metrics_out.log_metric(\n\
+          \            f\"test_{nome}\",\n            float(valor),\n        )\n\n\
+          \    print(\n        f\"[{segment}] \"\n        f\"val_pr_auc={result.val_metrics['pr_auc']:.4f}\"\
+          \n    )\n\n"
+        image: fraude-trainer:1.0
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.572864
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1500Mi
+    exec-train-segment-2:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - train_segment
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef train_segment(\n    df: Input[Dataset],\n    segment: str,\n\
+          \    eta: float,\n    max_depth: int,\n    n_estimators: int,\n    model_out:\
+          \ Output[Model],\n    metrics_out: Output[Metrics],\n):\n    import shutil\n\
+          \    import tempfile\n    from pathlib import Path\n\n    from src.train\
+          \ import train_from_csv\n\n    with tempfile.TemporaryDirectory() as pasta:\n\
+          \        caminho_modelo = str(Path(pasta) / \"model.ubj\")\n\n        result\
+          \ = train_from_csv(\n            df.path,\n            eta=eta,\n      \
+          \      max_depth=max_depth,\n            n_estimators=n_estimators,\n  \
+          \          model_out=caminho_modelo,\n        )\n\n        shutil.copyfile(\n\
+          \            result.model_path,\n            model_out.path,\n        )\n\
+          \n    model_out.metadata[\"framework\"] = \"xgboost\"\n    model_out.metadata[\"\
+          segment\"] = segment\n    model_out.metadata[\"format\"] = \"ubj\"\n\n \
+          \   for nome, valor in result.val_metrics.items():\n        metrics_out.log_metric(\n\
+          \            f\"val_{nome}\",\n            float(valor),\n        )\n\n\
+          \    for nome, valor in result.test_metrics.items():\n        metrics_out.log_metric(\n\
+          \            f\"test_{nome}\",\n            float(valor),\n        )\n\n\
+          \    print(\n        f\"[{segment}] \"\n        f\"val_pr_auc={result.val_metrics['pr_auc']:.4f}\"\
+          \n    )\n\n"
+        image: fraude-trainer:1.0
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.572864
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1500Mi
+    exec-train-segment-3:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - train_segment
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef train_segment(\n    df: Input[Dataset],\n    segment: str,\n\
+          \    eta: float,\n    max_depth: int,\n    n_estimators: int,\n    model_out:\
+          \ Output[Model],\n    metrics_out: Output[Metrics],\n):\n    import shutil\n\
+          \    import tempfile\n    from pathlib import Path\n\n    from src.train\
+          \ import train_from_csv\n\n    with tempfile.TemporaryDirectory() as pasta:\n\
+          \        caminho_modelo = str(Path(pasta) / \"model.ubj\")\n\n        result\
+          \ = train_from_csv(\n            df.path,\n            eta=eta,\n      \
+          \      max_depth=max_depth,\n            n_estimators=n_estimators,\n  \
+          \          model_out=caminho_modelo,\n        )\n\n        shutil.copyfile(\n\
+          \            result.model_path,\n            model_out.path,\n        )\n\
+          \n    model_out.metadata[\"framework\"] = \"xgboost\"\n    model_out.metadata[\"\
+          segment\"] = segment\n    model_out.metadata[\"format\"] = \"ubj\"\n\n \
+          \   for nome, valor in result.val_metrics.items():\n        metrics_out.log_metric(\n\
+          \            f\"val_{nome}\",\n            float(valor),\n        )\n\n\
+          \    for nome, valor in result.test_metrics.items():\n        metrics_out.log_metric(\n\
+          \            f\"test_{nome}\",\n            float(valor),\n        )\n\n\
+          \    print(\n        f\"[{segment}] \"\n        f\"val_pr_auc={result.val_metrics['pr_auc']:.4f}\"\
+          \n    )\n\n"
+        image: fraude-trainer:1.0
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.572864
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1500Mi
+pipelineInfo:
+  description: Treina 3 modelos XGBoost por segmento de Amount.
+  name: fraude-pipeline
+root:
+  dag:
+    tasks:
+      preprocess:
+        cachingOptions: {}
+        componentRef:
+          name: comp-preprocess
+        inputs:
+          parameters:
+            csv_path:
+              componentInputParameter: csv_path
+            segment:
+              runtimeValue:
+                constant: low
+        taskInfo:
+          name: preprocess-low
+      preprocess-2:
+        cachingOptions: {}
+        componentRef:
+          name: comp-preprocess-2
+        inputs:
+          parameters:
+            csv_path:
+              componentInputParameter: csv_path
+            segment:
+              runtimeValue:
+                constant: medium
+        taskInfo:
+          name: preprocess-medium
+      preprocess-3:
+        cachingOptions: {}
+        componentRef:
+          name: comp-preprocess-3
+        inputs:
+          parameters:
+            csv_path:
+              componentInputParameter: csv_path
+            segment:
+              runtimeValue:
+                constant: high
+        taskInfo:
+          name: preprocess-high
+      train-segment:
+        cachingOptions: {}
+        componentRef:
+          name: comp-train-segment
+        dependentTasks:
+        - preprocess
+        inputs:
+          artifacts:
+            df:
+              taskOutputArtifact:
+                outputArtifactKey: output_df
+                producerTask: preprocess
+          parameters:
+            eta:
+              componentInputParameter: eta
+            max_depth:
+              componentInputParameter: max_depth
+            n_estimators:
+              componentInputParameter: n_estimators
+            segment:
+              runtimeValue:
+                constant: low
+        taskInfo:
+          name: train-low
+      train-segment-2:
+        cachingOptions: {}
+        componentRef:
+          name: comp-train-segment-2
+        dependentTasks:
+        - preprocess-2
+        inputs:
+          artifacts:
+            df:
+              taskOutputArtifact:
+                outputArtifactKey: output_df
+                producerTask: preprocess-2
+          parameters:
+            eta:
+              componentInputParameter: eta
+            max_depth:
+              componentInputParameter: max_depth
+            n_estimators:
+              componentInputParameter: n_estimators
+            segment:
+              runtimeValue:
+                constant: medium
+        taskInfo:
+          name: train-medium
+      train-segment-3:
+        cachingOptions: {}
+        componentRef:
+          name: comp-train-segment-3
+        dependentTasks:
+        - preprocess-3
+        inputs:
+          artifacts:
+            df:
+              taskOutputArtifact:
+                outputArtifactKey: output_df
+                producerTask: preprocess-3
+          parameters:
+            eta:
+              componentInputParameter: eta
+            max_depth:
+              componentInputParameter: max_depth
+            n_estimators:
+              componentInputParameter: n_estimators
+            segment:
+              runtimeValue:
+                constant: high
+        taskInfo:
+          name: train-high
+  inputDefinitions:
+    parameters:
+      csv_path:
+        defaultValue: /data/creditcard.csv
+        isOptional: true
+        parameterType: STRING
+      eta:
+        defaultValue: 0.1
+        isOptional: true
+        parameterType: NUMBER_DOUBLE
+      max_depth:
+        defaultValue: 5.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+      n_estimators:
+        defaultValue: 200.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.15.0
+---
+platforms:
+  kubernetes:
+    deploymentSpec:
+      executors:
+        exec-preprocess:
+          pvcMount:
+          - constant: dataset-fraude
+            mountPath: /data
+            pvcNameParameter:
+              runtimeValue:
+                constant: dataset-fraude
+        exec-preprocess-2:
+          pvcMount:
+          - constant: dataset-fraude
+            mountPath: /data
+            pvcNameParameter:
+              runtimeValue:
+                constant: dataset-fraude
+        exec-preprocess-3:
+          pvcMount:
+          - constant: dataset-fraude
+            mountPath: /data
+            pvcNameParameter:
+              runtimeValue:
+                constant: dataset-fraude

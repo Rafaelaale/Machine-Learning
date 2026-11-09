@@ -1,0 +1,5 @@
+﻿FROM fraude-trainer:2.4
+WORKDIR /app
+COPY src/server_inferencia_aula31.py /app/src/server_inferencia_aula31.py
+EXPOSE 8080
+CMD ["python", "-m", "src.server_inferencia_aula31"]

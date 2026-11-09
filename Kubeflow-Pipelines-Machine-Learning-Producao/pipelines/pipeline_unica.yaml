@@ -1,0 +1,271 @@
+# PIPELINE DEFINITION
+# Name: fraude-pipeline-unica
+# Description: Load, process e train: XGBoost com segment como feature.
+# Inputs:
+#    csv_path: str [Default: '/data/creditcard.csv']
+#    eta: float [Default: 0.1]
+#    max_depth: int [Default: 5.0]
+#    n_estimators: int [Default: 200.0]
+components:
+  comp-load-dataset:
+    executorLabel: exec-load-dataset
+    inputDefinitions:
+      parameters:
+        csv_path:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        output_df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+  comp-process:
+    executorLabel: exec-process
+    inputDefinitions:
+      artifacts:
+        raw:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+    outputDefinitions:
+      artifacts:
+        features_out:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+  comp-train-model:
+    executorLabel: exec-train-model
+    inputDefinitions:
+      artifacts:
+        features:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+      parameters:
+        eta:
+          parameterType: NUMBER_DOUBLE
+        max_depth:
+          parameterType: NUMBER_INTEGER
+        n_estimators:
+          parameterType: NUMBER_INTEGER
+    outputDefinitions:
+      artifacts:
+        metrics_out:
+          artifactType:
+            schemaTitle: system.Metrics
+            schemaVersion: 0.0.1
+        model_out:
+          artifactType:
+            schemaTitle: system.Model
+            schemaVersion: 0.0.1
+deploymentSpec:
+  executors:
+    exec-load-dataset:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - load_dataset
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef load_dataset(\n    csv_path: str,\n    output_df: Output[Dataset],\n\
+          ):\n    import pandas as pd\n\n    df = pd.read_csv(csv_path)\n    df.to_csv(output_df.path,\
+          \ index=False)\n\n    print(f\"Dataset carregado: {len(df)} linhas\")\n\n"
+        image: fraude-trainer:2.1
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.073741824
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1Gi
+    exec-process:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - process
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef process(\n    raw: Input[Dataset],\n    features_out: Output[Dataset],\n\
+          ):\n    import pandas as pd\n\n    from src.features import build_features\n\
+          \n    df = build_features(pd.read_csv(raw.path))\n\n    df.to_parquet(\n\
+          \        features_out.path,\n        index=False,\n    )\n\n    print(f\"\
+          Features: {len(df.columns)}\")\n    print(f\"Linhas: {len(df)}\")\n    print(\n\
+          \        \"Segmentos:\",\n        df[\"segment\"].value_counts().sort_index().to_dict(),\n\
+          \    )\n\n"
+        image: fraude-trainer:2.1
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.073741824
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1Gi
+    exec-train-model:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - train_model
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef train_model(\n    features: Input[Dataset],\n    eta: float,\n\
+          \    max_depth: int,\n    n_estimators: int,\n    model_out: Output[Model],\n\
+          \    metrics_out: Output[Metrics],\n):\n    import shutil\n    import tempfile\n\
+          \n    import pandas as pd\n\n    from pathlib import Path\n    from src.train\
+          \ import train\n\n    df = pd.read_parquet(features.path)\n\n    with tempfile.TemporaryDirectory()\
+          \ as temp:\n        caminho = str(Path(temp) / \"model.ubj\")\n\n      \
+          \  result = train(\n            df,\n            eta=eta,\n            max_depth=max_depth,\n\
+          \            n_estimators=n_estimators,\n            model_out=caminho,\n\
+          \        )\n\n        shutil.copyfile(\n            result.model_path,\n\
+          \            model_out.path,\n        )\n\n    model_out.metadata[\"framework\"\
+          ] = \"xgboost\"\n    model_out.metadata[\"format\"] = \"ubj\"\n    model_out.metadata[\"\
+          architecture\"] = \"single-model\"\n\n    for nome, valor in result.val_metrics.items():\n\
+          \        metrics_out.log_metric(\n            f\"val_{nome}\",\n       \
+          \     float(valor),\n        )\n\n    for nome, valor in result.test_metrics.items():\n\
+          \        metrics_out.log_metric(\n            f\"test_{nome}\",\n      \
+          \      float(valor),\n        )\n\n    print(\"MODELO UNICO TREINADO\")\n\
+          \n"
+        image: fraude-trainer:2.1
+        resources:
+          cpuLimit: 1.0
+          memoryLimit: 1.572864
+          resourceCpuLimit: '1'
+          resourceMemoryLimit: 1500Mi
+pipelineInfo:
+  description: 'Load, process e train: XGBoost com segment como feature.'
+  name: fraude-pipeline-unica
+root:
+  dag:
+    tasks:
+      load-dataset:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-load-dataset
+        inputs:
+          parameters:
+            csv_path:
+              componentInputParameter: csv_path
+        taskInfo:
+          name: load
+      process:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-process
+        dependentTasks:
+        - load-dataset
+        inputs:
+          artifacts:
+            raw:
+              taskOutputArtifact:
+                outputArtifactKey: output_df
+                producerTask: load-dataset
+        taskInfo:
+          name: process
+      train-model:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-train-model
+        dependentTasks:
+        - process
+        inputs:
+          artifacts:
+            features:
+              taskOutputArtifact:
+                outputArtifactKey: features_out
+                producerTask: process
+          parameters:
+            eta:
+              componentInputParameter: eta
+            max_depth:
+              componentInputParameter: max_depth
+            n_estimators:
+              componentInputParameter: n_estimators
+        taskInfo:
+          name: train
+  inputDefinitions:
+    parameters:
+      csv_path:
+        defaultValue: /data/creditcard.csv
+        isOptional: true
+        parameterType: STRING
+      eta:
+        defaultValue: 0.1
+        isOptional: true
+        parameterType: NUMBER_DOUBLE
+      max_depth:
+        defaultValue: 5.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+      n_estimators:
+        defaultValue: 200.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.15.0
+---
+platforms:
+  kubernetes:
+    deploymentSpec:
+      executors:
+        exec-load-dataset:
+          pvcMount:
+          - constant: dataset-fraude
+            mountPath: /data
+            pvcNameParameter:
+              runtimeValue:
+                constant: dataset-fraude

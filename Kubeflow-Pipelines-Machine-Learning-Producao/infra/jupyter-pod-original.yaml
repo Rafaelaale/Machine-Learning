@@ -1,0 +1,31 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter-eda
+  namespace: kubeflow
+spec:
+  containers:
+    - name: jupyter
+      image: quay.io/jupyter/scipy-notebook:python-3.11
+      command:
+        - start-notebook.py
+      args:
+        - --ServerApp.token=kubeflow-estudo-local
+      ports:
+        - containerPort: 8888
+      resources:
+        requests:
+          cpu: "250m"
+          memory: "512Mi"
+        limits:
+          cpu: "2"
+          memory: "2Gi"
+      volumeMounts:
+        - name: dataset
+          mountPath: /home/jovyan/dados
+          readOnly: true
+  volumes:
+    - name: dataset
+      persistentVolumeClaim:
+        claimName: dataset-fraude
+  restartPolicy: Always

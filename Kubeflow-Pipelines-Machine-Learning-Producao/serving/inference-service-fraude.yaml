@@ -1,0 +1,19 @@
+﻿apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: fraude
+  namespace: kubeflow
+spec:
+  predictor:
+    model:
+      modelFormat:
+        name: xgboost
+      runtime: kserve-xgbserver
+      storageUri: "pvc://models-pvc-kubeflow/serving/aula26-20261108210412/"
+      resources:
+        requests:
+          cpu: "250m"
+          memory: "512Mi"
+        limits:
+          cpu: "1"
+          memory: "1Gi"

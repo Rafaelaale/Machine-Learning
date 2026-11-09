@@ -1,0 +1,528 @@
+# PIPELINE DEFINITION
+# Name: fraude-pipeline-e2e-aula32
+# Description: Load, process, XGBoost, metricas, promocao e deploy
+# Inputs:
+#    eta: float [Default: 0.2430296138044891]
+#    max_depth: int [Default: 5.0]
+#    n_estimators: int [Default: 194.0]
+#    threshold: float [Default: 0.7]
+components:
+  comp-condition-1:
+    dag:
+      tasks:
+        deploy-model:
+          cachingOptions: {}
+          componentRef:
+            name: comp-deploy-model
+          dependentTasks:
+          - promote-model
+          inputs:
+            parameters:
+              model_path:
+                taskOutputParameter:
+                  outputParameterKey: Output
+                  producerTask: promote-model
+          taskInfo:
+            name: deploy
+        promote-model:
+          cachingOptions: {}
+          componentRef:
+            name: comp-promote-model
+          inputs:
+            parameters:
+              metrics_path:
+                componentInputParameter: pipelinechannel--submit-training-Output
+              threshold:
+                componentInputParameter: pipelinechannel--threshold
+          taskInfo:
+            name: promote
+    inputDefinitions:
+      parameters:
+        pipelinechannel--read-metrics-Output:
+          parameterType: NUMBER_DOUBLE
+        pipelinechannel--submit-training-Output:
+          parameterType: STRING
+        pipelinechannel--threshold:
+          parameterType: NUMBER_DOUBLE
+  comp-deploy-model:
+    executorLabel: exec-deploy-model
+    inputDefinitions:
+      parameters:
+        model_path:
+          parameterType: STRING
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: STRING
+  comp-load-dataset:
+    executorLabel: exec-load-dataset
+    inputDefinitions:
+      parameters:
+        csv_path:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        output_df:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+  comp-process-to-pvc:
+    executorLabel: exec-process-to-pvc
+    inputDefinitions:
+      artifacts:
+        raw:
+          artifactType:
+            schemaTitle: system.Dataset
+            schemaVersion: 0.0.1
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: STRING
+  comp-promote-model:
+    executorLabel: exec-promote-model
+    inputDefinitions:
+      parameters:
+        metrics_path:
+          parameterType: STRING
+        threshold:
+          parameterType: NUMBER_DOUBLE
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: STRING
+  comp-read-metrics:
+    executorLabel: exec-read-metrics
+    inputDefinitions:
+      parameters:
+        metrics_path:
+          parameterType: STRING
+    outputDefinitions:
+      artifacts:
+        metrics:
+          artifactType:
+            schemaTitle: system.Metrics
+            schemaVersion: 0.0.1
+      parameters:
+        Output:
+          parameterType: NUMBER_DOUBLE
+  comp-submit-training:
+    executorLabel: exec-submit-training
+    inputDefinitions:
+      parameters:
+        eta:
+          parameterType: NUMBER_DOUBLE
+        features_path:
+          parameterType: STRING
+        max_depth:
+          parameterType: NUMBER_INTEGER
+        n_estimators:
+          parameterType: NUMBER_INTEGER
+    outputDefinitions:
+      parameters:
+        Output:
+          parameterType: STRING
+deploymentSpec:
+  executors:
+    exec-deploy-model:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - deploy_model
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef deploy_model(model_path: str) -> str:\n    import time\n    from\
+          \ kubernetes import client, config\n\n    config.load_incluster_config()\n\
+          \n    apps = client.AppsV1Api()\n    namespace = \"kubeflow\"\n    nome\
+          \ = \"fraude-predictor-compat\"\n\n    atual = apps.read_namespaced_deployment(nome,\
+          \ namespace)\n\n    if (atual.status.ready_replicas or 0) < 1:\n       \
+          \ raise RuntimeError(\n            \"Predictor atual nao esta Ready. \"\n\
+          \            \"Deploy bloqueado para proteger a versao anterior.\"\n   \
+          \     )\n\n    container = next(\n        c for c in atual.spec.template.spec.containers\n\
+          \        if c.name == \"predictor\"\n    )\n\n    anterior = next(\n   \
+          \     (e.value for e in (container.env or [])\n         if e.name == \"\
+          MODEL_PATH\"),\n        None,\n    )\n\n    if not anterior:\n        raise\
+          \ RuntimeError(\"MODEL_PATH anterior nao encontrado\")\n\n    def atualizar(path):\n\
+          \        apps.patch_namespaced_deployment(\n            nome,\n        \
+          \    namespace,\n            {\n                \"spec\": {\n          \
+          \          \"template\": {\n                        \"spec\": {\n      \
+          \                      \"containers\": [{\n                            \
+          \    \"name\": \"predictor\",\n                                \"env\":\
+          \ [{\n                                    \"name\": \"MODEL_PATH\",\n  \
+          \                                  \"value\": path\n                   \
+          \             }]\n                            }]\n                     \
+          \   }\n                    }\n                }\n            },\n      \
+          \  )\n\n    atualizar(model_path)\n\n    for _ in range(60):\n        dep\
+          \ = apps.read_namespaced_deployment(nome, namespace)\n        status = dep.status\n\
+          \n        if (\n            status.observed_generation == dep.metadata.generation\n\
+          \            and (status.updated_replicas or 0) == 1\n            and (status.ready_replicas\
+          \ or 0) == 1\n            and (status.replicas or 0) == 1\n        ):\n\
+          \            print(f\"Modelo publicado: {model_path}\")\n            return\
+          \ model_path\n\n        time.sleep(5)\n\n    atualizar(anterior)\n    raise\
+          \ RuntimeError(\n        \"Novo predictor nao ficou pronto. \"\n       \
+          \ \"Configuracao anterior restaurada; verificar rollout.\"\n    )\n\n"
+        image: fraude-trainer:2.4
+    exec-load-dataset:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - load_dataset
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef load_dataset(\n    csv_path: str,\n    output_df: Output[Dataset]\n\
+          ):\n    import pandas as pd\n\n    df = pd.read_csv(csv_path)\n\n    print(f\"\
+          Dataset carregado: {len(df)} linhas\")\n\n    df.to_csv(output_df.path,\
+          \ index=False)\n\n"
+        image: fraude-trainer:2.4
+    exec-process-to-pvc:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - process_to_pvc
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef process_to_pvc(raw: Input[Dataset]) -> str:\n    import pandas\
+          \ as pd\n    import os\n    import uuid\n    from src.features import build_features\n\
+          \n    df = pd.read_csv(raw.path)\n    df = build_features(df)\n\n    pasta\
+          \ = \"/models/kfp-aula27/\" + uuid.uuid4().hex\n    os.makedirs(pasta, exist_ok=True)\n\
+          \n    caminho = pasta + \"/features.parquet\"\n\n    df.to_parquet(caminho,\
+          \ index=False)\n\n    print(f\"Features salvas: {caminho}\")\n\n    return\
+          \ caminho\n\n"
+        image: fraude-trainer:2.4
+    exec-promote-model:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - promote_model
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef promote_model(metrics_path: str, threshold: float) -> str:\n\
+          \    import json\n    import shutil\n    import uuid\n    from pathlib import\
+          \ Path\n\n    metrics_file = Path(metrics_path)\n    modelo = metrics_file.with_name(\"\
+          model.ubj\")\n\n    with metrics_file.open(encoding=\"utf-8\") as f:\n \
+          \       metricas = json.load(f)\n\n    auc = float(metricas[\"val_pr_auc\"\
+          ])\n\n    if auc < threshold:\n        raise RuntimeError(\"Modelo reprovado\"\
+          )\n\n    if not modelo.is_file() or modelo.stat().st_size == 0:\n      \
+          \  raise RuntimeError(\"Modelo nao encontrado\")\n\n    destino = Path(\"\
+          /models/serving/releases\") / uuid.uuid4().hex\n    destino.mkdir(parents=True,\
+          \ exist_ok=False)\n\n    novo_modelo = destino / \"model.ubj\"\n    shutil.copy2(modelo,\
+          \ novo_modelo)\n\n    if novo_modelo.stat().st_size != modelo.stat().st_size:\n\
+          \        raise RuntimeError(\"Falha ao copiar modelo\")\n\n    print(f\"\
+          Modelo aprovado: PR-AUC={auc:.4f}\")\n    print(f\"Modelo promovido: {novo_modelo}\"\
+          )\n\n    return str(novo_modelo)\n\n"
+        image: fraude-trainer:2.4
+    exec-read-metrics:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - read_metrics
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef read_metrics(\n    metrics_path: str,\n    metrics: Output[Metrics]\n\
+          ) -> float:\n\n    import json\n\n    with open(metrics_path, encoding=\"\
+          utf-8\") as arquivo:\n        dados = json.load(arquivo)\n\n    for nome,\
+          \ valor in dados.items():\n        if isinstance(valor, (int, float)) and\
+          \ not isinstance(valor, bool):\n            metrics.log_metric(nome, float(valor))\n\
+          \n    resultado = float(dados[\"val_pr_auc\"])\n\n    print(f\"PR-AUC validacao:\
+          \ {resultado:.4f}\")\n\n    return resultado\n\n"
+        image: fraude-trainer:2.4
+    exec-submit-training:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - submit_training
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet --no-warn-script-location 'kfp==2.15.0'\
+          \ '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"\
+          $0\" \"$@\"\n"
+        - sh
+        - -ec
+        - 'program_path=$(mktemp -d)
+
+
+          printf "%s" "$0" > "$program_path/ephemeral_component.py"
+
+          _KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         "$program_path/ephemeral_component.py"                         "$@"
+
+          '
+        - "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import\
+          \ *\n\ndef submit_training(\n    features_path: str,\n    eta: float,\n\
+          \    max_depth: int,\n    n_estimators: int\n) -> str:\n\n    import time\n\
+          \    from kubernetes import client, config\n\n    config.load_incluster_config()\n\
+          \n    with open(\n        \"/var/run/secrets/kubernetes.io/serviceaccount/namespace\"\
+          \n    ) as arquivo:\n        namespace = arquivo.read().strip()\n\n    batch\
+          \ = client.BatchV1Api()\n\n    pasta = features_path.rsplit(\"/\", 1)[0]\n\
+          \n    ambiente = [\n        client.V1EnvVar(name=\"CSV\", value=features_path),\n\
+          \        client.V1EnvVar(name=\"MODELS_DIR\", value=pasta),\n        client.V1EnvVar(name=\"\
+          ETA\", value=str(eta)),\n        client.V1EnvVar(name=\"MAX_DEPTH\", value=str(max_depth)),\n\
+          \        client.V1EnvVar(\n            name=\"N_ESTIMATORS\",\n        \
+          \    value=str(n_estimators)\n        )\n    ]\n\n    container = client.V1Container(\n\
+          \        name=\"trainer\",\n        image=\"fraude-trainer:2.4\",\n    \
+          \    image_pull_policy=\"Never\",\n        command=[\"python\", \"-m\",\
+          \ \"src.train_node_kfp\"],\n        env=ambiente,\n        resources=client.V1ResourceRequirements(\n\
+          \            requests={\"cpu\": \"250m\", \"memory\": \"512Mi\"},\n    \
+          \        limits={\"cpu\": \"2\", \"memory\": \"3Gi\"}\n        ),\n    \
+          \    volume_mounts=[\n            client.V1VolumeMount(\n              \
+          \  name=\"models\",\n                mount_path=\"/models\"\n          \
+          \  )\n        ]\n    )\n\n    pod = client.V1PodSpec(\n        restart_policy=\"\
+          Never\",\n        containers=[container],\n        volumes=[\n         \
+          \   client.V1Volume(\n                name=\"models\",\n               \
+          \ persistent_volume_claim=client.V1PersistentVolumeClaimVolumeSource(\n\
+          \                    claim_name=\"models-pvc-kubeflow\"\n              \
+          \  )\n            )\n        ]\n    )\n\n    job = client.V1Job(\n     \
+          \   api_version=\"batch/v1\",\n        kind=\"Job\",\n        metadata=client.V1ObjectMeta(\n\
+          \            generate_name=\"fraude-kfp-\",\n            namespace=namespace\n\
+          \        ),\n        spec=client.V1JobSpec(\n            backoff_limit=0,\n\
+          \            template=client.V1PodTemplateSpec(spec=pod)\n        )\n  \
+          \  )\n\n    criado = batch.create_namespaced_job(namespace, job)\n    nome\
+          \ = criado.metadata.name\n\n    print(f\"Job criado: {nome}\", flush=True)\n\
+          \n    inicio = time.monotonic()\n\n    while time.monotonic() - inicio <\
+          \ 600:\n        estado = batch.read_namespaced_job(\n            name=nome,\n\
+          \            namespace=namespace\n        ).status\n\n        if estado.succeeded\
+          \ and estado.succeeded >= 1:\n            print(\"Treinamento concluido\"\
+          , flush=True)\n            return pasta + \"/metrics.json\"\n\n        if\
+          \ estado.failed and estado.failed > 0:\n            raise RuntimeError(f\"\
+          Treinamento falhou: {nome}\")\n\n        time.sleep(5)\n\n    raise TimeoutError(f\"\
+          Job excedeu 600 segundos: {nome}\")\n\n"
+        image: fraude-trainer:2.4
+pipelineInfo:
+  description: Load, process, XGBoost, metricas, promocao e deploy
+  name: fraude-pipeline-e2e-aula32
+root:
+  dag:
+    tasks:
+      condition-1:
+        componentRef:
+          name: comp-condition-1
+        dependentTasks:
+        - read-metrics
+        - submit-training
+        inputs:
+          parameters:
+            pipelinechannel--read-metrics-Output:
+              taskOutputParameter:
+                outputParameterKey: Output
+                producerTask: read-metrics
+            pipelinechannel--submit-training-Output:
+              taskOutputParameter:
+                outputParameterKey: Output
+                producerTask: submit-training
+            pipelinechannel--threshold:
+              componentInputParameter: threshold
+        taskInfo:
+          name: modelo-aprovado
+        triggerPolicy:
+          condition: inputs.parameter_values['pipelinechannel--read-metrics-Output']
+            >= inputs.parameter_values['pipelinechannel--threshold']
+      load-dataset:
+        cachingOptions: {}
+        componentRef:
+          name: comp-load-dataset
+        inputs:
+          parameters:
+            csv_path:
+              runtimeValue:
+                constant: /data/creditcard.csv
+        taskInfo:
+          name: load
+      process-to-pvc:
+        cachingOptions: {}
+        componentRef:
+          name: comp-process-to-pvc
+        dependentTasks:
+        - load-dataset
+        inputs:
+          artifacts:
+            raw:
+              taskOutputArtifact:
+                outputArtifactKey: output_df
+                producerTask: load-dataset
+        taskInfo:
+          name: process
+      read-metrics:
+        cachingOptions: {}
+        componentRef:
+          name: comp-read-metrics
+        dependentTasks:
+        - submit-training
+        inputs:
+          parameters:
+            metrics_path:
+              taskOutputParameter:
+                outputParameterKey: Output
+                producerTask: submit-training
+        taskInfo:
+          name: metrics
+      submit-training:
+        cachingOptions: {}
+        componentRef:
+          name: comp-submit-training
+        dependentTasks:
+        - process-to-pvc
+        inputs:
+          parameters:
+            eta:
+              componentInputParameter: eta
+            features_path:
+              taskOutputParameter:
+                outputParameterKey: Output
+                producerTask: process-to-pvc
+            max_depth:
+              componentInputParameter: max_depth
+            n_estimators:
+              componentInputParameter: n_estimators
+        taskInfo:
+          name: train
+  inputDefinitions:
+    parameters:
+      eta:
+        defaultValue: 0.2430296138044891
+        isOptional: true
+        parameterType: NUMBER_DOUBLE
+      max_depth:
+        defaultValue: 5.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+      n_estimators:
+        defaultValue: 194.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+      threshold:
+        defaultValue: 0.7
+        isOptional: true
+        parameterType: NUMBER_DOUBLE
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.15.0
+---
+platforms:
+  kubernetes:
+    deploymentSpec:
+      executors:
+        exec-load-dataset:
+          pvcMount:
+          - constant: dataset-fraude
+            mountPath: /data
+            pvcNameParameter:
+              runtimeValue:
+                constant: dataset-fraude
+        exec-process-to-pvc:
+          pvcMount:
+          - constant: models-pvc-kubeflow
+            mountPath: /models
+            pvcNameParameter:
+              runtimeValue:
+                constant: models-pvc-kubeflow
+        exec-promote-model:
+          pvcMount:
+          - constant: models-pvc-kubeflow
+            mountPath: /models
+            pvcNameParameter:
+              runtimeValue:
+                constant: models-pvc-kubeflow
+        exec-read-metrics:
+          pvcMount:
+          - constant: models-pvc-kubeflow
+            mountPath: /models
+            pvcNameParameter:
+              runtimeValue:
+                constant: models-pvc-kubeflow

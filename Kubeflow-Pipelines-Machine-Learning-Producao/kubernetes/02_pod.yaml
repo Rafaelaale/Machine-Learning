@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dataset-loader
+  namespace: kubeflow-aula02
+spec:
+  restartPolicy: Never
+  containers:
+    - name: loader
+      image: busybox:1.37
+      command: [sleep, '3600']
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 250m
+          memory: 128Mi
