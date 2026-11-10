@@ -1,0 +1,25 @@
+AULA 218719 - SIMULACAO DE ROLLBACK
+VERSAO ATUAL: 59c5b75
+VERSAO ANTERIOR: 4d3a2c1
+
+auth-service
+ATUAL: burguer-app-auth-service:59c5b75
+ANTERIOR: burguer-app-auth-service:4d3a2c1
+
+user-service
+ATUAL: burguer-app-user-service:59c5b75
+ANTERIOR: burguer-app-user-service:4d3a2c1
+
+order-service
+ATUAL: burguer-app-order-service:59c5b75
+ANTERIOR: burguer-app-order-service:4d3a2c1
+
+product-service
+ATUAL: burguer-app-product-service:59c5b75
+ANTERIOR: burguer-app-product-service:4d3a2c1
+
+SERVICOS CONFERIDOS: 4/4
+WORKFLOW DESATIVADO
+NENHUM ROLLBACK REAL EXECUTADO
+NENHUM CONTAINER ALTERADO
+NENHUM CODIGO PUBLICADO

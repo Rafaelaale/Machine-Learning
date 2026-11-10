@@ -1,0 +1,62 @@
+AULA 218716 - IMPLEMENTANDO TRIVY
+
+OBJETIVO
+
+Executar verificacoes de vulnerabilidades
+nas imagens Docker dos quatro microservicos.
+
+FERRAMENTA
+
+Trivy
+Versao utilizada na aula: 0.66.0
+
+AMBIENTE
+
+Windows
+PowerShell
+VS Code
+Docker Desktop
+
+IMAGENS LOCAIS
+
+alura-cicd-auth-service:1.0
+alura-cicd-user-service:1.0
+alura-cicd-order-service:1.0
+alura-cicd-product-service:1.0
+
+VERIFICACOES
+
+CVE de severidade HIGH.
+CVE de severidade CRITICAL.
+
+RELATORIOS
+
+Formato JSON.
+Um relatorio para cada imagem.
+Resumo consolidado em TXT.
+
+REGRAS
+
+Nao reconstruir imagens nesta etapa local.
+Nao iniciar nem parar containers.
+Nao modificar volumes Docker.
+Nao alterar dependencias automaticamente.
+Nao modificar arquivos .env.
+Nao publicar codigos.
+Nao publicar imagens.
+Nao executar deploy.
+
+O workflow da aula fica fora de
+.github/workflows e permanece desativado.
+
+IMPORTANTE
+
+Encontrar vulnerabilidades nao significa
+que elas foram corrigidas.
+
+O resultado do Trivy depende da atualizacao
+do banco de vulnerabilidades e da imagem analisada.
+
+A pendencia do auth-service/.env rastreado
+permanece registrada para correcao antes
+da publicacao final.

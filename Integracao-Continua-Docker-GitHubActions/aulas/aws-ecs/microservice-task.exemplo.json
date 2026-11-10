@@ -1,0 +1,59 @@
+{
+    "family":  "microservice-task",
+    "networkMode":  "awsvpc",
+    "requiresCompatibilities":  [
+                                    "FARGATE"
+                                ],
+    "cpu":  "1024",
+    "memory":  "2048",
+    "runtimePlatform":  {
+                            "operatingSystemFamily":  "LINUX",
+                            "cpuArchitecture":  "X86_64"
+                        },
+    "containerDefinitions":  [
+                                 {
+                                     "name":  "auth-service",
+                                     "image":  "docker.io/professordanilo/auth-service:latest",
+                                     "essential":  true,
+                                     "portMappings":  [
+                                                          {
+                                                              "containerPort":  5000,
+                                                              "protocol":  "tcp"
+                                                          }
+                                                      ]
+                                 },
+                                 {
+                                     "name":  "user-service",
+                                     "image":  "docker.io/professordanilo/user-service:latest",
+                                     "essential":  true,
+                                     "portMappings":  [
+                                                          {
+                                                              "containerPort":  5001,
+                                                              "protocol":  "tcp"
+                                                          }
+                                                      ]
+                                 },
+                                 {
+                                     "name":  "order-service",
+                                     "image":  "docker.io/professordanilo/order-service:latest",
+                                     "essential":  true,
+                                     "portMappings":  [
+                                                          {
+                                                              "containerPort":  5002,
+                                                              "protocol":  "tcp"
+                                                          }
+                                                      ]
+                                 },
+                                 {
+                                     "name":  "product-service",
+                                     "image":  "docker.io/professordanilo/product-service:latest",
+                                     "essential":  true,
+                                     "portMappings":  [
+                                                          {
+                                                              "containerPort":  5003,
+                                                              "protocol":  "tcp"
+                                                          }
+                                                      ]
+                                 }
+                             ]
+}

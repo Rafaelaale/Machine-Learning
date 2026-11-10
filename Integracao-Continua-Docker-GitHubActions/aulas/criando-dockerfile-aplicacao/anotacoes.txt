@@ -1,0 +1,36 @@
+AULA - CRIANDO UM DOCKERFILE PARA APLICACAO
+
+Comando Linux apresentado pelo professor:
+touch Dockerfile
+
+Equivalente no PowerShell, caso o arquivo nao exista:
+New-Item -ItemType File -Name Dockerfile
+
+Listar arquivos:
+ls
+
+FROM - imagem base.
+WORKDIR - diretorio de trabalho.
+ENV - variaveis de ambiente.
+RUN - instalacao de dependencias.
+COPY - copia arquivos para a imagem.
+EXPOSE - documenta as portas.
+CMD - comando padrao de inicializacao.
+
+ETAPAS DO MULTI-STAGE BUILD
+base - prepara o sistema e ferramentas.
+builder - instala dependencias Python.
+final - recebe dependencias e codigo.
+
+PORTAS
+5000 - auth-service
+5001 - user-service
+5002 - order-service
+5003 - product-service
+
+IMPORTANTE
+O Dockerfile original ja existia.
+O original nao deve ser sobrescrito nesta aula.
+Cada microservico possui seu proprio Dockerfile.
+O build sera realizado na proxima aula.
+Nenhuma publicacao autorizada.

@@ -1,0 +1,31 @@
+services:
+  grafana:
+    image: grafana/grafana:12.1.0
+    container_name: alura-cicd-grafana-aula
+
+    ports:
+      - "127.0.0.1:13000:3000"
+
+    environment:
+      GF_SECURITY_ADMIN_USER: "${GRAFANA_ADMIN_USER:-admin}"
+      GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_ADMIN_PASSWORD:?Defina GRAFANA_ADMIN_PASSWORD antes de iniciar}"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_SERVER_ROOT_URL: "http://localhost:13000/"
+
+    volumes:
+      - alura-cicd-grafana-aula-data:/var/lib/grafana
+      - ./observabilidade/grafana/provisioning/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml:ro
+      - ./observabilidade/grafana/provisioning/dashboards/default.yml:/etc/grafana/provisioning/dashboards/default.yml:ro
+      - ./observabilidade/grafana/dashboards:/var/lib/grafana/dashboards:ro
+
+    depends_on:
+      - prometheus
+
+    networks:
+      - alura-cicd-aula-rede
+
+    restart: "no"
+
+volumes:
+  alura-cicd-grafana-aula-data:

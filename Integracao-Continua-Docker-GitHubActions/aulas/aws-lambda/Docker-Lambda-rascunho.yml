@@ -1,0 +1,81 @@
+name: Docker Lambda functions - Estudo
+
+on:
+  push:
+    branches:
+      - aula-05
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  FUNCTION_NAME: auth-service-lambda
+  ZIP_FILE: auth-service-lambda.zip
+  RUNTIME: python3.12
+  HANDLER: lambda_function.lambda_handler
+  REGION: us-east-1
+
+jobs:
+  deploy:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Executar testes da funcao
+        run: |
+          python -B lambda-estudo/auth-service-lambda/teste_lambda_local.py
+
+      - name: Empacotar funcao Lambda
+        run: |
+          mkdir -p "$RUNNER_TEMP/lambda-package"
+
+          cp lambda-estudo/auth-service-lambda/lambda_function.py \
+            "$RUNNER_TEMP/lambda-package/"
+
+          python -m pip install \
+            -r lambda-estudo/auth-service-lambda/requirements-dev.txt \
+            --target "$RUNNER_TEMP/lambda-package"
+
+          cd "$RUNNER_TEMP/lambda-package"
+
+          zip -rq "$GITHUB_WORKSPACE/$ZIP_FILE" .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.REGION }}
+
+      - name: Deploy Lambda
+        run: |
+          if aws lambda get-function \
+            --function-name "$FUNCTION_NAME" \
+            > /dev/null 2> lambda-error.txt; then
+
+            aws lambda update-function-code \
+              --function-name "$FUNCTION_NAME" \
+              --zip-file "fileb://$ZIP_FILE"
+
+          elif grep -q 'ResourceNotFoundException' lambda-error.txt; then
+
+            aws lambda create-function \
+              --function-name "$FUNCTION_NAME" \
+              --runtime "$RUNTIME" \
+              --role "${{ secrets.AWS_LAMBDA_ROLE }}" \
+              --handler "$HANDLER" \
+              --zip-file "fileb://$ZIP_FILE"
+
+          else
+            cat lambda-error.txt
+            exit 1
+          fi

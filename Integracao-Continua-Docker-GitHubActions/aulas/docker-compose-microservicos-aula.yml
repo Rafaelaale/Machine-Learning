@@ -1,0 +1,48 @@
+services:
+  auth-service:
+    image: alura-cicd-auth-service:1.0
+    build:
+      context: ../docker-automation/burguer-app/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:16000:5000"
+    env_file:
+      - ./microservicos-local.env
+    networks:
+      - alura-cicd-aula-rede
+  user-service:
+    image: alura-cicd-user-service:1.0
+    build:
+      context: ../docker-automation/burguer-app/user-service
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:16001:5001"
+    env_file:
+      - ./microservicos-local.env
+    networks:
+      - alura-cicd-aula-rede
+  order-service:
+    image: alura-cicd-order-service:1.0
+    build:
+      context: ../docker-automation/burguer-app/order-service
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:16002:5002"
+    env_file:
+      - ./microservicos-local.env
+    networks:
+      - alura-cicd-aula-rede
+  product-service:
+    image: alura-cicd-product-service:1.0
+    build:
+      context: ../docker-automation/burguer-app/product-service
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:16003:5003"
+    env_file:
+      - ./microservicos-local.env
+    networks:
+      - alura-cicd-aula-rede
+networks:
+  alura-cicd-aula-rede:
+    external: true

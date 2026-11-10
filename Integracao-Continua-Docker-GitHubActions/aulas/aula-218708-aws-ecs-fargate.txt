@@ -1,0 +1,157 @@
+AULA 218708 - CONHECENDO O AWS ECS
+
+1. OBJETIVO
+
+Conhecer os componentes do Amazon ECS e do AWS Fargate.
+
+O curso utilizara esses recursos para estudar
+a implantacao de conteineres em nuvem.
+
+Nesta aula nao criaremos infraestrutura AWS.
+
+2. AMAZON ECS
+
+ECS significa Elastic Container Service.
+
+E um servico de orquestracao de conteineres.
+
+Permite organizar e executar aplicacoes
+containerizadas em ambientes de nuvem.
+
+3. CLUSTER ECS
+
+O cluster agrupa logicamente tarefas e servicos.
+
+Pode utilizar EC2 ou Fargate como capacidade
+computacional para executar conteineres.
+
+Com Fargate, nao precisamos provisionar
+instancias EC2 para executar as tarefas.
+
+4. TASK DEFINITION
+
+E a especificacao de como executar os conteineres.
+
+Pode definir:
+
+Imagem Docker.
+CPU.
+Memoria.
+Portas.
+Variaveis de ambiente.
+Logs.
+Permissoes.
+Configuracoes de rede.
+Volumes compativeis.
+
+A Task Definition possui revisoes.
+
+5. TASK
+
+E uma instancia em execucao de uma Task Definition.
+
+Uma Task Definition pode incluir
+um ou mais conteineres.
+
+Uma Task pode ser executada individualmente
+ou gerenciada por um ECS Service.
+
+6. ECS SERVICE
+
+Mantem tarefas em execucao.
+
+Permite definir a quantidade desejada de tarefas.
+
+Pode utilizar recursos de escalonamento
+quando configurados.
+
+Tambem pode integrar balanceadores de carga.
+
+7. AWS FARGATE
+
+E uma tecnologia de computacao serverless
+para conteineres utilizada com ECS ou EKS.
+
+Nao exige administracao direta dos hosts.
+
+Os recursos de CPU e memoria precisam ser
+configurados conforme a aplicacao.
+
+Ha cobranca pelos recursos utilizados,
+conforme as regras de precificacao da AWS.
+
+Fargate nao significa custo zero.
+
+8. ECS COM EC2 X ECS COM FARGATE
+
+ECS COM EC2:
+
+O usuario administra as instancias EC2,
+suas capacidades e parte da infraestrutura.
+
+ECS COM FARGATE:
+
+A AWS administra a infraestrutura computacional
+subjacente das tarefas.
+
+O usuario continua responsavel pela aplicacao,
+configuracoes, permissoes e seguranca apropriada.
+
+9. AMAZON ECR
+
+ECR significa Elastic Container Registry.
+
+Serve para armazenar imagens de conteiner.
+
+ECS executa os conteineres.
+ECR armazena as imagens.
+
+Tambem existem Docker Hub e GHCR.
+
+10. NOSSA APLICACAO DO CURSO
+
+Ja configuramos os seguintes servicos:
+
+auth-service
+user-service
+order-service
+product-service
+mongo
+
+Eles foram testados localmente com Docker Compose.
+
+Fluxo conceitual de implantacao futura:
+
+Construir imagens Docker.
+Executar testes automatizados.
+Armazenar imagens em um Registry.
+Criar Task Definitions.
+Configurar Cluster ECS.
+Configurar ECS Services.
+Selecionar capacidade Fargate.
+Configurar rede e seguranca.
+Verificar logs e saude dos servicos.
+
+11. PONTOS DE ATENCAO
+
+O MongoDB precisa de estrategia propria
+para persistencia, backup e seguranca.
+
+Um container local nao pode ser tratado
+automaticamente como banco de producao.
+
+A publicacao de imagens e a implantacao
+da aplicacao sao etapas diferentes.
+
+12. RESTRICOES DO CURSO
+
+Publicar somente ao final do curso.
+
+Nao criar Cluster ECS.
+Nao executar Task na AWS.
+Nao criar ECS Service.
+Nao criar recursos pagos.
+Nao executar deploy.
+Nao executar docker push.
+Nao executar git add, commit ou push.
+Nao alterar os conteineres locais.

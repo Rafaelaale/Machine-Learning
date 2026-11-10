@@ -1,0 +1,70 @@
+AULA 218706 - PUBLICACAO DE IMAGENS NO GHCR
+
+OBJETIVO
+
+Preparar uma imagem Docker para o GitHub Container Registry.
+
+A transcricao demonstra publicacao manual pelo terminal.
+Nao apresenta ainda um workflow novo de GitHub Actions.
+
+ETAPAS APRESENTADAS PELO PROFESSOR
+
+1. Criar um token GitHub com permissoes apropriadas.
+2. Autenticar no registro ghcr.io.
+3. Listar as imagens locais.
+4. Etiquetar a imagem com nome e versao.
+5. Publicar a imagem usando docker push.
+6. Verificar o pacote no GitHub Packages.
+
+COMANDOS CONCEITUAIS
+
+docker image ls
+
+docker image tag IMAGEM_ORIGINAL ghcr.io/USUARIO/IMAGEM:VERSAO
+
+docker image inspect ghcr.io/USUARIO/IMAGEM:VERSAO
+
+docker push ghcr.io/USUARIO/IMAGEM:VERSAO
+
+IMPORTANTE
+
+Os comandos docker login e docker push nao serao
+executados nesta etapa.
+
+IMAGEM DO NOSSO PROJETO
+
+Origem:
+alura-cicd-user-service:1.0
+
+Destino local de estudo:
+ghcr.io/rafaelaale/docker-automation/user-service:1.0
+
+A etiqueta usa o nome de usuario de referencia do projeto.
+Confirmar o proprietario antes de uma publicacao real.
+
+SEGURANCA
+
+Nunca colocar tokens no codigo-fonte.
+Nunca publicar arquivos .env com credenciais.
+Nunca reutilizar tokens apresentados em transcricoes.
+Nao habilitar permissoes desnecessarias.
+A permissao delete:packages nao e necessaria apenas para publicar.
+
+FUTURA AUTOMACAO COM GITHUB ACTIONS
+
+Um workflow pode construir imagens, autenticar no GHCR
+e publicar pacotes utilizando permissoes adequadas.
+
+Para GitHub Actions, pode-se usar GITHUB_TOKEN
+com permissao packages: write, conforme o repositorio.
+
+Essa automacao ainda nao sera ativada.
+
+SITUACAO ATUAL
+
+Preparacao e validacao local.
+Publicacao somente ao final do curso.
+Nenhum docker login.
+Nenhum docker push.
+Nenhum git add, commit ou push.
+Nenhum deploy.

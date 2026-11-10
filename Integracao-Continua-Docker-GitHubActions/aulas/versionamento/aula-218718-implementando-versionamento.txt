@@ -1,0 +1,137 @@
+AULA 218718 - IMPLEMENTANDO VERSIONAMENTO
+
+CURSO:
+Integracao Continua com Docker e GitHub Actions
+
+OBJETIVO
+
+Versionar automaticamente imagens Docker
+utilizando os primeiros sete caracteres
+do SHA do commit disponibilizado pelo GitHub Actions.
+
+1. GITHUB_SHA
+
+O GitHub Actions fornece o identificador
+do commit pela variavel GITHUB_SHA.
+
+Exemplo didatico:
+
+59c5b75e01af8888
+
+Tag gerada:
+
+59c5b75
+
+2. VERSIONAMENTO AUTOMATICO
+
+Comando Bash:
+
+VERSION="${GITHUB_SHA:0:7}"
+
+Persistencia da variavel no workflow:
+
+echo "IMAGE_TAG=${VERSION}" >> "$GITHUB_ENV"
+
+3. IMAGENS VERSIONADAS
+
+Exemplos:
+
+burguer-app-auth-service:59c5b75
+burguer-app-user-service:59c5b75
+burguer-app-order-service:59c5b75
+burguer-app-product-service:59c5b75
+
+Essas tags sao apenas exemplos.
+
+A versao sera derivada do SHA real
+quando o workflow for executado futuramente.
+
+4. SEMVER X SHA
+
+SemVer utiliza:
+
+MAJOR.MINOR.PATCH
+
+Exemplo:
+
+1.2.3
+
+O identificador 59c5b75 NAO e uma versao SemVer.
+
+Ele representa uma abreviacao do SHA do commit.
+
+SHA de sete caracteres pode apresentar colisoes
+em repositorios grandes.
+
+Para rastreabilidade mais rigorosa,
+podemos utilizar o SHA completo.
+
+5. BUILD DOCKER
+
+Cada microservico recebe:
+
+Uma tag baseada no SHA.
+Uma tag latest para desenvolvimento.
+
+A tag latest e mutavel.
+
+Uma tag baseada no SHA tambem pode ser
+sobrescrita caso seja reutilizada.
+
+Para implantacoes reproduziveis,
+considerar o digest imutavel da imagem.
+
+6. MICROSSERVICOS
+
+auth-service
+user-service
+order-service
+product-service
+
+7. PIPELINE
+
+Checkout.
+Geracao da tag.
+Build de quatro imagens.
+Validacao das tags.
+Listagem das imagens.
+
+O rascunho demonstra o versionamento.
+
+A integracao com o pipeline completo,
+incluindo Compose, testes e Trivy,
+sera revisada antes da publicacao final.
+
+8. AMBIENTE LOCAL
+
+O Docker Desktop apresentou problemas no WSL.
+
+Por isso, nesta aula nao executaremos
+docker build nem docker images.
+
+A validacao local verifica somente
+o conteudo do workflow e a logica da tag.
+
+9. SEGURANCA
+
+A pendencia do arquivo auth-service/.env
+rastreado permanece registrada.
+
+O arquivo deve ser protegido antes
+da publicacao do projeto.
+
+10. PUBLICACAO
+
+Workflow salvo fora de .github/workflows.
+
+Job desativado.
+
+Nenhum commit criado.
+Nenhuma branch criada.
+Nenhuma tag Git criada.
+Nenhuma imagem Docker construida.
+Nenhum container iniciado.
+Nenhum codigo publicado.
+Nenhum deploy executado.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

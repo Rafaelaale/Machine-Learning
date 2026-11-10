@@ -1,0 +1,136 @@
+AULA - CLUSTERS, SERVICOS E DEFINICOES DE TAREFAS
+
+1. CLUSTER ECS
+
+Nome apresentado pelo professor:
+alura
+
+Um cluster organiza logicamente tarefas e servicos ECS.
+
+No Fargate, nao precisamos administrar diretamente
+as instancias EC2 utilizadas para executar os conteineres.
+
+2. TASK DEFINITION
+
+Nome:
+microservice-task
+
+Modo:
+FARGATE
+
+Rede:
+awsvpc
+
+O arquivo JSON desta aula apresenta:
+
+auth-service: porta 5000
+user-service: porta 5001
+order-service: porta 5002
+product-service: porta 5003
+
+3. IMAGENS DA AULA
+
+docker.io/professordanilo/auth-service:latest
+docker.io/professordanilo/user-service:latest
+docker.io/professordanilo/order-service:latest
+docker.io/professordanilo/product-service:latest
+
+Estas sao referencias apresentadas pelo professor.
+
+Ainda nao verificamos essas imagens remotamente.
+Elas nao sao imagens publicadas por nos.
+
+Antes da implantacao final, substituiremos essas
+referencias pelas imagens do nosso projeto.
+
+4. ECS SERVICE
+
+O ECS Service administra as tarefas em execucao.
+
+Permite configurar quantidade desejada de tarefas
+e outros recursos de gerenciamento.
+
+ATENCAO:
+
+Uma Task Definition com quatro containers
+executa quatro containers por instancia de tarefa.
+
+Criar quatro ECS Services com essa mesma definicao
+pode resultar em quatro conjuntos completos de containers.
+
+A arquitetura final precisa ser revisada para
+evitar duplicacao e desperdicio de recursos.
+
+5. REDE E SEGURANCA
+
+Network mode:
+awsvpc
+
+Security Group da aula:
+alura-microservices
+
+Portas mencionadas:
+5000 a 5003
+
+Nao abrir indiscriminadamente essas portas
+para toda a internet.
+
+O uso de uma unica sub-rede nao garante
+alta disponibilidade.
+
+Em producao, avaliar VPC, sub-redes,
+balanceador de carga, regras de acesso
+e mais de uma zona de disponibilidade.
+
+6. FARGATE
+
+O Fargate executa os containers sem exigir
+administracao direta dos servidores.
+
+Ainda precisamos especificar recursos como
+CPU e memoria, alem de permissoes e redes.
+
+O exemplo JSON usa 1 vCPU e 2 GB de memoria
+apenas como rascunho para estudo.
+
+Esses valores precisam ser avaliados antes
+de qualquer implantacao real.
+
+7. BANCO DE DADOS
+
+Nossa aplicacao possui MongoDB.
+
+Ainda nao foi definida nesta aula uma estrategia
+de banco de dados persistente em producao.
+
+Precisamos planejar armazenamento, seguranca,
+credenciais, conexao e backups.
+
+8. ETAPA LOCAL
+
+Criar Task Definition de estudo em JSON.
+Validar quatro containers e suas portas.
+Registrar as configuracoes do professor.
+
+9. ETAPA FUTURA
+
+Confirmar conta AWS e regiao.
+Revisar imagens e permissoes.
+Definir arquitetura de tarefas e servicos.
+Configurar VPC, sub-redes e Security Groups.
+Configurar banco de dados.
+Avaliar custos antes de criar recursos.
+Criar cluster, tarefas e servicos somente
+quando a publicacao final for autorizada.
+
+10. RESTRICOES
+
+Nenhum cluster AWS criado.
+Nenhuma Task Definition registrada na AWS.
+Nenhum ECS Service criado.
+Nenhuma cobranca de nuvem iniciada por esta aula.
+Nenhum container Docker local alterado.
+Nenhum git add, commit ou push.
+Nenhum deploy.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

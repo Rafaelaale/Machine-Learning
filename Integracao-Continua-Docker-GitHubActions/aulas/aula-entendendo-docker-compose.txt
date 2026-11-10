@@ -1,0 +1,40 @@
+﻿AULA - ENTENDENDO O DOCKER COMPOSE
+
+CONCEITO
+Docker Compose gerencia aplicacoes com multiplos conteineres.
+O arquivo YAML define servicos, redes, volumes e portas.
+
+COMANDOS APRESENTADOS PELO PROFESSOR
+docker-compose up -d
+docker-compose down
+
+SINTAXE MODERNA - DOCKER COMPOSE V2
+docker compose up -d
+docker compose down
+
+COMANDOS PARA VERIFICACAO
+docker compose version
+docker compose config --quiet
+docker compose config --services
+docker compose ps
+
+COMPONENTES
+services: define os conteineres.
+build: define como construir a imagem.
+image: indica uma imagem Docker.
+ports: mapeia portas.
+environment: define variaveis de ambiente.
+env_file: carrega variaveis de um arquivo.
+networks: define redes de comunicacao.
+volumes: define armazenamento persistente.
+
+ARQUIVOS EXISTENTES NO PROJETO
+docker-automation/burguer-app/docker-compose.yml
+docker-automation/burguer-app/docker-compose.override.yml
+
+CUIDADOS NESTA TRILHA
+Os quatro microservicos ja estao em execucao.
+O MongoDB local ja esta funcionando.
+Nao executar up ou down nesta aula teorica.
+Nao modificar outros conteineres.
+Nenhum commit, push ou deploy.

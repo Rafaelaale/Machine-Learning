@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}Editar Usuário{% endblock %}
+{% block content %}
+<h2>Editar Usuário</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label>Nome</label>
+    <input type="text" name="name" class="form-control" value="{{ user.name }}" required />
+  </div>
+  <div class="mb-3">
+    <label>Endereço</label>
+    <input type="text" name="address" class="form-control" value="{{ user.address }}" required />
+  </div>
+  <button class="btn btn-primary">Salvar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,133 @@
+AULA 218713 - BOAS PRATICAS DE SEGURANCA EM PIPELINES
+
+OBJETIVO
+
+Aplicar boas praticas de seguranca ao pipeline
+Docker Compose com quatro microservicos e MongoDB.
+
+1. DOCKER COMPOSE
+
+Verificar se o Docker Compose esta disponivel
+antes de tentar instalar outra versao.
+
+Preferir o plugin:
+
+docker compose
+
+Evitar downloads de binarios sem validacao
+de origem e integridade.
+
+2. SECRETS
+
+Usar GitHub Actions Secrets para valores sensiveis.
+
+Exemplos:
+
+MONGO_URI
+SECRET_KEY
+
+A mascara ::add-mask:: ajuda a impedir
+exposicao acidental nos logs.
+
+Entretanto, mascarar nao substitui
+a protecao do segredo na origem.
+
+3. ARQUIVOS .ENV
+
+Os arquivos .env podem conter credenciais.
+
+Nao devem ser publicados no repositorio.
+
+Durante pipelines, devem ser criados apenas
+quando necessarios e protegidos por permissoes.
+
+4. MICROSSERVICOS
+
+auth-service
+user-service
+order-service
+product-service
+
+Todos dependem da configuracao adequada
+das variaveis de ambiente.
+
+5. MONGODB
+
+Nao basta iniciar o container.
+
+E importante aguardar a disponibilidade
+do banco de dados.
+
+O exemplo da aula usa verificacao por porta.
+
+O nosso rascunho usa um comando de ping
+executado no container MongoDB.
+
+Este procedimento ainda precisa ser
+testado no ambiente remoto.
+
+6. DOCKER COMPOSE DOWN
+
+O professor utiliza:
+
+docker compose down --volumes
+
+Atencao:
+
+--volumes remove volumes associados
+ao projeto Compose.
+
+Em ambientes com dados persistentes,
+essa operacao pode causar perda de dados.
+
+Nosso rascunho nao utiliza --volumes.
+
+7. TESTES
+
+O pipeline de desenvolvimento deve executar
+testes automatizados dos microservicos.
+
+A integracao completa com os testes
+do workflow anterior permanece pendente.
+
+Este rascunho verifica a estrutura do
+Compose e a resposta do MongoDB.
+
+8. ARQUIVOS SENSIVEIS
+
+O arquivo:
+
+burguer-app/auth-service/.env
+
+precisa ser auditado antes de publicar.
+
+Caso esteja rastreado pelo Git, sera
+necessario corrigir essa situacao.
+
+A revisao atual nao altera o indice Git.
+
+9. SEGURANCA ADICIONAL
+
+Definir permissoes minimas no workflow.
+Evitar credenciais diretamente no codigo.
+Nao imprimir senhas ou tokens.
+Revisar dependencias e Actions utilizadas.
+Desabilitar debug em producao.
+Nao imprimir SECRET_KEY em logs.
+
+10. SITUACAO ATUAL
+
+Workflow de estudo salvo fora de .github/workflows.
+
+Job desativado com if: false.
+
+Nenhum segredo real acessado.
+Nenhum arquivo .env alterado.
+Nenhum Docker Compose iniciado.
+Nenhum container removido.
+Nenhum volume removido.
+Nenhum codigo publicado.
+Nenhum git add, commit ou push.
+Nenhum deploy.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

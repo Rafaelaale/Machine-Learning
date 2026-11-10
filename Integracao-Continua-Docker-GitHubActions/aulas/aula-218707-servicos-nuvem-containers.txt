@@ -1,0 +1,147 @@
+AULA 218707
+SERVICOS DE COMPUTACAO EM NUVEM PARA CONTEINERES
+
+1. OBJETIVO
+
+Conhecer plataformas para executar conteineres em nuvem.
+
+Nesta aula, o professor apresenta conceitos.
+Nenhuma infraestrutura em nuvem sera criada.
+
+2. INTEGRACAO E ENTREGA CONTINUA
+
+CI - INTEGRACAO CONTINUA
+
+Integra alteracoes de codigo e executa verificacoes
+automatizadas, como testes e builds.
+
+CD - ENTREGA OU IMPLANTACAO CONTINUA
+
+Prepara ou automatiza a entrega das alteracoes.
+
+Entrega continua nao exige que cada alteracao
+seja automaticamente implantada em producao.
+
+3. AWS - AMAZON WEB SERVICES
+
+ECS - Elastic Container Service
+
+Gerencia a execucao e a organizacao de conteineres.
+
+EKS - Elastic Kubernetes Service
+
+Oferece Kubernetes gerenciado.
+
+FARGATE
+
+Fornece capacidade computacional serverless
+para cargas de trabalho com ECS e EKS.
+
+Serverless nao significa ausencia de servidores.
+Significa que nao precisamos administrar diretamente
+os servidores que executam a carga.
+
+4. MICROSOFT AZURE
+
+AKS - Azure Kubernetes Service
+
+Kubernetes gerenciado pela Azure.
+
+ACI - Azure Container Instances
+
+Executa conteineres sob demanda.
+
+AZURE CONTAINER APPS
+
+Executa aplicacoes containerizadas com
+recursos gerenciados de escalabilidade.
+
+OBSERVACAO:
+O nome correto e AKS, nao Azure EKS.
+
+5. GOOGLE CLOUD
+
+GKE - Google Kubernetes Engine
+
+Kubernetes gerenciado.
+
+CLOUD RUN
+
+Executa aplicacoes containerizadas em
+infraestrutura gerenciada.
+
+O armazenamento persistente e normalmente
+feito por servicos externos.
+
+CLOUD FUNCTIONS
+
+Executa funcoes orientadas a eventos.
+Nao e um orquestrador de conteineres.
+
+6. OUTRAS PLATAFORMAS
+
+DIGITALOCEAN KUBERNETES
+Servico gerenciado de Kubernetes.
+
+HEROKU
+Plataforma para executar e distribuir aplicacoes,
+com suporte a imagens de conteiner.
+
+IBM CLOUD KUBERNETES SERVICE
+Kubernetes gerenciado para aplicacoes empresariais.
+
+7. CRITERIOS PARA ESCOLHER UMA NUVEM
+
+Custo.
+Escalabilidade.
+Seguranca.
+Documentacao.
+Suporte tecnico.
+Integracao com CI/CD.
+Persistencia de dados.
+Monitoramento.
+Facilidade de manutencao.
+
+8. DIFERENCA ENTRE REGISTRY E COMPUTACAO
+
+DOCKER HUB E GHCR
+
+Armazenam e distribuem imagens Docker.
+
+ECS, EKS, FARGATE, AKS, GKE E CLOUD RUN
+
+Sao servicos relacionados a execucao
+ou gerenciamento de cargas em nuvem.
+
+Publicar uma imagem nao significa
+implantar uma aplicacao em producao.
+
+9. APLICACAO PRATICA DO NOSSO CURSO
+
+Nossa aplicacao Burger App possui:
+
+auth-service
+user-service
+order-service
+product-service
+mongo
+
+Os cinco servicos ja foram integrados
+e testados localmente com Docker Compose.
+
+As imagens foram preparadas para estudo
+de Docker Hub e GHCR.
+
+A proxima evolucao sera estudar como
+executar esses conteineres em nuvem.
+
+10. RESTRICOES DO PROJETO
+
+Publicacao somente ao final do curso.
+
+Nao executar docker push.
+Nao executar git add, commit ou push.
+Nao criar infraestrutura AWS, Azure ou GCP.
+Nao realizar deploy.
+Nao gerar custos de nuvem.
+Nao remover conteineres existentes.

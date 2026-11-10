@@ -1,0 +1,38 @@
+AULA - COMO FUNCIONA O DOCKERFILE
+
+FROM - define a imagem base.
+ADD - adiciona arquivos; tambem aceita recursos especiais.
+COPY - copia arquivos para a imagem.
+ARG - define variaveis usadas durante o build.
+CMD - define o comando ou argumentos padrao.
+ENTRYPOINT - define o executavel principal.
+ENV - define variaveis de ambiente.
+EXPOSE - documenta a porta usada pelo container.
+RUN - executa comandos durante a construcao.
+WORKDIR - define o diretorio de trabalho.
+
+EXEMPLO 1 - RUN
+RUN echo 'we are running some # of cool things'
+
+EXEMPLO 2 - RUN EM VARIAS LINHAS
+RUN echo hello \
+    world
+
+COMANDOS PARA CONSTRUIR E TESTAR
+docker build -t alura-dockerfile-aula:local .
+docker images
+docker image inspect alura-dockerfile-aula:local
+
+BOAS PRATICAS
+Preferir COPY quando ADD nao for necessario.
+Usar imagens base confiaveis.
+Evitar incluir senhas na imagem.
+Organizar instrucoes para aproveitar o cache.
+Evitar arquivos desnecessarios.
+Usar imagens com versoes controladas em producao.
+EXPOSE sozinho nao publica portas.
+
+ARQUIVO PRATICO
+aulas/dockerfile-demonstracao/Dockerfile
+
+NENHUMA PUBLICACAO EXTERNA.

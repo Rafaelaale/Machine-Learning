@@ -1,0 +1,82 @@
+{
+  "data": "2026-11-10T15:42:51",
+  "projeto": "F:\\Projetos\\Docker-GitHubActions-CI-CD",
+  "estatisticas": {
+    "arquivos_python": 56,
+    "erros_python": 0,
+    "arquivos_conferidos": 23,
+    "dockerfiles": 4,
+    "AVISO": 5,
+    "ALERTA": 5,
+    "paineis_grafana": 3,
+    "PENDENTE": 2,
+    "rascunhos": 7,
+    "workflows_ativos": 7,
+    "trivy_high": 96,
+    "trivy_critical": 16,
+    "cves_unicas": 28
+  },
+  "achados": [
+    {
+      "nivel": "AVISO",
+      "categoria": "auth-service",
+      "mensagem": "Revisar se o container executa com usuario nao-root"
+    },
+    {
+      "nivel": "AVISO",
+      "categoria": "user-service",
+      "mensagem": "Revisar se o container executa com usuario nao-root"
+    },
+    {
+      "nivel": "AVISO",
+      "categoria": "order-service",
+      "mensagem": "Revisar se o container executa com usuario nao-root"
+    },
+    {
+      "nivel": "AVISO",
+      "categoria": "product-service",
+      "mensagem": "Revisar se o container executa com usuario nao-root"
+    },
+    {
+      "nivel": "ALERTA",
+      "categoria": "Credenciais",
+      "mensagem": "auth-service/.env existe; houve alerta anterior de rastreamento. Revisar antes de publicar."
+    },
+    {
+      "nivel": "ALERTA",
+      "categoria": "Credenciais",
+      "mensagem": "app.py pode imprimir SECRET_KEY no terminal"
+    },
+    {
+      "nivel": "ALERTA",
+      "categoria": "Flask",
+      "mensagem": "debug=True identificado; desabilitar em producao"
+    },
+    {
+      "nivel": "PENDENTE",
+      "categoria": "Observabilidade",
+      "mensagem": "A conexao real Grafana-Prometheus ainda nao foi testada"
+    },
+    {
+      "nivel": "AVISO",
+      "categoria": "Workflows",
+      "mensagem": "Existem workflows em .github/workflows. Revisar gatilhos antes da publicacao final."
+    },
+    {
+      "nivel": "ALERTA",
+      "categoria": "Trivy",
+      "mensagem": "16 ocorrencias CRITICAL precisam de avaliacao"
+    },
+    {
+      "nivel": "ALERTA",
+      "categoria": "Trivy",
+      "mensagem": "96 ocorrencias HIGH precisam de avaliacao"
+    },
+    {
+      "nivel": "PENDENTE",
+      "categoria": "Trivy",
+      "mensagem": "Scan das imagens Docker ainda nao realizado"
+    }
+  ],
+  "auditoria_estatica": true
+}

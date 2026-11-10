@@ -1,0 +1,84 @@
+AULA 218705 - PUBLICANDO IMAGENS NO GHCR
+
+1. OBSERVACAO SOBRE A TRANSCRICAO
+
+A transcricao enviada repete a aula anterior do Docker Hub.
+Ela nao apresenta comandos especificos do GHCR.
+
+Os conceitos abaixo sao uma adaptacao tecnica para GHCR.
+
+2. O QUE E GHCR
+
+GHCR significa GitHub Container Registry.
+
+Endereco:
+ghcr.io
+
+Faz parte do GitHub Packages.
+
+Permite armazenar imagens Docker/OCI e configurar
+visibilidade publica ou privada.
+
+3. DIFERENCA ENTRE DOCKER HUB E GHCR
+
+Docker Hub:
+usuario/repositorio:versao
+
+GitHub Container Registry:
+ghcr.io/usuario/repositorio:versao
+
+4. AUTENTICACAO
+
+Para publicar manualmente no GHCR, normalmente e
+necessario autenticar com um token apropriado do GitHub.
+
+O token nao deve ser colocado no codigo-fonte,
+nos arquivos .env publicados nem no historico do Git.
+
+Em GitHub Actions, pode-se usar GITHUB_TOKEN
+com permissoes apropriadas para packages.
+
+5. IMAGEM DO NOSSO PROJETO
+
+Imagem original:
+alura-cicd-auth-service:1.0
+
+Tag de demonstracao:
+ghcr.io/estudo-ghcr/alura-auth-service:1.0
+
+O namespace estudo-ghcr e apenas ilustrativo.
+Nao representa uma conta confirmada no GitHub.
+
+6. COMANDOS IMPORTANTES
+
+Listar imagens:
+docker image ls
+
+Criar etiqueta:
+docker image tag ORIGEM DESTINO
+
+Verificar imagem:
+docker image inspect DESTINO
+
+Publicacao futura:
+docker push ghcr.io/USUARIO/IMAGEM:VERSAO
+
+NAO EXECUTAR docker push nesta etapa.
+
+7. CUIDADOS ANTES DA PUBLICACAO
+
+Confirmar o repositorio GitHub do aluno.
+Confirmar permissoes e visibilidade do pacote.
+Revisar arquivos .env e credenciais.
+Verificar se a imagem nao contem segredos.
+Validar o workflow de homologacao.
+
+8. SITUACAO DA AULA
+
+Preparacao local de imagem.
+Nenhum login remoto.
+Nenhum docker push.
+Nenhum git add, commit ou push.
+Nenhum deploy.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

@@ -1,0 +1,10 @@
+﻿AULA - REDE DEDICADA DOCKER
+REDE: alura-cicd-aula-rede
+APROVADOS: 4/4
+
+APROVADO: alura-cicd-aula-auth-service - http
+APROVADO: alura-cicd-aula-user-service - http
+APROVADO: alura-cicd-aula-order-service - http
+APROVADO: alura-cicd-aula-user-service - mongo
+
+Nenhum commit, push ou deploy.

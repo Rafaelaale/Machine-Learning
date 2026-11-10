@@ -1,0 +1,33 @@
+﻿AULA - CONSTRUINDO E RODANDO A APLICACAO COM DOCKERFILE
+
+COMANDO DO PROFESSOR PARA O AUTH SERVICE:
+docker build -t auth-service:1.0 -f ../Dockerfile .
+
+COMANDOS DE BUILD DOS QUATRO SERVICOS:
+docker build -t auth-service:1.0 -f ../Dockerfile .
+docker build -t user-service:1.0 -f ../Dockerfile .
+docker build -t order-service:1.0 -f ../Dockerfile .
+docker build -t product-service:1.0 -f ../Dockerfile .
+
+Cada comando deve ser executado dentro da pasta do servico correspondente.
+
+COMANDOS PARA INSPECAO:
+docker images
+docker ps
+docker ps -a
+docker logs NOME_DO_CONTEINER
+
+PORTAS REAIS DOS APP.PY:
+auth-service: 5000
+user-service: 5001
+order-service: 5002
+product-service: 5003
+
+O roteiro pratico usa imagens com prefixo alura-cicd.
+Isso evita conflitos com imagens de outros projetos.
+O MongoDB usado e o container alura-cicd-mongodb.
+Os arquivos .env dos servicos nao devem ser copiados para as imagens.
+Nao publicar imagens, codigo ou aplicacao.
+
+SCRIPT EXECUTAVEL:
+scripts/aula-build-execucao-microservicos.ps1

@@ -1,0 +1,108 @@
+AULA - AWS LAMBDA E GITHUB ACTIONS
+
+1. O QUE E AWS LAMBDA
+
+AWS Lambda e um servico de computacao serverless
+que executa codigo em resposta a eventos.
+
+Exemplos de eventos:
+
+Requisicoes HTTP por API Gateway ou Function URL.
+Arquivos enviados ao Amazon S3.
+Mensagens do Amazon SQS.
+Eventos programados.
+
+2. DIFERENCA ENTRE FARGATE E LAMBDA
+
+Fargate:
+Executa workloads containerizados sem gerenciar hosts.
+
+Lambda:
+Executa funcoes a partir de eventos.
+
+Ambos possuem regras de cobranca e configuracao.
+
+3. FUNCAO LAMBDA
+
+Nome apresentado pelo professor:
+auth-service-lambda
+
+Runtime:
+python3.12
+
+Handler:
+lambda_function.lambda_handler
+
+A funcao local desta aula e independente.
+
+Ela apenas demonstra uma resposta JSON.
+Nao substitui o sistema de autenticacao Flask.
+
+4. REQUIREMENTS
+
+O professor utiliza requirements-dev.txt.
+
+A demonstracao criada nesta aula nao possui
+dependencias externas.
+
+O arquivo requirements-dev.txt foi preparado
+para demonstrar o mecanismo de empacotamento.
+
+5. EMPACOTAMENTO
+
+O Lambda pode receber um pacote ZIP.
+
+O arquivo lambda_function.py precisa ficar
+na raiz do ZIP para o handler utilizado.
+
+Dependencias externas tambem devem ser
+empacotadas quando necessarias.
+
+6. GITHUB ACTIONS
+
+O workflow contem:
+
+Checkout.
+Configuracao Python 3.12.
+Teste da funcao.
+Empacotamento ZIP.
+Configuracao de credenciais AWS.
+Atualizacao ou criacao da funcao Lambda.
+
+O workflow esta fora de .github/workflows.
+
+O job possui if: false.
+
+Portanto, nao sera executado automaticamente.
+
+7. SEGURANCA
+
+Nao inserir chaves AWS no codigo.
+
+A configuracao futura utiliza uma role IAM
+assumida por OIDC no GitHub Actions.
+
+Nao criar recursos AWS sem autorizacao.
+
+8. LIMITACOES
+
+Esta funcao e apenas demonstrativa.
+
+O auth-service Flask original nao foi convertido
+para Lambda nesta aula.
+
+Para executar o Flask em Lambda, seria necessaria
+uma integracao apropriada com eventos HTTP.
+
+9. PUBLICACAO
+
+Todo o codigo fica salvo no computador.
+
+Nenhum git add.
+Nenhum git commit.
+Nenhum git push.
+Nenhum docker push.
+Nenhum deploy.
+Nenhuma funcao AWS criada.
+
+PUBLICACAO APENAS AO FINAL DO CURSO.

@@ -1,0 +1,142 @@
+AULA 218719 - IMPLEMENTANDO ESTRATEGIA DE ROLLBACK
+
+CURSO:
+Integracao Continua com Docker e GitHub Actions
+
+OBJETIVO
+
+Preparar uma estrategia de reversao de versoes
+para os quatro microservicos da Burger App.
+
+1. O QUE E ROLLBACK
+
+Rollback significa retornar a uma versao
+anterior quando uma implantacao apresenta problemas.
+
+Exemplo didatico:
+
+Versao atual:    59c5b75
+Versao anterior: 4d3a2c1
+
+Os identificadores acima sao simulados.
+
+2. RELACAO COM VERSIONAMENTO
+
+Cada imagem Docker recebe uma tag relacionada
+ao codigo utilizado em sua construcao.
+
+Exemplo:
+
+burguer-app-auth-service:59c5b75
+burguer-app-auth-service:4d3a2c1
+
+O rollback deve utilizar uma versao anterior
+que tenha sido previamente registrada e testada.
+
+3. PROBLEMA DA SELECAO AUTOMATICA
+
+Nao e seguro escolher a versao anterior usando:
+
+docker images | head -n 2 | tail -n 1
+
+A ordem das imagens nao garante que a segunda
+tag seja a ultima versao estavel.
+
+Tambem nao basta substituir a tag latest.
+
+Uma implantacao deve identificar explicitamente
+a imagem que sera utilizada.
+
+4. ESTRATEGIA DO NOSSO PROJETO
+
+Registrar a versao atualmente implantada.
+
+Registrar a ultima versao considerada estavel.
+
+Verificar se as imagens anteriores existem.
+
+Selecionar explicitamente as imagens anteriores.
+
+Aplicar a versao anterior sem reconstruir imagens.
+
+Verificar os servicos depois da reversao.
+
+5. MICROSSERVICOS
+
+auth-service
+user-service
+order-service
+product-service
+
+6. MONGODB
+
+Nao remover volumes durante um rollback.
+
+Nao apagar dados persistentes.
+
+Uma reversao de codigo nao reverte automaticamente
+alteracoes feitas no banco de dados.
+
+Migracoes de banco precisam de planejamento proprio.
+
+7. DOCKER COMPOSE
+
+Evitar:
+
+docker compose down --volumes
+
+Evitar tambem:
+
+docker compose up -d --build
+
+durante uma reversao para imagens ja existentes.
+
+O parametro --build pode reconstruir imagens
+em vez de reutilizar o artefato anterior.
+
+8. GITHUB ACTIONS
+
+O rascunho desta aula demonstra:
+
+Workflow manual.
+Recebimento de uma versao anterior explicita.
+Verificacao das quatro imagens.
+Criacao de um override temporario.
+Atualizacao dos quatro servicos sem novo build.
+
+O exemplo utiliza um runner self-hosted porque
+precisaria acessar o Docker Engine onde os
+containers e imagens estivessem disponiveis.
+
+Nao e um deploy ECS nem uma recuperacao
+automaticamente funcional em runner hospedado
+pelo GitHub.
+
+9. SEGURANCA
+
+O arquivo auth-service/.env continua registrado
+como pendencia de seguranca.
+
+A publicacao permanece bloqueada ate a revisao
+das credenciais e do rastreamento desse arquivo.
+
+10. ESTADO ATUAL
+
+Docker Desktop ainda apresenta problema no WSL.
+
+Nenhum comando Docker sera executado nesta aula.
+
+A estrategia sera validada por simulacao local.
+
+O workflow fica fora de .github/workflows.
+
+O job permanece desativado.
+
+Nenhum codigo publicado.
+Nenhuma imagem publicada.
+Nenhum container modificado.
+Nenhum volume removido.
+Nenhum commit ou push.
+Nenhum deploy ou rollback real.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

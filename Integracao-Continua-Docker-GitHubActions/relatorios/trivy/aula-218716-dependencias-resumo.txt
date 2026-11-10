@@ -1,0 +1,13 @@
+AULA 218716 - TRIVY
+Analise local de dependencias
+Data: 2026-11-10 14:24:28
+
+Alvos analisados: 4
+Vulnerabilidades HIGH: 96
+Vulnerabilidades CRITICAL: 16
+
+Analise realizada sem Docker Engine.
+As imagens Docker ainda precisam ser analisadas.
+Nenhuma vulnerabilidade foi corrigida automaticamente.
+Nenhum codigo publicado.
+Nenhum deploy executado.

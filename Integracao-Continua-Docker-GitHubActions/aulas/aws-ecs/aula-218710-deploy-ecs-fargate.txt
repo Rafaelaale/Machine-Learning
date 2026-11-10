@@ -1,0 +1,63 @@
+AULA 218710 - DEPLOY NO AWS ECS FARGATE
+
+OBJETIVO
+
+Preparar um pipeline para construir imagens Docker,
+publica-las no Docker Hub e atualizar uma aplicacao
+no AWS ECS Fargate.
+
+A IMPLEMENTACAO REAL FICA PARA O FINAL DO CURSO.
+
+ETAPAS DO PIPELINE
+
+1. Checkout do codigo-fonte.
+2. Autenticacao no Docker Hub.
+3. Build das quatro imagens Docker.
+4. Etiquetagem com SHA do commit.
+5. Envio das imagens ao Docker Hub.
+6. Autenticacao na AWS.
+7. Consulta da Task Definition existente.
+8. Registro de uma nova revisao com novas imagens.
+9. Atualizacao do ECS Service.
+10. Espera pela estabilizacao do servico.
+
+CONFIGURACOES
+
+Regiao AWS: us-east-1
+Cluster do professor: alura
+Task Definition: microservice-task
+
+O nome real do ECS Service ainda precisa ser confirmado.
+
+SEGURANCA
+
+O workflow de estudo esta fora de .github/workflows.
+
+A condicao if: false desativa o job.
+
+Nenhum token, senha ou chave AWS foi inserido.
+
+Antes da futura publicacao sera necessario:
+
+- Confirmar a conta AWS.
+- Confirmar o ECS Service.
+- Configurar OIDC e permissoes IAM.
+- Revisar as imagens Docker.
+- Corrigir a exposicao de arquivos .env.
+- Configurar um banco de dados adequado.
+- Avaliar os custos do AWS Fargate.
+- Validar os testes e a configuracao da aplicacao.
+
+IMPORTANTE
+
+O arquivo atual e um rascunho, nao um deploy validado.
+
+Nenhuma publicacao de codigo.
+Nenhuma publicacao de imagem.
+Nenhum git add, commit ou push.
+Nenhum docker push.
+Nenhum acesso a AWS.
+Nenhum deploy.
+Nenhum recurso pago criado.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

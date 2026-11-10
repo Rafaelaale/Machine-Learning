@@ -1,0 +1,39 @@
+AULA - DOCKER E GITHUB ACTIONS
+
+OBJETIVO:
+Construir e testar os conteineres em um executor Ubuntu do GitHub Actions.
+Sem deploy e sem publicacao de imagens.
+
+WORKFLOW:
+F:\Projetos\Docker-GitHubActions-CI-CD\docker-automation\.github\workflows\docker-dev-aula-03.yml
+
+GATILHOS:
+push na branch aula-03
+pull_request direcionado a aula-03
+workflow_dispatch para execucao manual futura
+
+ETAPAS:
+1. Checkout do repositorio.
+2. Verificar Docker e Docker Compose.
+3. Criar arquivos .env temporarios.
+4. Validar os arquivos Compose do professor.
+5. Construir e executar os cinco conteineres.
+6. Aguardar autenticacao do MongoDB.
+7. Testar conexao dos quatro servicos com MongoDB.
+8. Testar as quatro rotas HTTP.
+9. Encerrar conteineres e remover .env temporarios.
+
+DIFERENCAS EM RELACAO AO VIDEO:
+A chave correta de gatilho e on, nao onPush.
+O runner Ubuntu hospedado normalmente ja possui Docker Compose.
+Nao precisamos baixar o executavel latest manualmente.
+O banco e local ao Compose; nao usamos MongoDB remoto.
+As credenciais de exemplo sao exclusivas do ambiente de aula.
+O encerramento utiliza docker compose down.
+
+IMPORTANTE:
+O workflow esta preparado localmente, ainda nao executado no GitHub.
+Nenhum git add, commit ou push foi executado.
+Nenhum deploy e nenhuma publicacao de imagem.
+O workflow original docker-dev.yml permanece preservado.
+Os conteineres do Windows nao foram alterados.

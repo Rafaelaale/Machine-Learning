@@ -1,0 +1,110 @@
+{
+  "id": null,
+  "uid": "alura-burger-observabilidade",
+  "title": "Burger App - Observabilidade",
+  "description": "Aula 218721 - Monitoramento do Auth Service com Prometheus",
+  "tags": [
+    "alura",
+    "docker",
+    "prometheus",
+    "grafana",
+    "observabilidade"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 40,
+  "version": 1,
+  "refresh": "5s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Consumo de CPU - Auth Service",
+      "description": "Taxa de segundos de CPU consumidos por segundo",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-local"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "rate(process_cpu_seconds_total{job=\"auth-service\"}[1m])",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Descritores de arquivos abertos",
+      "description": "Quantidade de descritores abertos no processo",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-local"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "process_open_fds{job=\"auth-service\"}",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Consultas ao endpoint de metricas",
+      "description": "Taxa de consultas ao endpoint /metrics",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-local"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "targets": [
+        {
+          "expr": "rate(auth_service_metrics_scrapes_total{job=\"auth-service\"}[1m])",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Bem-vindo, {{ user.name }}!</h1>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Função:</strong> {{ user.role }}</p>
+
+<!-- User Profile Management -->
+<div class="mt-4">
+    <h4>👤 Gerenciar Perfil</h4>
+    <div class="d-flex gap-2 mb-4">
+        <a href="http://localhost:5001/user/profile/{{ user.email }}" class="btn btn-primary">Ver Perfil Completo</a>
+        <a href="http://localhost:5001/user/edit/{{ user.email }}" class="btn btn-secondary">Editar Perfil</a>
+    </div>
+</div>
+
+<!-- Product Catalog -->
+<div class="mt-4">
+    <h4>🍔 Cardápio</h4>
+    <div class="d-flex gap-2 mb-4">
+        <a href="http://localhost:5003/product/list" class="btn btn-warning">Ver Cardápio</a>
+        {% if user.role == 'admin' %}
+            <a href="http://localhost:5003/product/admin" class="btn btn-outline-warning">Gerenciar Produtos</a>
+            <a href="http://localhost:5003/product/create" class="btn btn-outline-success">Criar Produto</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Order Management -->
+<div class="mt-4">
+    <h4>🛒 Pedidos</h4>
+    <div class="d-flex gap-2 mb-4">
+        <a href="http://localhost:5002/order/create" class="btn btn-success">Fazer Novo Pedido</a>
+        <a href="http://localhost:5002/order/user/{{ user.email }}" class="btn btn-info">Meus Pedidos</a>
+        {% if user.role == 'admin' %}
+            <a href="http://localhost:5002/order/list" class="btn btn-outline-info">Gerenciar Todos os Pedidos</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Admin Features -->
+{% if user.role == 'admin' %}
+<div class="mt-4">
+    <h4>🔧 Administração</h4>
+    <div class="d-flex gap-2 mb-4">
+        <a href="http://localhost:5001/user/create" class="btn btn-outline-primary">Cadastrar Usuário</a>
+        <a href="http://localhost:5003/product/admin" class="btn btn-outline-warning">Administrar Produtos</a>
+        <a href="http://localhost:5002/order/list" class="btn btn-outline-danger">Administrar Pedidos</a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Logout -->
+<div class="mt-4">
+    <hr>
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Sair do Sistema</a>
+</div>
+{% endblock %}

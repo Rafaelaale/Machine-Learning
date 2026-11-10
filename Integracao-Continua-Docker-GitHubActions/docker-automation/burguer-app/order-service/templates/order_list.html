@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block title %}Lista de Pedidos{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{% if user_email %}Pedidos de {{ user_email }}{% else %}Todos os Pedidos{% endif %}</h2>
+    <a href="{{ url_for('order.create') }}" class="btn btn-primary">Novo Pedido</a>
+</div>
+
+{% if orders %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order['id'][:8] }}...</td>
+                    <td>{{ order['user_email'] }}</td>
+                    <td>R$ {{ "%.2f"|format(order['total']) }}</td>
+                    <td>
+                        <span class="badge bg-{{ 'warning' if order['status'] == 'pending' else 'success' if order['status'] == 'completed' else 'danger' if order['status'] == 'cancelled' else 'info' }}">
+                            {{ order['status']|title }}
+                        </span>
+                    </td>
+                    <td>{{ order['created_at_formatted'] or 'N/A' }}</td>
+                    <td>
+                        <a href="{{ url_for('order.order_details', order_id=order['id']) }}" class="btn btn-sm btn-outline-primary">Ver Detalhes</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        <h4>Nenhum pedido encontrado</h4>
+        <p>{% if user_email %}Este cliente ainda não fez pedidos.{% else %}Ainda não há pedidos cadastrados.{% endif %}</p>
+        <a href="{{ url_for('order.create') }}" class="btn btn-primary">Criar Primeiro Pedido</a>
+    </div>
+{% endif %}
+
+{% if not user_email %}
+<div class="mt-4">
+    <a href="http://localhost:5000/auth/dashboard" class="btn btn-outline-secondary">← Voltar ao Dashboard</a>
+</div>
+{% else %}
+<div class="mt-4">
+    <a href="http://localhost:5000/auth/dashboard" class="btn btn-outline-secondary">← Voltar ao Dashboard</a>
+    <a href="{{ url_for('order.list_orders') }}" class="btn btn-outline-info">Ver Todos os Pedidos</a>
+</div>
+{% endif %}
+{% endblock %}

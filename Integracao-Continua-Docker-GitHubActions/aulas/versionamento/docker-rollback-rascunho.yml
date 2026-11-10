@@ -1,0 +1,132 @@
+name: Aula 218719 - Rollback Docker - Rascunho
+
+on:
+  workflow_dispatch:
+    inputs:
+      previous_sha:
+        description: SHA da versao anterior estavel
+        required: true
+        type: string
+      current_sha:
+        description: SHA da versao atual
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  rollback:
+    if: ${{ false }}
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bloquear arquivo sensivel rastreado
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git ls-files --error-unmatch \
+            burguer-app/auth-service/.env \
+            > /dev/null 2>&1; then
+
+            echo "::error::Arquivo .env rastreado."
+            exit 1
+          fi
+
+      - name: Validar identificadores das versoes
+        shell: bash
+        env:
+          PREVIOUS_SHA: ${{ inputs.previous_sha }}
+          CURRENT_SHA: ${{ inputs.current_sha }}
+        run: |
+          set -euo pipefail
+
+          if [[ ! "$PREVIOUS_SHA" =~ ^[a-f0-9]{7,40}$ ]]; then
+            echo "::error::SHA anterior invalido."
+            exit 1
+          fi
+
+          if [[ ! "$CURRENT_SHA" =~ ^[a-f0-9]{7,40}$ ]]; then
+            echo "::error::SHA atual invalido."
+            exit 1
+          fi
+
+          if [[ "$PREVIOUS_SHA" == "$CURRENT_SHA" ]]; then
+            echo "::error::Versoes atual e anterior iguais."
+            exit 1
+          fi
+
+          echo "Identificadores de versao validados."
+
+      - name: Verificar imagens anteriores
+        shell: bash
+        env:
+          PREVIOUS_SHA: ${{ inputs.previous_sha }}
+        run: |
+          set -euo pipefail
+
+          for service in \
+            auth-service \
+            user-service \
+            order-service \
+            product-service
+          do
+            IMAGE="burguer-app-${service}:${PREVIOUS_SHA}"
+
+            docker image inspect "$IMAGE" > /dev/null
+
+            echo "Imagem anterior encontrada: $IMAGE"
+          done
+
+      - name: Aplicar imagens anteriores
+        working-directory: burguer-app
+        shell: bash
+        env:
+          PREVIOUS_SHA: ${{ inputs.previous_sha }}
+        run: |
+          set -euo pipefail
+
+          OVERRIDE="$(mktemp --suffix=.yml)"
+
+          trap 'rm -f "$OVERRIDE"' EXIT
+
+          cat > "$OVERRIDE" <<EOF
+          services:
+            auth-service:
+              image: burguer-app-auth-service:${PREVIOUS_SHA}
+            user-service:
+              image: burguer-app-user-service:${PREVIOUS_SHA}
+            order-service:
+              image: burguer-app-order-service:${PREVIOUS_SHA}
+            product-service:
+              image: burguer-app-product-service:${PREVIOUS_SHA}
+          EOF
+
+          docker compose \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            -f "$OVERRIDE" \
+            config --quiet
+
+          docker compose \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            -f "$OVERRIDE" \
+            up -d --no-build --no-deps \
+            auth-service \
+            user-service \
+            order-service \
+            product-service
+
+          docker compose \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            -f "$OVERRIDE" \
+            ps
+
+          echo "Reversao solicitada."
+          echo "Verificar health checks e testes de integracao."

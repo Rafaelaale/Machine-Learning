@@ -1,0 +1,142 @@
+name: Docker Dev Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  docker-up:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Clonar o repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configurar Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # 3️⃣ Instalar Docker Compose
+      - name: Install Docker Compose
+        run: |
+          if ! command -v docker-compose &> /dev/null; then
+            sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+          fi
+          docker-compose --version
+
+      # 4️⃣ Mascarar MONGO_URI secret
+      - name: Mask MONGO_URI secret
+        run: echo "::add-mask::${{ secrets.MONGO_URI }}"
+
+      # 5️⃣ Criar .env para todos os microsserviços
+      - name: Create .env files
+        working-directory: burguer-app
+        run: |
+          for service in user-service product-service order-service auth-service; do
+            mkdir -p $service
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" > $service/.env
+          done
+
+      # 6️⃣ Exportar variável de ambiente (opcional)
+      - name: Export MONGO_URI
+        run: export MONGO_URI=${{ secrets.MONGO_URI }}
+
+      # 7️⃣ Subir containers (override de dev)
+      - name: Bring up Docker Compose (Dev)
+        working-directory: burguer-app
+        run: |
+          docker-compose -f docker-compose.yml -f docker-compose.override.yml down --volumes
+          docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build
+
+      # 8️⃣ Esperar MongoDB inicializar
+      - name: Wait for MongoDB
+        run: |
+          for i in {1..30}; do
+            nc -z localhost 27017 && break
+            echo "Waiting for MongoDB..."
+            sleep 2
+          done
+
+      # 9️⃣ Testar todos os serviços (paralelo possível em jobs separados se desejar)
+      - name: Test auth-service
+        working-directory: burguer-app/auth-service
+        run: |
+          pip install -r requirements.txt
+          pytest -v
+
+      - name: Test order-service
+        working-directory: burguer-app/order-service
+        run: |
+          pip install -r requirements.txt
+          pytest -v
+
+      - name: Test product-service
+        working-directory: burguer-app/product-service
+        run: |
+          pip install -r requirements.txt
+          pytest -v
+
+      - name: Test user-service
+        working-directory: burguer-app/user-service
+        run: |
+          pip install -r requirements.txt
+          pytest -v
+
+      # 🔟 Parar containers ao final
+      - name: Shut down containers
+        working-directory: burguer-app
+        run: docker-compose down --volumes
+
+      # 1️⃣1️⃣ Verificação de vulnerabilidades com Trivy (sem docker run)
+      - name: Install Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.65.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.65.0_Linux-64bit.deb
+
+      - name: Scan auth-service image with Trivy
+        run: trivy image --severity HIGH,CRITICAL burguer-app-auth-service:latest
+
+      - name: Scan user-service image with Trivy
+        run: trivy image --severity HIGH,CRITICAL burguer-app-user-service:latest
+
+      - name: Scan product-service image with Trivy
+        run: trivy image --severity HIGH,CRITICAL burguer-app-product-service:latest
+
+      - name: Scan order-service image with Trivy
+        run: trivy image --severity HIGH,CRITICAL burguer-app-order-service:latest
+      # 1️⃣2️⃣ Verificação de dependências Python com Safety (via Docker)
+      - name: Run Safety check (user-service)
+        working-directory: burguer-app
+        run: |
+          docker run --rm -v $PWD/user-service:/src python:3.12-slim bash -c "pip install safety && safety check -r /src/requirements.txt"
+
+      - name: Run Safety check (product-service)
+        working-directory: burguer-app
+        run: |
+          docker run --rm -v $PWD/product-service:/src python:3.12-slim bash -c "pip install safety && safety check -r /src/requirements.txt"
+
+      - name: Run Safety check (order-service)
+        working-directory: burguer-app
+        run: |
+          docker run --rm -v $PWD/order-service:/src python:3.12-slim bash -c "pip install safety && safety check -r /src/requirements.txt"
+
+      - name: Run Safety check (auth-service)
+        working-directory: burguer-app
+        run: |
+          docker run --rm -v $PWD/auth-service:/src python:3.12-slim bash -c "pip install safety && safety check -r /src/requirements.txt"
+
+
+
+      # 1️⃣3️⃣ Análise de código estática com CodeQL
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2

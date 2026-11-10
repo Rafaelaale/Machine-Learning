@@ -1,0 +1,23 @@
+AULA - COMO EXECUTAR DOCKER NO GITHUB ACTIONS
+
+ETAPAS DO PROFESSOR:
+1. Conferir git status.
+2. Trabalhar na branch aula-03.
+3. Criar commit das alteracoes.
+4. Enviar branch ao GitHub.
+5. Abrir a aba Actions.
+6. Acompanhar o job docker-up.
+7. Verificar falhas ou sucesso.
+
+OBSERVACOES:
+git push nao cria uma branch local.
+A branch deve existir antes do envio.
+O diretorio correto dos microservicos e burguer-app.
+Arquivos .env precisam ser protegidos.
+O pipeline usa MongoDB temporario de homologacao.
+Nenhum deploy em producao.
+
+SITUACAO ATUAL:
+Auditoria local antes do envio.
+A execucao remota ainda depende de autorizacao.
+Nenhum git add, commit ou push automatico.

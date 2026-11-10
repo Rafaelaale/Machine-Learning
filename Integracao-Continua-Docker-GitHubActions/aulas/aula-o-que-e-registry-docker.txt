@@ -1,0 +1,73 @@
+﻿AULA 218702 - O QUE E UM REGISTRY DOCKER
+
+1. CONCEITO
+
+Registry Docker e um servico para armazenar e distribuir imagens.
+Pode ser hospedado localmente ou remotamente.
+
+O armazenamento local de imagens do Docker Engine nao e, por si so,
+um servidor Registry.
+
+2. EXEMPLOS DE REGISTRY
+
+Docker Hub
+GitHub Container Registry (GHCR)
+GitLab Container Registry
+Google Artifact Registry
+Amazon ECR Public
+Registries privados de empresas
+
+3. REGISTRY PUBLICO
+
+Permite disponibilizar imagens para outras pessoas.
+A visibilidade depende das configuracoes do servico.
+
+4. REGISTRY PRIVADO
+
+Permite restringir o acesso a imagens.
+Pode exigir autenticacao e autorizacao.
+
+5. COMANDOS IMPORTANTES
+
+docker image ls
+docker image inspect NOME:TAG
+docker image tag IMAGEM:ORIGEM IMAGEM:NOVA-TAG
+
+docker login
+docker push
+docker pull
+
+ATENCAO:
+docker login e docker push nao serao executados nesta aula.
+
+6. VERSIONAMENTO
+
+Exemplos:
+minha-imagem:1.0
+minha-imagem:2.0
+minha-imagem:latest
+
+A tag latest nao garante automaticamente que a imagem seja
+a versao mais recente em termos de funcionalidades.
+
+7. NOSSO PROJETO
+
+Imagem existente:
+alura-cicd-auth-service:1.0
+
+Tag adicional para demonstracao:
+alura-cicd-auth-service:registry-estudo
+
+A criacao de uma tag nao envia a imagem para a internet.
+
+8. PROXIMAS ETAPAS
+
+Estudar Docker Hub e GHCR.
+Preparar publicacao de imagens.
+Executar publicacao somente ao final do curso,
+conforme decisao do aluno.
+
+Nenhum commit.
+Nenhum push.
+Nenhum deploy.
+Nenhuma publicacao de imagens.

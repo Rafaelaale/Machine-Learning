@@ -1,0 +1,53 @@
+name: Deploy Lambda Function
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  FUNCTION_NAME: auth-service-lambda
+  ZIP_FILE: auth_service_lambda.zip
+  RUNTIME: python3.12
+  HANDLER: lambda_function.lambda_handler
+  REGION: us-east-1
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 4.1 – Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 4.2 – Configurar credenciais AWS
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.REGION }}
+
+      # 4.3 – Empacotar função Python
+      - name: Package Lambda
+        run: |
+          cd ./burguer-app/auth-service
+          pip install -r requirements.txt -t .
+          zip -r ../../${{ env.ZIP_FILE }} .
+
+      # 4.4 – Deploy Lambda
+      - name: Deploy Lambda Function
+        run: |
+          if aws lambda get-function --function-name ${{ env.FUNCTION_NAME }}; then
+            aws lambda update-function-code \
+              --function-name ${{ env.FUNCTION_NAME }} \
+              --zip-file fileb://${{ env.ZIP_FILE }}
+          else
+            aws lambda create-function \
+              --function-name ${{ env.FUNCTION_NAME }} \
+              --runtime ${{ env.RUNTIME }} \
+              --role ${{ secrets.LAMBDA_ROLE_ARN }} \
+              --handler ${{ env.HANDLER }} \
+              --zip-file fileb://${{ env.ZIP_FILE }}
+          fi

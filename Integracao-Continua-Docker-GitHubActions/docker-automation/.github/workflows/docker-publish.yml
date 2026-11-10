@@ -1,0 +1,38 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Clonar o repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Logar no Docker Hub usando secrets
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 3️⃣ Build da imagem
+      - name: Build Docker Images
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/auth-service:latest ./burguer-app/auth-service
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/order-service:latest ./burguer-app/order-service
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/product-service:latest ./burguer-app/product-service
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/user-service:latest ./burguer-app/user-service
+
+      # 4️⃣ Push para Docker Hub
+      - name: Push Docker Images
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/auth-service:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/order-service:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/product-service:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/user-service:latest

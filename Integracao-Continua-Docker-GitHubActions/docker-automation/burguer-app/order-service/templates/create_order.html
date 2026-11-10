@@ -1,0 +1,273 @@
+{% extends 'layout.html' %}
+{% block title %}Criar Pedido{% endblock %}
+{% block content %}
+<h2>Criar Novo Pedido</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="user_email" class="form-label">Email do Cliente</label>
+        <input type="email" name="user_email" id="user_email" class="form-control" required 
+               placeholder="Digite o email do cliente cadastrado" list="users-list" />
+        <datalist id="users-list">
+            {% for user in users %}
+                <option value="{{ user.email }}">{{ user.name or user.email }}</option>
+            {% endfor %}
+        </datalist>
+        <div class="form-text">
+            <small class="text-muted">⚠️ O pedido só pode ser criado para clientes já cadastrados no sistema.</small>
+            {% if users %}
+            <details class="mt-2">
+                <summary class="text-muted" style="cursor: pointer;">Ver clientes cadastrados</summary>
+                <div class="mt-2 p-2 border rounded bg-light">
+                    {% for user in users %}
+                        <small class="d-block">{{ user.email }}{% if user.name %} - {{ user.name }}{% endif %}</small>
+                    {% endfor %}
+                </div>
+            </details>
+            {% endif %}
+        </div>
+    </div>
+    
+    <h4>Itens do Pedido</h4>
+    
+    <!-- Product Selection Section -->
+    <div class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Filtrar por categoria:</label>
+                <select class="form-select" id="category-filter" onchange="filterProducts()">
+                    <option value="">Todas as categorias</option>
+                    {% for category in categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Buscar produto:</label>
+                <input type="text" class="form-control" id="product-search" placeholder="Digite o nome do produto..." onkeyup="filterProducts()">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Available Products -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">🍔 Produtos Disponíveis</h5>
+        </div>
+        <div class="card-body">
+            <div class="row" id="products-grid">
+                {% for product in products %}
+                    <div class="col-md-6 col-lg-4 mb-3 product-item" data-category="{{ product.category }}" data-name="{{ product.name | lower }}">
+                        <div class="card h-100 border-secondary">
+                            <div class="card-header p-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="badge bg-secondary">{{ product.category }}</small>
+                                    <strong class="text-success">R$ {{ "%.2f" | format(product.price) }}</strong>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title">{{ product.name }}</h6>
+                                <p class="card-text small">{{ product.description }}</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="number" class="form-control form-control-sm" 
+                                           id="qty-{{ product.id }}" min="1" value="1" style="width: 70px;">
+                                    <button type="button" class="btn btn-success btn-sm" 
+                                            onclick="addProductToOrder('{{ product.id }}', '{{ product.name }}', {{ product.price }})">
+                                        Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if not products %}
+                <div class="alert alert-warning text-center">
+                    <h5>⚠️ Nenhum produto disponível</h5>
+                    <p>Certifique-se de que o product-service está rodando na porta 5003.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Selected Items -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">🛒 Itens Selecionados</h5>
+        </div>
+        <div class="card-body">
+            <div id="selected-items">
+                <div class="alert alert-info text-center">
+                    <p class="mb-0">Nenhum item selecionado. Escolha produtos da lista acima.</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                <h5 class="mb-0">Total do Pedido:</h5>
+                <h4 class="text-success mb-0" id="order-total">R$ 0,00</h4>
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success" id="submit-order" disabled>Criar Pedido</button>
+        <a href="{{ url_for('order.list_orders') }}" class="btn btn-outline-secondary">Cancelar</a>
+        <a href="http://localhost:5000/auth/dashboard" class="btn btn-outline-info">Dashboard</a>
+        <a href="http://localhost:5003/product/list" class="btn btn-outline-warning">Ver Cardápio</a>
+    </div>
+</form>
+
+<script>
+let selectedItems = [];
+let orderTotal = 0;
+
+function filterProducts() {
+    const categoryFilter = document.getElementById('category-filter').value.toLowerCase();
+    const searchFilter = document.getElementById('product-search').value.toLowerCase();
+    const products = document.querySelectorAll('.product-item');
+    
+    products.forEach(product => {
+        const category = product.dataset.category.toLowerCase();
+        const name = product.dataset.name;
+        
+        const categoryMatch = !categoryFilter || category === categoryFilter;
+        const searchMatch = !searchFilter || name.includes(searchFilter);
+        
+        if (categoryMatch && searchMatch) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+function addProductToOrder(productId, productName, productPrice) {
+    const qtyInput = document.getElementById(`qty-${productId}`);
+    const quantity = parseInt(qtyInput.value) || 1;
+    
+    // Check if product already exists in order
+    const existingItemIndex = selectedItems.findIndex(item => item.name === productName);
+    
+    if (existingItemIndex >= 0) {
+        // Update quantity if product already exists
+        selectedItems[existingItemIndex].quantity += quantity;
+        selectedItems[existingItemIndex].total = selectedItems[existingItemIndex].quantity * productPrice;
+    } else {
+        // Add new item
+        selectedItems.push({
+            name: productName,
+            quantity: quantity,
+            unit_price: productPrice,
+            total: quantity * productPrice
+        });
+    }
+    
+    // Reset quantity input
+    qtyInput.value = 1;
+    
+    // Update display
+    updateSelectedItemsDisplay();
+    updateOrderTotal();
+}
+
+function removeItemFromOrder(index) {
+    selectedItems.splice(index, 1);
+    updateSelectedItemsDisplay();
+    updateOrderTotal();
+}
+
+function updateItemQuantity(index, newQuantity) {
+    if (newQuantity <= 0) {
+        removeItemFromOrder(index);
+        return;
+    }
+    
+    selectedItems[index].quantity = newQuantity;
+    selectedItems[index].total = newQuantity * selectedItems[index].unit_price;
+    updateSelectedItemsDisplay();
+    updateOrderTotal();
+}
+
+function updateSelectedItemsDisplay() {
+    const container = document.getElementById('selected-items');
+    
+    if (selectedItems.length === 0) {
+        container.innerHTML = `
+            <div class="alert alert-info text-center">
+                <p class="mb-0">Nenhum item selecionado. Escolha produtos da lista acima.</p>
+            </div>
+        `;
+        document.getElementById('submit-order').disabled = true;
+        return;
+    }
+    
+    let html = '';
+    selectedItems.forEach((item, index) => {
+        html += `
+            <div class="row align-items-center mb-2 pb-2 border-bottom">
+                <div class="col-md-4">
+                    <strong>${item.name}</strong>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" class="form-control form-control-sm" 
+                           value="${item.quantity}" min="1" 
+                           onchange="updateItemQuantity(${index}, this.value)">
+                </div>
+                <div class="col-md-3">
+                    <span>R$ ${item.unit_price.toFixed(2)} × ${item.quantity}</span>
+                </div>
+                <div class="col-md-2">
+                    <strong class="text-success">R$ ${item.total.toFixed(2)}</strong>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-outline-danger btn-sm" 
+                            onclick="removeItemFromOrder(${index})" title="Remover">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+    document.getElementById('submit-order').disabled = false;
+}
+
+function updateOrderTotal() {
+    orderTotal = selectedItems.reduce((total, item) => total + item.total, 0);
+    document.getElementById('order-total').textContent = `R$ ${orderTotal.toFixed(2)}`;
+}
+
+// Override form submission to include selected items
+document.querySelector('form').addEventListener('submit', function(e) {
+    if (selectedItems.length === 0) {
+        e.preventDefault();
+        alert('Adicione pelo menos um item ao pedido!');
+        return;
+    }
+    
+    // Remove existing hidden inputs
+    const existingInputs = document.querySelectorAll('input[name^="item_"]');
+    existingInputs.forEach(input => input.remove());
+    
+    // Add selected items as hidden inputs
+    selectedItems.forEach((item, index) => {
+        const nameInput = document.createElement('input');
+        nameInput.type = 'hidden';
+        nameInput.name = 'item_name';
+        nameInput.value = item.name;
+        this.appendChild(nameInput);
+        
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'hidden';
+        qtyInput.name = 'item_quantity';
+        qtyInput.value = item.quantity;
+        this.appendChild(qtyInput);
+        
+        const priceInput = document.createElement('input');
+        priceInput.type = 'hidden';
+        priceInput.name = 'item_price';
+        priceInput.value = item.unit_price;
+        this.appendChild(priceInput);
+    });
+});
+</script>
+{% endblock %}

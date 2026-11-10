@@ -1,0 +1,72 @@
+name: Aula 218716 - Trivy Security Scan - Rascunho
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy-scan:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build das imagens Docker
+        working-directory: burguer-app
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for service in \
+            auth-service \
+            user-service \
+            order-service \
+            product-service
+          do
+            docker build \
+              -t "alura-cicd-${service}:1.0" \
+              "./${service}"
+          done
+
+      - name: Scan Auth Service
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: image
+          image-ref: alura-cicd-auth-service:1.0
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+
+      - name: Scan User Service
+        if: always()
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: image
+          image-ref: alura-cicd-user-service:1.0
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+
+      - name: Scan Order Service
+        if: always()
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: image
+          image-ref: alura-cicd-order-service:1.0
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+
+      - name: Scan Product Service
+        if: always()
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: image
+          image-ref: alura-cicd-product-service:1.0
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'

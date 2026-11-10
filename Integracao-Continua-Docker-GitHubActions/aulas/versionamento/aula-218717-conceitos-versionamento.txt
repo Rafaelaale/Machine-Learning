@@ -1,0 +1,197 @@
+AULA 218717 - CONCEITOS DE VERSIONAMENTO
+
+CURSO:
+Integracao Continua com Docker e GitHub Actions:
+do build ao deploy em nuvem
+
+MODULO:
+Versionamento, Rollback e Observabilidade
+
+1. VERSIONAMENTO
+
+Versionamento permite identificar alteracoes
+em projetos, codigos, imagens e artefatos.
+
+Permite rastrear:
+
+- Versoes
+- Builds
+- Alteracoes
+- Autores
+- Commits
+- Lancamentos
+- Estados anteriores do software
+
+2. VERSIONAMENTO SEMANTICO - SEMVER
+
+Formato:
+
+MAJOR.MINOR.PATCH
+
+Exemplo:
+
+1.8.5
+
+MAJOR:
+Alteracoes incompatíveis com a API.
+
+MINOR:
+Novas funcionalidades compativeis.
+
+PATCH:
+Correcoes de falhas compativeis.
+
+Exemplos:
+
+1.0.0 - Primeira versao estavel.
+1.1.0 - Nova funcionalidade compativel.
+1.1.1 - Correcao de falha.
+2.0.0 - Alteracao incompatível.
+
+3. PRE-RELEASE
+
+Uma versao pode indicar um pre-lancamento.
+
+Exemplo:
+
+1.8.5-rc.1
+
+RC significa Release Candidate.
+
+4. BUILD METADATA
+
+Uma versao pode incluir metadados.
+
+Exemplo:
+
+1.8.5+build.123
+
+Os metadados nao alteram a precedencia
+da versao segundo o padrao SemVer.
+
+5. TAGS
+
+Tags podem identificar versoes especificas.
+
+Exemplos:
+
+v1.0.0
+v1.8.5
+v1.8.5-rc.1
+
+Uma tag Git pode ter nomes que nao seguem SemVer.
+
+Por exemplo, v1.8.5.1 e um nome de tag possivel,
+mas nao segue o formato padrao MAJOR.MINOR.PATCH.
+
+Nenhuma tag sera criada nesta aula.
+
+6. GITFLOW
+
+GitFlow organiza o desenvolvimento
+utilizando ramificacoes.
+
+Ramificacoes estudadas:
+
+main
+develop
+feature/
+release/
+hotfix/
+support/
+
+MAIN:
+Versoes estaveis destinadas a producao.
+
+DEVELOP:
+Integracao de funcionalidades em desenvolvimento.
+
+FEATURE:
+Desenvolvimento de novas funcionalidades.
+
+RELEASE:
+Preparacao de uma versao para lancamento.
+
+HOTFIX:
+Correcoes urgentes em versoes estaveis.
+
+SUPPORT:
+Suporte a versoes anteriores, quando necessario.
+
+GitFlow e uma estrategia possivel de trabalho.
+Nao e obrigatoria em todos os projetos.
+
+Nesta aula nao criaremos ramificacoes.
+
+7. VERSIONAMENTO DE IMAGENS DOCKER
+
+Exemplo:
+
+auth-service:1.0.0
+auth-service:1.1.0
+auth-service:1.1.1
+
+Tags facilitam identificar os artefatos.
+
+Para implantacoes reproduziveis,
+preferir referencias imutaveis,
+como digest da imagem.
+
+8. ROLLBACK
+
+Rollback significa retornar a um estado anterior.
+
+Exemplo conceitual:
+
+Versao em execucao: 1.2.0
+Problema detectado.
+Retorno planejado: 1.1.1
+
+A reversao deve considerar tambem
+a compatibilidade de banco de dados,
+configuracoes e dependencias.
+
+Nenhum rollback sera executado nesta aula.
+
+9. OBSERVABILIDADE
+
+Permite acompanhar o comportamento
+das aplicacoes e da infraestrutura.
+
+Elementos estudados:
+
+Logs
+Metricas
+Traces
+
+A observabilidade auxilia na identificacao
+de falhas apos uma implantacao.
+
+10. APLICACAO NO NOSSO PROJETO
+
+Microservicos:
+
+auth-service
+user-service
+order-service
+product-service
+
+As versoes devem permitir identificar
+qual codigo e qual imagem pertencem
+a cada lancamento.
+
+11. SITUACAO DESTA AULA
+
+Conteudo teorico documentado.
+Exemplos SemVer preparados.
+Validador local criado.
+
+Nenhum repositorio alterado.
+Nenhuma branch criada.
+Nenhuma tag criada.
+Nenhuma imagem Docker modificada.
+Nenhum container alterado.
+Nenhum codigo publicado.
+Nenhum deploy executado.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

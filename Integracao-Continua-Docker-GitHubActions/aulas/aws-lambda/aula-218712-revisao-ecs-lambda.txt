@@ -1,0 +1,172 @@
+AULA 218712 - REVISAO ECS, LAMBDA E MICROSSERVICOS
+
+1. OBJETIVO
+
+Revisar a estrutura da aplicacao Burger App,
+a implantacao com ECS e a execucao de funcoes Lambda.
+
+2. AMAZON ECS
+
+O ECS organiza e executa workloads containerizados.
+
+A Task Definition define imagens, memoria,
+CPU, portas e configuracoes de execucao.
+
+O ECS Service administra as tarefas em execucao.
+
+O Fargate permite executar os conteineres
+sem gerenciar diretamente servidores EC2.
+
+3. AWS LAMBDA
+
+O Lambda executa funcoes em resposta a eventos.
+
+Exemplos de gatilhos:
+
+- Requisicao HTTP, mediante integracao apropriada.
+- Evento do Amazon S3.
+- Mensagem do Amazon SQS.
+- Evento programado.
+
+O Lambda nao executa automaticamente uma aplicacao
+Flask convencional apenas porque ela foi compactada.
+
+4. AUTH-SERVICE ORIGINAL
+
+Arquivo:
+docker-automation/burguer-app/auth-service/app.py
+
+Bibliotecas e componentes:
+
+Flask
+load_dotenv
+auth_bp
+redirect
+url_for
+os.getenv
+
+Inicializacao:
+
+load_dotenv()
+
+app = Flask(__name__)
+
+Configuracao de sessao:
+
+app.secret_key = os.getenv("SECRET_KEY")
+
+Registro do blueprint:
+
+app.register_blueprint(auth_bp, url_prefix="/auth")
+
+Rota principal:
+
+@app.route("/")
+def index():
+    return redirect(url_for("auth.login_page"))
+
+Execucao local:
+
+app.run(host="0.0.0.0", port=5000, debug=True)
+
+IMPORTANTE:
+
+O arquivo original utiliza debug=True.
+Isso nao deve permanecer habilitado em producao.
+
+O codigo original tambem imprime a SECRET_KEY.
+Esse registro precisa ser removido antes de qualquer
+publicacao ou execucao em producao.
+
+Nesta revisao nao modificaremos o arquivo original.
+
+5. SERIALIZACAO DE USUARIO
+
+Arquivo:
+auth-service/models/user_model.py
+
+Codigo estudado:
+
+def serialize_user(user):
+    return {
+        "email": user.get("email"),
+        "name": user.get("name", ""),
+        "address": user.get("address", ""),
+        "role": user.get("role", "cliente")
+    }
+
+A funcao prepara um dicionario com os campos:
+
+email
+name
+address
+role
+
+O valor padrao para role e cliente.
+
+6. NOSSA DEMONSTRACAO LAMBDA
+
+Arquivo:
+lambda-estudo/auth-service-lambda/lambda_function.py
+
+Handler:
+lambda_function.lambda_handler
+
+Essa funcao foi criada para estudo.
+
+Ela retorna uma resposta JSON.
+
+Nao executa o sistema original de autenticacao Flask.
+Nao realiza cadastro real de usuarios.
+
+7. EMPACOTAMENTO
+
+O arquivo lambda_function.py foi colocado
+em um pacote ZIP local.
+
+Os testes da demonstracao ja foram executados.
+
+Nesta aula faremos nova verificacao local.
+
+8. GITHUB ACTIONS
+
+Temos rascunhos preparados para:
+
+AWS ECS Fargate.
+AWS Lambda.
+
+Ambos permanecem fora de .github/workflows
+e possuem jobs desativados.
+
+9. DIFERENCAS IMPORTANTES
+
+ECS/Fargate:
+Indicado para executar workloads containerizados,
+inclusive servicos que permanecem ativos.
+
+Lambda:
+Indicado para processamento orientado a eventos.
+
+A frequencia de utilizacao, o custo, a arquitetura,
+a latencia e as necessidades de persistencia
+influenciam a escolha entre os servicos.
+
+10. PENDENCIAS PARA O FUTURO
+
+Revisar o auth-service para producao.
+Corrigir exposicao de chaves e arquivos .env.
+Definir infraestrutura AWS.
+Configurar banco de dados e permissoes.
+Integrar o Flask ao Lambda, se necessario.
+Validar pipelines remotos.
+
+11. REGRAS DESTE PROJETO
+
+Nenhum codigo publicado.
+Nenhuma imagem publicada.
+Nenhum git add, commit ou push.
+Nenhum docker push.
+Nenhum deploy.
+Nenhum recurso AWS criado.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

@@ -1,0 +1,36 @@
+﻿AULA - CRIANDO O DOCKER COMPOSE
+
+COMANDOS DO PROFESSOR:
+docker ps
+docker stop ID_DO_CONTEINER
+docker rm ID_DO_CONTEINER
+docker-compose up -d --build
+
+SINTAXE DOCKER COMPOSE ATUAL:
+docker compose up -d --build
+docker compose ps
+docker compose down
+
+IMPORTANTE:
+Nao executar stop, rm ou down em outros projetos.
+
+COMPOSE DESTA AULA:
+F:\Projetos\Docker-GitHubActions-CI-CD\aulas\docker-compose-microservicos-aula.yml
+
+COMANDO DE EXECUCAO:
+docker compose -p alura-cicd-compose-aula -f "F:\Projetos\Docker-GitHubActions-CI-CD\aulas\docker-compose-microservicos-aula.yml" up -d --build
+
+COMANDO DE VERIFICACAO:
+docker compose -p alura-cicd-compose-aula -f "F:\Projetos\Docker-GitHubActions-CI-CD\aulas\docker-compose-microservicos-aula.yml" ps
+
+INFRAESTRUTURA:
+Rede externa: alura-cicd-aula-rede
+MongoDB: alura-cicd-mongodb
+Auth Service: localhost:16000
+User Service: localhost:16001
+Order Service: localhost:16002
+Product Service: localhost:16003
+
+O arquivo Compose original do professor foi preservado.
+Os conteineres anteriores foram preservados.
+Nenhum commit, push ou deploy em nuvem.

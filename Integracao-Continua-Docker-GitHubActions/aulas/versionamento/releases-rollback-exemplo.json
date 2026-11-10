@@ -1,0 +1,13 @@
+{
+  "aula": "218719",
+  "ambiente": "SIMULACAO_LOCAL",
+  "versao_atual": "59c5b75",
+  "versao_anterior": "4d3a2c1",
+  "servicos": [
+    "auth-service",
+    "user-service",
+    "order-service",
+    "product-service"
+  ],
+  "executar_rollback": false
+}

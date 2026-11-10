@@ -1,0 +1,174 @@
+AULA 218715 - FERRAMENTAS DE VERIFICACAO DE VULNERABILIDADES
+
+OBJETIVO
+
+Conhecer vulnerabilidades em imagens Docker,
+dependencias e sistemas utilizados em pipelines CI/CD.
+
+1. VULNERABILIDADES EM CONTEINERES
+
+Uma imagem Docker pode conter componentes vulneraveis.
+
+Exemplos:
+
+Sistema operacional da imagem base.
+Bibliotecas OpenSSL.
+Ferramentas como curl.
+Pacotes instalados por APT.
+Pacotes instalados por pip.
+Dependencias npm.
+Pacotes instalados por APK ou yum.
+
+Uma imagem que funciona corretamente nao esta,
+necessariamente, livre de vulnerabilidades.
+
+2. CVE
+
+CVE significa Common Vulnerabilities and Exposures.
+
+E um identificador de vulnerabilidades conhecidas.
+
+Exemplos de categorias:
+
+Escalada de privilegios.
+Execucao remota de codigo.
+Vazamento de informacoes.
+Negacao de servico.
+Problemas em bibliotecas.
+
+CVE nao e a mesma coisa que CVSS.
+
+CVSS fornece uma pontuacao de gravidade.
+
+A presenca de uma CVE precisa ser avaliada
+considerando seu contexto e a possibilidade
+de exploracao.
+
+Consulta publica:
+
+https://www.cve.org/
+
+3. TRIVY
+
+Ferramenta de verificacao de seguranca.
+
+Pode analisar:
+
+Imagens Docker.
+Dependencias de aplicacoes.
+Sistemas de arquivos.
+Configuracoes de infraestrutura.
+Alguns recursos e configuracoes Kubernetes.
+
+Pode ser integrado ao GitHub Actions.
+
+Exemplo conceitual de comando:
+
+trivy image NOME_DA_IMAGEM:TAG
+
+NAO EXECUTAR ESTE EXEMPLO AINDA.
+
+A instalacao e a configuracao do Trivy
+serao realizadas na etapa pratica.
+
+4. SNYK
+
+Ferramenta de seguranca para desenvolvimento.
+
+Pode verificar:
+
+Dependencias vulneraveis.
+Imagens de containers.
+Codigo-fonte.
+Configuracoes de infraestrutura.
+
+Possui integracoes com pipelines CI/CD.
+
+A disponibilidade de recursos depende do plano.
+
+5. RED HAT QUAY
+
+Quay e principalmente um registro de imagens.
+
+Pode oferecer recursos de seguranca,
+incluindo verificacao de vulnerabilidades.
+
+Nao e diretamente equivalente a um scanner
+independente como o Trivy.
+
+6. BOAS PRATICAS
+
+Utilizar imagens base confiaveis.
+
+Manter imagens e dependencias atualizadas.
+
+Evitar bibliotecas desnecessarias.
+
+Nao incluir credenciais nas imagens.
+
+Utilizar arquivos .dockerignore adequados.
+
+Executar scanners antes de publicar imagens.
+
+Revisar vulnerabilidades de alta gravidade.
+
+Nao considerar um scanner como garantia
+absoluta de seguranca.
+
+7. NOSSA APLICACAO
+
+Microservicos Docker:
+
+auth-service
+user-service
+order-service
+product-service
+
+Banco de dados:
+
+MongoDB
+
+Todos precisam passar por avaliacao
+de seguranca antes da publicacao final.
+
+8. PENDENCIA DE SEGURANCA ANTERIOR
+
+O arquivo:
+
+burguer-app/auth-service/.env
+
+foi identificado como rastreado pelo Git.
+
+Precisaremos corrigir essa situacao
+antes de publicar o projeto.
+
+Esta aula nao modifica o arquivo
+nem o indice Git.
+
+9. PROXIMA ETAPA PRATICA
+
+Instalar ou configurar Trivy.
+
+Analisar imagens Docker locais.
+
+Identificar vulnerabilidades por gravidade.
+
+Avaliar resultados e possiveis correcoes.
+
+Preparar integracao com GitHub Actions.
+
+Tudo inicialmente em ambiente local.
+
+10. RESTRICOES
+
+Nenhum Trivy instalado nesta aula.
+Nenhum scan de vulnerabilidades executado.
+Nenhuma imagem Docker alterada.
+Nenhum container alterado.
+Nenhum arquivo .env modificado.
+Nenhum git add, commit ou push.
+Nenhum docker push.
+Nenhum deploy.
+Nenhum codigo publicado.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

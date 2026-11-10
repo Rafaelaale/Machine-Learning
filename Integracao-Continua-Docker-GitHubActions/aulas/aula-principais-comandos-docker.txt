@@ -1,0 +1,72 @@
+﻿AULA - EXPLORANDO OS PRINCIPAIS COMANDOS DO DOCKER
+
+1. PESQUISAR IMAGENS
+docker search ubuntu
+
+2. BAIXAR IMAGENS
+docker pull ubuntu
+docker pull nginx
+
+3. LIMPAR TERMINAL
+clear
+
+4. LISTAR IMAGENS
+docker images
+
+5. REMOVER IMAGEM - APENAS EXEMPLO, NAO EXECUTAR
+docker rmi nginx:latest
+
+6. CRIAR CONTEINER UBUNTU
+docker run ubuntu
+
+7. LISTAR CONTEINERES
+docker ps
+docker ps -a
+
+8. EXECUTAR EM SEGUNDO PLANO
+docker run -d ubuntu:latest
+
+9. EXECUTAR POR ID DE IMAGEM
+docker run -d ID_DA_IMAGEM
+
+10. MODO INTERATIVO - EXECUTAR MANUALMENTE
+docker run -it ubuntu:latest
+
+11. COMANDOS DENTRO DO UBUNTU
+ls
+mkdir teste
+ls
+exit
+
+12. REINICIAR CONTEINER - APENAS EXEMPLO
+docker restart ID_DO_CONTEINER
+
+13. NGINX EM SEGUNDO PLANO
+docker run -d nginx:latest
+
+14. NGINX COM PORTA PUBLICADA PELO PROFESSOR
+docker run -d -p 8080:80 nginx:latest
+
+15. NGINX COM NOME PERSONALIZADO
+docker run -d --name meu-container nginx:latest
+
+16. CONSULTAR CONTEINERES
+docker ps
+docker ps -a
+
+OBSERVACOES
+docker run -d precisa receber uma imagem.
+O ID da imagem do professor nao e o ID da nossa maquina.
+Ubuntu encerra se nao houver processo ativo.
+Nginx permanece ativo porque executa um servidor.
+O parametro -p mapeia porta do computador para porta do conteiner.
+O parametro --name define um nome personalizado.
+O parametro -it ativa um terminal interativo.
+
+EXECUCAO SEGURA DESTA AULA
+Usamos nomes exclusivos e uma porta disponivel entre 18080 e 18089.
+O Nginx sera acessivel apenas pelo localhost.
+Nao remover imagens ou conteineres de outros projetos.
+
+SCRIPT PRATICO
+scripts/aula-principais-comandos-docker.ps1

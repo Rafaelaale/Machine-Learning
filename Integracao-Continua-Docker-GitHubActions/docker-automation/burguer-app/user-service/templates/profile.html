@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Perfil do Usuário{% endblock %}
+{% block content %}
+<h2>Perfil do Usuário</h2>
+<ul class="list-group">
+  <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+  <li class="list-group-item"><strong>Nome:</strong> {{ user.name }}</li>
+  <li class="list-group-item"><strong>Endereço:</strong> {{ user.address }}</li>
+  <li class="list-group-item"><strong>Função:</strong> {{ user.role }}</li>
+</ul>
+<form action="{{ url_for('user.delete', email=user.email) }}" method="POST" class="mt-2">
+  <button class="btn btn-danger" type="submit">Excluir Usuário</button>
+</form>
+{% endblock %}

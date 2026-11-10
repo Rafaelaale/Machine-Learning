@@ -1,0 +1,39 @@
+
+services:
+  # ✅ Mongo containerizado (DEV)
+  mongo:
+    build: ./mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - microservices-network
+
+  # ✅ Sobrescreve as envs dos microserviços para usar o Mongo local
+  auth-service:
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+
+  user-service:
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+
+  order-service:
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+
+  product-service:
+    environment:
+      - MONGO_URI=${MONGO_URI}
+
+volumes:
+  mongo_data:

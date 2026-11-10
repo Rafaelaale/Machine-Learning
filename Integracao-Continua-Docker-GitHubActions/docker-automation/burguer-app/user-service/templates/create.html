@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block title %}Criar Usuário{% endblock %}
+{% block content %}
+<h2>Criar Usuário</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label>Senha</label>
+    <input type="password" name="password" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label>Nome</label>
+    <input type="text" name="name" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label>Endereço</label>
+    <input type="text" name="address" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label>Função</label>
+    <select name="role" class="form-control">
+      <option value="cliente">Cliente</option>
+      <option value="admin">Administrador</option>
+    </select>
+  </div>
+  <button class="btn btn-success">Criar</button>
+</form>
+{% endblock %}

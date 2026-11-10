@@ -1,0 +1,95 @@
+AULA 218704 - PUBLICANDO IMAGENS NO DOCKER HUB
+
+1. OBJETIVO
+
+Aprender o fluxo de publicacao de imagens Docker em um registry.
+
+O Docker Hub armazena imagens que podem ser distribuidas
+para outros computadores e ambientes.
+
+2. FLUXO EXPLICADO PELO PROFESSOR
+
+Primeiro: autenticar no Docker Hub.
+
+docker login
+
+Segundo: listar as imagens Docker.
+
+docker images
+
+Terceiro: criar uma tag para identificar o repositorio.
+
+docker tag IMAGEM_ORIGINAL:VERSAO USUARIO/REPOSITORIO:VERSAO
+
+Quarto: verificar a nova etiqueta.
+
+docker images
+
+Quinto: publicar a imagem no Docker Hub.
+
+docker push USUARIO/REPOSITORIO:VERSAO
+
+ATENCAO: docker login e docker push NAO serao executados
+durante esta etapa do curso.
+
+3. EXEMPLO DO PROFESSOR
+
+docker tag burger-app-auth-service:latest professordanilo/alura:1.0
+
+docker push professordanilo/alura:1.0
+
+O nome professordanilo pertence ao exemplo da aula.
+Nao utilizar essa conta para publicar nossas imagens.
+
+4. EXEMPLO PARA NOSSO PROJETO
+
+Imagem que ja construimos:
+
+alura-cicd-auth-service:1.0
+
+Etiqueta de demonstracao local:
+
+dockerhub-estudo/alura:1.0
+
+Comando seguro de preparacao:
+
+docker tag alura-cicd-auth-service:1.0 dockerhub-estudo/alura:1.0
+
+A etiqueta dockerhub-estudo e apenas demonstrativa.
+Ela nao identifica uma conta Docker Hub confirmada.
+
+5. PUBLICACAO FUTURA
+
+Quando chegar o momento de publicar:
+
+- Confirmar a conta Docker Hub do aluno.
+- Escolher o nome e a visibilidade do repositorio.
+- Conferir se as imagens nao contem segredos.
+- Verificar os arquivos .env e .dockerignore.
+- Usar uma tag com o nome correto da conta.
+- Autenticar de forma segura.
+- Executar docker push somente com autorizacao.
+- Conferir a imagem no Docker Hub.
+
+6. BOAS PRATICAS
+
+Usar tags de versao identificaveis.
+
+Nao utilizar senhas ou tokens dentro de Dockerfiles.
+
+Nao publicar imagens com credenciais embutidas.
+
+Nao usar o namespace Docker Hub de outra pessoa.
+
+Nao pressupor que latest indica a versao mais recente.
+
+7. SITUACAO ATUAL
+
+Estudo e preparacao local.
+
+Publicacao reservada para o final do curso.
+
+Nenhum docker login.
+Nenhum docker push.
+Nenhum git add, commit ou push.
+Nenhum deploy.

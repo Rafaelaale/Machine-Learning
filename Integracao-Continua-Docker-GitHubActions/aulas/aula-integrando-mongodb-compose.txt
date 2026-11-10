@@ -1,0 +1,43 @@
+AULA - INTEGRANDO MONGODB AO DOCKER COMPOSE
+
+DOCKERFILE DO PROFESSOR:
+FROM mongo:6.0
+COPY ./init-mongo.js /docker-entrypoint-initdb.d/
+
+SCRIPT DE INICIALIZACAO:
+db = db.getSiblingDB('burguer_app_db');
+db.createUser({
+    user: 'appuser',
+    pwd: 'apppass',
+    roles: [{ role: 'readWrite', db: 'burguer_app_db' }]
+});
+
+RECURSOS DO COMPOSE:
+services
+build
+environment
+volumes
+networks
+healthcheck
+depends_on
+
+CONFIGURACAO DESTA AULA:
+MongoDB disponivel internamente como mongo:27017.
+Volume exclusivo para persistencia de dados.
+Quatro microservicos configurados com MONGO_URI.
+Inicializacao condicionada ao healthcheck do banco.
+
+ARQUIVO COMPOSE ORIGINAL PRESERVADO.
+MONGODB EXISTENTE PRESERVADO.
+
+COMANDO PARA VALIDAR:
+docker compose -p alura-cicd-compose-aula -f "
+F:\Projetos\Docker-GitHubActions-CI-CD\aulas\docker-compose-microservicos-aula.yml
+" -f "
+F:\Projetos\Docker-GitHubActions-CI-CD\aulas\docker-compose-mongodb-aula.override.yml
+" config --quiet
+
+O build e a execucao ficarao para a proxima aula.
+As credenciais apresentadas sao apenas para desenvolvimento local.
+Nao usar essas senhas em producao.
+Nenhum commit, push ou deploy.

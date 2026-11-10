@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+{% block title %}Detalhes do Pedido{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Detalhes do Pedido</h2>
+    <div>
+        <a href="{{ url_for('order.list_orders') }}" class="btn btn-outline-secondary">← Voltar à Lista</a>
+        <a href="http://localhost:5000/auth/dashboard" class="btn btn-outline-info">Dashboard</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informações do Pedido</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>ID:</strong></div>
+                    <div class="col-sm-9">{{ order['id'] }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Cliente:</strong></div>
+                    <div class="col-sm-9">{{ order['user_email'] }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Status:</strong></div>
+                    <div class="col-sm-9">
+                        <span class="badge bg-{{ 'warning' if order['status'] == 'pending' else 'success' if order['status'] == 'completed' else 'danger' if order['status'] == 'cancelled' else 'info' }}">
+                            {{ order['status']|title }}
+                        </span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Total:</strong></div>
+                    <div class="col-sm-9">R$ {{ "%.2f"|format(order['total']) }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Criado em:</strong></div>
+                    <div class="col-sm-9">{{ order['created_at_formatted'] or 'N/A' }}</div>
+                </div>
+                {% if order['updated_at_formatted'] and order['updated_at_formatted'] != order['created_at_formatted'] %}
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Atualizado em:</strong></div>
+                    <div class="col-sm-9">{{ order['updated_at_formatted'] }}</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Itens do Pedido</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantidade</th>
+                                <th>Preço Unitário</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order['items'] %}
+                            <tr>
+                                <td>{{ item['name'] }}</td>
+                                <td>{{ item['quantity'] }}</td>
+                                <td>R$ {{ "%.2f"|format(item['unit_price']) }}</td>
+                                <td>R$ {{ "%.2f"|format(item['total']) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-info">
+                                <th colspan="3">Total do Pedido:</th>
+                                <th>R$ {{ "%.2f"|format(order['total']) }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Ações</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('order.update_status', order_id=order['id']) }}" class="mb-3">
+                    <label for="status" class="form-label">Atualizar Status:</label>
+                    <select name="status" id="status" class="form-select mb-2">
+                        <option value="pending" {{ 'selected' if order['status'] == 'pending' else '' }}>Pendente</option>
+                        <option value="preparing" {{ 'selected' if order['status'] == 'preparing' else '' }}>Preparando</option>
+                        <option value="ready" {{ 'selected' if order['status'] == 'ready' else '' }}>Pronto</option>
+                        <option value="completed" {{ 'selected' if order['status'] == 'completed' else '' }}>Concluído</option>
+                        <option value="cancelled" {{ 'selected' if order['status'] == 'cancelled' else '' }}>Cancelado</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm w-100">Atualizar Status</button>
+                </form>
+
+                <hr>
+
+                <form method="POST" action="{{ url_for('order.delete', order_id=order['id']) }}" onsubmit="return confirm('Tem certeza que deseja deletar este pedido?')">
+                    <button type="submit" class="btn btn-danger btn-sm w-100">Deletar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

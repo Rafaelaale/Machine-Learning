@@ -1,0 +1,34 @@
+AULA - TESTES AUTOMATIZADOS NO DOCKER GITHUB ACTIONS
+
+OBJETIVO:
+Adicionar quatro etapas de teste ao pipeline de homologacao.
+
+ORDEM DE EXECUCAO:
+1. Checkout do repositorio.
+2. Preparar variaveis de ambiente.
+3. Construir containers com Docker Compose.
+4. Aguardar MongoDB.
+5. Validar MongoDB e HTTP.
+6. Configurar Python.
+7. Testar auth-service com pytest e cobertura.
+8. Testar user-service com pytest.
+9. Testar order-service com pytest.
+10. Testar product-service com pytest.
+11. Finalizar homologacao.
+12. Encerrar containers.
+
+COMANDO DE COBERTURA DA AULA:
+python -m pytest -v --cov=. --cov-report=term-missing --cov-branch
+
+OBSERVACAO SOBRE 90 POR CENTO:
+O professor utiliza --cov-fail-under=90.
+Esse limite nao foi ativado porque a cobertura anterior
+do projeto ainda nao atingiu esse percentual.
+O relatorio mostrara a cobertura efetivamente medida.
+
+SITUACAO:
+Workflow preparado localmente.
+Testes ainda nao executados no GitHub Actions.
+O projeto sera publicado somente no final do curso.
+Nenhum git add, commit ou push.
+Nenhum deploy em producao.

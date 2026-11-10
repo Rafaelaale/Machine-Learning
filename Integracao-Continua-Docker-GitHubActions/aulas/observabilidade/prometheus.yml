@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: "auth-service"
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "auth-service:5000"
+
+# Os demais servicos precisam expor /metrics
+# antes de serem adicionados ao monitoramento.
+#
+# user-service:5001
+# order-service:5002
+# product-service:5003

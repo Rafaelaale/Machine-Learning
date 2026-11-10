@@ -1,0 +1,40 @@
+AUDITORIA GERAL DO PROJETO VS CODE
+Data: 10/11/2026 15:42:51
+Projeto: F:\Projetos\Docker-GitHubActions-CI-CD
+
+ESTATISTICAS
+ALERTA: 5
+AVISO: 5
+PENDENTE: 2
+arquivos_conferidos: 23
+arquivos_python: 56
+cves_unicas: 28
+dockerfiles: 4
+erros_python: 0
+paineis_grafana: 3
+rascunhos: 7
+trivy_critical: 16
+trivy_high: 96
+workflows_ativos: 7
+
+ACHADOS
+[AVISO] auth-service: Revisar se o container executa com usuario nao-root
+[AVISO] user-service: Revisar se o container executa com usuario nao-root
+[AVISO] order-service: Revisar se o container executa com usuario nao-root
+[AVISO] product-service: Revisar se o container executa com usuario nao-root
+[ALERTA] Credenciais: auth-service/.env existe; houve alerta anterior de rastreamento. Revisar antes de publicar.
+[ALERTA] Credenciais: app.py pode imprimir SECRET_KEY no terminal
+[ALERTA] Flask: debug=True identificado; desabilitar em producao
+[PENDENTE] Observabilidade: A conexao real Grafana-Prometheus ainda nao foi testada
+[AVISO] Workflows: Existem workflows em .github/workflows. Revisar gatilhos antes da publicacao final.
+[ALERTA] Trivy: 16 ocorrencias CRITICAL precisam de avaliacao
+[ALERTA] Trivy: 96 ocorrencias HIGH precisam de avaliacao
+[PENDENTE] Trivy: Scan das imagens Docker ainda nao realizado
+
+LIMITACOES
+Auditoria estatica: nao executa os microservicos.
+Sintaxe YAML e funcionamento remoto nao comprovados.
+Nao executa testes pytest nem valida conexoes reais.
+Nao executa Git, Docker ou comandos de deploy.
+Nao le valores dos arquivos .env.
+Nao modifica os arquivos existentes.

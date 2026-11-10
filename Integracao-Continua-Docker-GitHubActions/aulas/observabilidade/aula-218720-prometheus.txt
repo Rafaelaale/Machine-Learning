@@ -1,0 +1,113 @@
+AULA - IMPLEMENTANDO OBSERVABILIDADE COM PROMETHEUS
+
+OBJETIVO
+
+Implementar a exposicao de metricas no
+microservico de autenticacao utilizando
+prometheus_client.
+
+1. FLASK
+
+Arquivo modificado:
+
+docker-automation/burguer-app/auth-service/app.py
+
+Nova rota:
+
+/metrics
+
+2. DEPENDENCIA
+
+prometheus_client==0.22.1
+
+Registrada no requirements.txt original.
+
+Nao utilizar pip freeze para sobrescrever
+todas as dependencias.
+
+3. METRICAS
+
+generate_latest()
+CONTENT_TYPE_LATEST
+Counter
+
+Contador demonstrativo:
+
+auth_service_metrics_scrapes_total
+
+Metricas de processo podem incluir:
+
+process_cpu_seconds_total
+process_open_fds
+
+A disponibilidade depende do ambiente.
+
+4. PROMETHEUS
+
+Intervalo de coleta:
+
+5 segundos
+
+Target configurado:
+
+auth-service:5000
+
+Endpoint:
+
+/metrics
+
+5. DEMAIS MICROSSERVICOS
+
+user-service:5001
+order-service:5002
+product-service:5003
+
+Ainda nao foram instrumentados.
+
+Nao serao configurados como targets ativos
+ate disponibilizarem a rota /metrics.
+
+6. DOCKER COMPOSE
+
+Arquivo preparado:
+
+aulas/prometheus-compose-aula.override.yml
+
+Porta local planejada:
+
+127.0.0.1:19090
+
+Configuracao para uso futuro com o
+ambiente Docker Compose das aulas.
+
+Nao foi executado docker compose up.
+
+7. SEGURANCA
+
+O endpoint /metrics pode expor informacoes
+sobre o processo e a aplicacao.
+
+Em producao, restringir seu acesso.
+
+Nao adicionar senhas ou tokens como labels.
+
+O auth-service original ainda possui
+pendencias de seguranca anteriores.
+
+8. SITUACAO
+
+Codigo Flask atualizado localmente.
+
+Requirements atualizado localmente.
+
+Prometheus configurado para estudo.
+
+Docker Desktop ainda apresenta problemas no WSL.
+
+Nenhum container foi iniciado ou removido.
+Nenhum volume foi modificado.
+Nenhuma imagem foi construida.
+Nenhum codigo foi publicado.
+Nenhum deploy foi executado.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

@@ -1,0 +1,41 @@
+AULA 218717 - EXEMPLOS SEMVER
+
+VERSOES VALIDAS:
+
+1.0.0
+1.1.0
+1.1.1
+2.0.0
+1.8.5-rc.1
+1.8.5+build.123
+
+EXEMPLOS DE TAGS COM PREFIXO V:
+
+v1.0.0
+v1.8.5
+v1.8.5-rc.1
+
+VERSOES INVALIDAS NO SEMVER:
+
+1.8
+1.8.5.1
+v1.8.5.1
+
+SIMULACAO DE EVOLUCAO:
+
+1.0.0 -> 1.0.1 = PATCH
+1.0.1 -> 1.1.0 = MINOR
+1.1.0 -> 2.0.0 = MAJOR
+
+IMAGENS DE ESTUDO:
+
+alura-cicd-auth-service:1.0.0
+alura-cicd-user-service:1.0.0
+alura-cicd-order-service:1.0.0
+alura-cicd-product-service:1.0.0
+
+ESTES NOMES SAO APENAS EXEMPLOS.
+
+Nenhuma imagem foi criada.
+Nenhuma tag foi criada.
+Nenhuma publicacao realizada.

@@ -1,0 +1,45 @@
+services:
+  mongo:
+    image: alura-cicd-mongo-aula:1.0
+    build:
+      context: ../docker-automation/burguer-app/mongo
+      dockerfile: Dockerfile
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - alura-cicd-mongo-aula-data:/data/db
+    networks:
+      - alura-cicd-aula-rede
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand({ping:1}).ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+  auth-service:
+    environment:
+      MONGO_URI: "mongodb://appuser:apppass@mongo:27017/burguer_app_db?authSource=burguer_app_db"
+    depends_on:
+      mongo:
+        condition: service_healthy
+  user-service:
+    environment:
+      MONGO_URI: "mongodb://appuser:apppass@mongo:27017/burguer_app_db?authSource=burguer_app_db"
+    depends_on:
+      mongo:
+        condition: service_healthy
+  order-service:
+    environment:
+      MONGO_URI: "mongodb://appuser:apppass@mongo:27017/burguer_app_db?authSource=burguer_app_db"
+    depends_on:
+      mongo:
+        condition: service_healthy
+  product-service:
+    environment:
+      MONGO_URI: "mongodb://appuser:apppass@mongo:27017/burguer_app_db?authSource=burguer_app_db"
+    depends_on:
+      mongo:
+        condition: service_healthy
+volumes:
+  alura-cicd-mongo-aula-data:

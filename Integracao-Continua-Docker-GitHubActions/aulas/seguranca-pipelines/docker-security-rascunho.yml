@@ -1,0 +1,160 @@
+name: Aula 218713 - Seguranca Docker Compose - Rascunho
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seguranca:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verificar arquivos sensiveis
+        shell: bash
+        run: |
+          if git ls-files --error-unmatch \
+            burguer-app/auth-service/.env \
+            > /dev/null 2>&1; then
+
+            echo "::error::Arquivo .env rastreado pelo Git."
+            echo "Remover o rastreamento antes de qualquer publicacao."
+            exit 1
+          fi
+
+      - name: Verificar Docker Compose
+        shell: bash
+        run: |
+          if ! docker compose version; then
+            echo "::error::Docker Compose nao disponivel."
+            exit 1
+          fi
+
+      - name: Mascarar variaveis sensiveis
+        shell: bash
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          if [ -z "${MONGO_URI:-}" ]; then
+            echo "::error::Secret MONGO_URI nao configurado."
+            exit 1
+          fi
+
+          if [ -z "${SECRET_KEY:-}" ]; then
+            echo "::error::Secret SECRET_KEY nao configurado."
+            exit 1
+          fi
+
+          echo "::add-mask::$MONGO_URI"
+          echo "::add-mask::$SECRET_KEY"
+
+          echo "Variaveis sensiveis verificadas."
+
+      - name: Criar arquivos de ambiente temporarios
+        working-directory: burguer-app
+        shell: bash
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          umask 077
+
+          for service in \
+            auth-service \
+            user-service \
+            order-service \
+            product-service
+          do
+            printf 'MONGO_URI=%s\n' "$MONGO_URI" \
+              > "$service/.env"
+          done
+
+          printf 'SECRET_KEY=%s\n' "$SECRET_KEY" \
+            >> auth-service/.env
+
+          echo "Arquivos temporarios preparados."
+
+      - name: Validar Docker Compose
+        working-directory: burguer-app
+        shell: bash
+        run: |
+          docker compose \
+            -p alura-aula-seguranca \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            config --quiet
+
+      - name: Build e inicializacao
+        working-directory: burguer-app
+        shell: bash
+        run: |
+          docker compose \
+            -p alura-aula-seguranca \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            up -d --build
+
+      - name: Aguardar MongoDB
+        working-directory: burguer-app
+        shell: bash
+        run: |
+          for tentativa in $(seq 1 30); do
+
+            if docker compose \
+              -p alura-aula-seguranca \
+              -f docker-compose.yml \
+              -f docker-compose.override.yml \
+              exec -T mongo \
+              mongosh --quiet \
+              --eval 'db.adminCommand({ping:1}).ok' \
+              > /dev/null 2>&1; then
+
+              echo "MongoDB respondeu ao ping."
+              exit 0
+            fi
+
+            echo "Aguardando MongoDB..."
+            sleep 2
+          done
+
+          echo "::error::MongoDB nao respondeu."
+          exit 1
+
+      - name: Verificar servicos
+        working-directory: burguer-app
+        shell: bash
+        run: |
+          docker compose \
+            -p alura-aula-seguranca \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            ps
+
+      - name: Encerrar ambiente de teste
+        if: always()
+        working-directory: burguer-app
+        shell: bash
+        run: |
+          docker compose \
+            -p alura-aula-seguranca \
+            -f docker-compose.yml \
+            -f docker-compose.override.yml \
+            down --remove-orphans
+
+          for service in \
+            auth-service \
+            user-service \
+            order-service \
+            product-service
+          do
+            rm -f "$service/.env"
+          done
+
+          echo "Ambiente temporario encerrado."

@@ -1,0 +1,70 @@
+AULA - DOCKER HUB E GITHUB CONTAINER REGISTRY
+
+1. DOCKER HUB
+
+Endereco: https://hub.docker.com
+Registry de imagens mantido pela Docker.
+Permite repositorios publicos e privados.
+Disponibiliza imagens oficiais e de terceiros.
+Suporta distribuicao de imagens e integracoes de automacao.
+
+2. GITHUB CONTAINER REGISTRY - GHCR
+
+Endereco do registry: ghcr.io
+Faz parte do ecossistema GitHub Packages.
+Permite armazenar imagens OCI e Docker.
+Integra-se ao GitHub Actions.
+Permite configurar visibilidade publica ou privada.
+
+3. DIFERENCA ENTRE OS REGISTRIES
+
+Docker Hub: foco em distribuicao de imagens Docker.
+GHCR: integracao com repositorios e permissoes do GitHub.
+Ambos podem receber imagens construidas em pipelines.
+
+4. IDENTIFICACAO DE IMAGENS
+
+Exemplo Docker Hub:
+usuario/minha-imagem:1.0
+
+Exemplo GHCR:
+ghcr.io/usuario/minha-imagem:1.0
+
+5. COMANDOS IMPORTANTES
+
+docker image ls
+docker image inspect NOME:TAG
+docker image tag ORIGEM:TAG DESTINO:TAG
+docker pull NOME:TAG
+docker push NOME:TAG
+
+O comando docker push publica imagens em um registry.
+Nao executar docker push nesta fase do curso.
+
+6. SEGURANCA
+
+Nao inserir senhas ou tokens no codigo-fonte.
+Nao publicar arquivos .env com credenciais.
+Utilizar permissoes apropriadas e mecanismos de autenticacao.
+Revisar configuracoes de visibilidade antes da publicacao.
+
+7. NOSSO PROJETO
+
+Imagem original:
+alura-cicd-auth-service:1.0
+
+Tag de estudo criada na aula anterior:
+alura-cicd-auth-service:registry-estudo
+
+As duas tags apontam para o mesmo identificador de imagem.
+
+8. PLANEJAMENTO
+
+Estudar Docker Hub e GHCR.
+Preparar futuramente os workflows de publicacao.
+Publicar somente ao final do curso, com autorizacao.
+
+Nenhum login em registry.
+Nenhum docker push.
+Nenhum git add, commit ou push.
+Nenhum deploy em producao.

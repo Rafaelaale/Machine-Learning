@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: auth-service
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./auth-service/.env
+    networks:
+      - microservices-network
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    container_name: user-service
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./user-service/.env
+    networks:
+      - microservices-network
+
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    container_name: order-service
+    ports:
+      - "5002:5002"
+    env_file:
+      - ./order-service/.env
+    networks:
+      - microservices-network
+
+  product-service:
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    container_name: product-service
+    ports:
+      - "5003:5003"
+    env_file:
+      - ./product-service/.env
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge

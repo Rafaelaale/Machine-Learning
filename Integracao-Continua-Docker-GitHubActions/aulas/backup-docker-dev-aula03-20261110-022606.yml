@@ -1,0 +1,133 @@
+name: Docker dev workflow - aula 03
+
+on:
+  push:
+    branches:
+      - aula-03
+  pull_request:
+    branches:
+      - aula-03
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docker-up:
+    name: Homologacao Docker Compose
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        working-directory: burguer-app
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verificar Docker e Docker Compose
+        run: |
+          docker version
+          docker compose version
+
+      - name: Criar ambiente de homologacao
+        run: |
+          umask 077
+
+          mongo_uri='mongodb://appuser:apppass@mongo:27017/burguer_app_db?authSource=burguer_app_db'
+          session_key="$(openssl rand -hex 32)"
+          jwt_key="$(openssl rand -hex 32)"
+
+          printf 'MONGO_URI=%s\n' "$mongo_uri" > .env
+
+          for service in auth-service user-service order-service product-service; do
+            printf 'MONGO_URI=%s\nSECRET_KEY=%s\nJWT_SECRET=%s\nPYTHONUNBUFFERED=1\n' \
+              "$mongo_uri" "$session_key" "$jwt_key" > "$service/.env"
+          done
+
+          echo "Ambiente temporario preparado."
+
+      - name: Validar arquivos Docker Compose
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.override.yml config --quiet
+          docker compose -f docker-compose.yml -f docker-compose.override.yml config --services
+
+      - name: Build and run Docker containers
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.override.yml up -d --build
+          docker compose -f docker-compose.yml -f docker-compose.override.yml ps
+
+      - name: Aguardar inicializacao do MongoDB
+        run: |
+          pronto=0
+
+          for tentativa in $(seq 1 40); do
+            if docker compose -f docker-compose.yml -f docker-compose.override.yml exec -T mongo \
+              mongosh --quiet \
+              --username appuser \
+              --password apppass \
+              --authenticationDatabase burguer_app_db \
+              --eval 'db.getSiblingDB("burguer_app_db").runCommand({ping:1}).ok' 2>/dev/null | grep -qx '1'; then
+              pronto=1
+              break
+            fi
+
+            sleep 3
+          done
+
+          test "$pronto" -eq 1
+          echo "MongoDB autenticado e pronto."
+
+      - name: Testar conexao dos microservicos com MongoDB
+        run: |
+          for service in auth-service user-service order-service product-service; do
+            docker compose -f docker-compose.yml -f docker-compose.override.yml exec -T "$service" \
+              python -c 'import os; from pymongo import MongoClient; c = MongoClient(os.environ["MONGO_URI"], serverSelectionTimeoutMS=8000); c["burguer_app_db"].list_collection_names(); print("MONGODB OK")'
+
+            echo "Conexao validada: $service"
+          done
+
+      - name: Testar HTTP dos quatro microservicos
+        run: |
+          for item in auth-service:5000 user-service:5001 order-service:5002 product-service:5003; do
+            service="${item%%:*}"
+            port="${item##*:}"
+            aprovado=0
+
+            for tentativa in $(seq 1 30); do
+              if curl --fail --silent --location --max-time 6 \
+                --output /dev/null "http://127.0.0.1:$port/"; then
+                aprovado=1
+                break
+              fi
+
+              sleep 2
+            done
+
+            if [ "$aprovado" -ne 1 ]; then
+              echo "Falha HTTP: $service"
+              exit 1
+            fi
+
+            echo "HTTP OK: $service"
+          done
+
+      - name: Confirmar homologacao
+        run: |
+          echo "MongoDB e quatro microservicos validados."
+          echo "Nenhum deploy em producao."
+          echo "Nenhuma imagem publicada."
+
+      - name: Shut down Docker containers
+        if: always()
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.override.yml down || true
+
+          rm -f .env \
+            auth-service/.env \
+            user-service/.env \
+            order-service/.env \
+            product-service/.env
+
+          echo "Ambiente temporario encerrado."

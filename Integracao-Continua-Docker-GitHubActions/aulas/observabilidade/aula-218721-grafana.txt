@@ -1,0 +1,170 @@
+AULA 218721 - MONITORAMENTO COM GRAFANA
+
+CURSO:
+Integracao Continua com Docker e GitHub Actions
+
+OBJETIVO
+
+Integrar Grafana e Prometheus para
+visualizar metricas dos microservicos.
+
+1. PROMETHEUS
+
+Responsavel por coletar e armazenar metricas.
+
+O Prometheus consulta periodicamente
+o endpoint /metrics da aplicacao.
+
+Configuracao ja preparada na aula anterior:
+
+aulas/observabilidade/prometheus.yml
+
+Target ativo:
+
+auth-service:5000
+
+Intervalo de coleta:
+
+5 segundos.
+
+2. GRAFANA
+
+Ferramenta para visualizar metricas.
+
+Permite criar:
+
+Dashboards.
+Graficos.
+Paineis.
+Consultas.
+Alertas.
+
+3. FONTE DE DADOS
+
+Tipo:
+
+Prometheus
+
+URL interna:
+
+http://prometheus:9090
+
+Essa URL sera utilizada pelo Grafana
+dentro da rede Docker Compose.
+
+4. PORTA DO GRAFANA
+
+Porta interna:
+
+3000
+
+Porta local planejada:
+
+13000
+
+Endereco futuro:
+
+http://localhost:13000
+
+A porta local foi escolhida para evitar
+conflitos com outras aplicacoes no Windows.
+
+5. CREDENCIAIS
+
+Usuario padrao planejado:
+
+admin
+
+A senha nao foi incluida no codigo.
+
+Antes da futura execucao, devera ser definida
+a variavel GRAFANA_ADMIN_PASSWORD.
+
+Nao utilizar admin/admin como senha definitiva.
+
+6. DASHBOARD
+
+Arquivo:
+
+aulas/observabilidade/grafana/dashboards/microservicos.json
+
+Tres paineis:
+
+Consumo de CPU.
+Descritores de arquivos abertos.
+Consultas ao endpoint /metrics.
+
+7. CONSULTAS PROMQL
+
+CPU:
+
+rate(process_cpu_seconds_total{job="auth-service"}[1m])
+
+Descritores:
+
+process_open_fds{job="auth-service"}
+
+Consultas de metricas:
+
+rate(auth_service_metrics_scrapes_total{job="auth-service"}[1m])
+
+8. DEMAIS MICROSSERVICOS
+
+user-service
+order-service
+product-service
+
+Ainda precisam expor metricas proprias.
+
+Nesta aula nao modificaremos esses tres servicos.
+
+9. DOCKER COMPOSE
+
+O Grafana sera integrado ao Compose
+existente por meio de um arquivo adicional.
+
+Arquivos:
+
+aulas/docker-compose-microservicos-aula.yml
+aulas/docker-compose-mongodb-aula.override.yml
+aulas/prometheus-compose-aula.override.yml
+aulas/grafana-compose-aula.override.yml
+
+Nao modificar nem substituir os arquivos
+originais do professor.
+
+Nao declarar uma rede externa nova.
+
+Grafana e Prometheus devem utilizar a
+mesma rede definida pelo Compose das aulas.
+
+10. SEGURANCA
+
+Grafana acessivel somente por localhost.
+
+Cadastro de usuarios desabilitado.
+
+Acesso anonimo desabilitado.
+
+Nenhuma senha gravada nos arquivos.
+
+11. PENDENCIAS
+
+Docker Desktop apresenta problema no WSL.
+
+A execucao real do Prometheus e Grafana
+permanece pendente.
+
+A validacao atual sera estatica.
+
+12. PUBLICACAO
+
+Nenhum codigo publicado.
+Nenhuma imagem publicada.
+Nenhum container iniciado.
+Nenhum volume removido.
+Nenhum Docker Compose executado.
+Nenhum commit ou push.
+Nenhum deploy.
+
+PUBLICACAO SOMENTE AO FINAL DO CURSO.

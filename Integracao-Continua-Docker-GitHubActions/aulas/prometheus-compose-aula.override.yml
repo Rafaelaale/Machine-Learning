@@ -1,0 +1,18 @@
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: alura-cicd-prometheus-aula
+
+    ports:
+      - "127.0.0.1:19090:9090"
+
+    volumes:
+      - ./observabilidade/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+
+    networks:
+      - alura-cicd-aula-rede
+
+    restart: "no"

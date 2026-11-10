@@ -1,0 +1,36 @@
+﻿AULA - CRIANDO REDE DEDICADA NO DOCKER
+
+COMANDOS DO PROFESSOR:
+docker network create microservices-network
+docker ps
+docker network ls
+docker network inspect microservices-network
+
+COMANDOS DE REMOCAO MOSTRADOS NA AULA:
+docker stop ID_DO_CONTEINER
+docker rm ID_DO_CONTEINER
+
+ATENCAO: nao executar remocao em conteineres de outros projetos.
+
+CONFIGURACAO DESTA TRILHA:
+Rede: alura-cicd-aula-rede
+MongoDB: alura-cicd-mongodb
+Auth: alura-cicd-aula-auth-service
+User: alura-cicd-aula-user-service
+Order: alura-cicd-aula-order-service
+Product: alura-cicd-aula-product-service
+
+COMUNICACAO INTERNA:
+Os conteineres usam seus nomes como enderecos DNS na rede Docker.
+Exemplo: http://alura-cicd-aula-product-service:5003
+
+PENDENCIA DE NAVEGACAO:
+O codigo original possui referencias a localhost:5000-5003.
+Neste computador as portas externas sao 15000-15003.
+Links no navegador e chamadas internas exigem tratamentos diferentes.
+Os arquivos originais nao foram alterados nesta aula.
+
+SCRIPT DE VALIDACAO:
+scripts/aula-rede-dedicada-docker.ps1
+
+Nenhuma publicacao autorizada.

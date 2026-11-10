@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block title %}{{ product.name }} - Detalhes{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">{{ product.name }}</h3>
+                    <span class="badge bg-secondary fs-6">{{ product.category }}</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Descrição:</h5>
+                        <p class="lead">{{ product.description }}</p>
+                        
+                        <h5>Ingredientes:</h5>
+                        <div class="mb-3">
+                            {% for ingredient in product.ingredients %}
+                                <span class="badge bg-light text-dark me-1 mb-1">{{ ingredient }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="text-success">Preço: R$ {{ "%.2f" | format(product.price) }}</h4>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                {% if product.available %}
+                                    <h5><span class="badge bg-success">✅ Disponível</span></h5>
+                                {% else %}
+                                    <h5><span class="badge bg-danger">❌ Indisponível</span></h5>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('product.list_products') }}" class="btn btn-outline-secondary">
+                        ← Voltar aos Produtos
+                    </a>
+                    <a href="http://localhost:5002/order/create" class="btn btn-success">
+                        🛒 Fazer Pedido
+                    </a>
+                    <a href="http://localhost:5000/auth/dashboard" class="btn btn-outline-info">
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
