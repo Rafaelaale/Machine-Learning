@@ -1,0 +1,23 @@
+{
+  "aula": "Aula 6.5 - Gerenciamento de Acessos Unity Catalog",
+  "data_utc": "2026-11-11T04:53:35.510763+00:00",
+  "validacoes": 8,
+  "resultados": [
+    "Leitura inicialmente autorizada",
+    "Escrita inicialmente autorizada",
+    "REVOKE MODIFY bloqueia escrita e preserva leitura",
+    "Analistas nao podem criar tabelas",
+    "SELECT herdado continua apos REVOKE na tabela",
+    "Remover grant do schema elimina leitura neste exemplo",
+    "Pipeline autorizada a modificar dados",
+    "Pipeline autorizada a criar tabelas"
+  ],
+  "ambiente": "simulacao_didatica_local",
+  "databricks_conectado": false,
+  "revoke_remoto_executado": false,
+  "notas": [
+    "Modelo simplificado de permissoes.",
+    "Nao modela ownership, grupos aninhados ou todas as regras.",
+    "Nao modifica catalogos, usuarios ou grants reais."
+  ]
+}

@@ -1,0 +1,6 @@
+VALIDADO: aula_5_2_gerando_dados_aprimorado.ipynb
+VALIDADO: aula_5_2_job_dados_prod_aprimorado.ipynb
+VALIDADO: aula_5_2_job_monitoramento_drift_aprimorado.ipynb
+SINTAXE PYTHON: OK
+ESTRUTURA NOTEBOOK: OK
+EXECUCAO SPARK: PENDENTE NO DATABRICKS

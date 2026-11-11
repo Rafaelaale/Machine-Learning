@@ -1,0 +1,17 @@
+AUDITORIA LOCAL - PROJETO DE INGESTAO
+2026-11-10 19:34:04.009307
+
+Eventos: 20000
+Produtos: 15
+IDs de eventos unicos: 20000
+JSONs validos: 20000
+Compras finalizadas: 3178
+
+CSV eventos: separador ;
+CSV produtos: separador ,
+Integridade referencial verificada
+
+Notebook Bronze, Silver e Gold preparado.
+Execucao remota no Databricks pendente.
+Nenhuma tabela remota foi alterada.
+Nenhuma publicacao realizada.

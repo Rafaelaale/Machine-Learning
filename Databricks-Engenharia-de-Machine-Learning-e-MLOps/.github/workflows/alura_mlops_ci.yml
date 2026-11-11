@@ -1,0 +1,77 @@
+name: Alura MLOps - Validacao CI
+
+on:
+  push:
+    branches:
+      - develop
+      - stage
+      - main
+    paths:
+      - "aulas/aula_06_01_cicd_mlops/**"
+      - ".github/workflows/alura_mlops_ci.yml"
+
+  pull_request:
+    branches:
+      - stage
+      - main
+    paths:
+      - "aulas/aula_06_01_cicd_mlops/**"
+      - ".github/workflows/alura_mlops_ci.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-projeto:
+    name: Validar Bundle e notebooks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar validador YAML
+        run: python -m pip install PyYAML==6.0.2
+
+      - name: Validar estrutura do Bundle
+        run: |
+          python aulas/aula_06_01_cicd_mlops/VALIDAR_IAC_LOCAL.py aulas/aula_06_01_cicd_mlops
+
+      - name: Testar politica de promocao
+        run: |
+          python aulas/aula_06_01_cicd_mlops/validar_promocao.py --self-test
+
+  validar-promocao:
+    name: Conferir origem do Pull Request
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar branches
+        env:
+          PR_ORIGEM: ${{ github.head_ref }}
+          PR_DESTINO: ${{ github.base_ref }}
+        shell: bash
+        run: |
+          python aulas/aula_06_01_cicd_mlops/validar_promocao.py \
+            --origem "$PR_ORIGEM" \
+            --destino "$PR_DESTINO"
+
+# IMPORTANTE:
+# Este workflow executa somente testes.
+# Nao realiza deploy nem executa Jobs do Databricks.

@@ -1,0 +1,50 @@
+{
+  "aula": "Pipeline Final e Codigos Produtivos",
+  "ambientes": ["dev", "stage", "prod"],
+  "parametro": "env_catalog",
+  "tarefas": [
+    {
+      "id": "ingestao_dados",
+      "arquivo": "01_ingestao_dados.py",
+      "depende_de": []
+    },
+    {
+      "id": "pre_processamento",
+      "arquivo": "02_pre_processamento.py",
+      "depende_de": ["ingestao_dados"]
+    },
+    {
+      "id": "treinamento",
+      "arquivo": "03_treinamento_modelo.py",
+      "depende_de": ["pre_processamento"]
+    },
+    {
+      "id": "dados_prod",
+      "arquivo": "04_gerando_dados_produtivos.py",
+      "depende_de": ["treinamento"],
+      "saidas": ["data_inicio", "data_fim"]
+    },
+    {
+      "id": "monitoramento_drift",
+      "arquivo": "05_monitoramento_drift.py",
+      "depende_de": ["dados_prod"],
+      "saida": "drift_detectado"
+    },
+    {
+      "id": "check_re_treino",
+      "tipo": "condition_task",
+      "depende_de": ["monitoramento_drift"]
+    },
+    {
+      "id": "re_treino_modelo",
+      "arquivo": "06_re_treino.py",
+      "condicao": "drift_detectado == true"
+    },
+    {
+      "id": "deploy_modelo",
+      "arquivo": "07_deploy_modelo.py",
+      "condicao": "retreino concluido OU drift_detectado == false",
+      "processamento": "D-1"
+    }
+  ]
+}

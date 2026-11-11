@@ -1,0 +1,12 @@
+AULA 6.2 - GITHUB ACTIONS E YAML
+Data: 2026-11-11 01:21:02
+JSON: 3 ambientes confirmados
+SQLite: 3 tabelas confirmadas
+Registros por ambiente: 2
+Consistencia JSON e SQLite: APROVADA
+Erro da contagem anterior: CONTORNADO
+Auditoria local: APROVADA
+Arquivos anteriores: PRESERVADOS
+GitHub Actions remoto: NAO EXECUTADO
+Databricks remoto: NAO EXECUTADO
+Deploy remoto: NAO REALIZADO

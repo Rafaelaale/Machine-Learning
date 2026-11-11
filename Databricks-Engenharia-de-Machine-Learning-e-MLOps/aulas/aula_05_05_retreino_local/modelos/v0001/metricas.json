@@ -1,0 +1,15 @@
+{
+  "data_inicio": "20260501",
+  "data_fim_exclusivo": "20260601",
+  "total_drift": 3,
+  "execucao_remota": false,
+  "status": "AVALIADO",
+  "retreino_executado": true,
+  "modelo": "Regressao logistica - Python puro",
+  "registros": 3100,
+  "treino": 2480,
+  "validacao": 620,
+  "auc": 0.999305,
+  "auc_minima": 0.55,
+  "versao": "v0001"
+}

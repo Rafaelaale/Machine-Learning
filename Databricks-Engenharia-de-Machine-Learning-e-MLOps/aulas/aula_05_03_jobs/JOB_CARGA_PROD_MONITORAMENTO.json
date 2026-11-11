@@ -1,0 +1,55 @@
+{
+    "name":  "Aula 5 - Carga Produtiva e Monitoramento",
+    "max_concurrent_runs":  1,
+    "parameters":  [
+                       {
+                           "name":  "data_inicio",
+                           "default":  "20260501"
+                       },
+                       {
+                           "name":  "data_fim",
+                           "default":  "20260601"
+                       },
+                       {
+                           "name":  "features",
+                           "default":  "renda_mensal_k,tempo_medio_clique_segundos"
+                       },
+                       {
+                           "name":  "target",
+                           "default":  "comprou_eletronico"
+                       },
+                       {
+                           "name":  "gravar",
+                           "default":  "true"
+                       },
+                       {
+                           "name":  "catalogo",
+                           "default":  "workspace"
+                       },
+                       {
+                           "name":  "esquema",
+                           "default":  "default"
+                       }
+                   ],
+    "tasks":  [
+                  {
+                      "task_key":  "carga_prod",
+                      "notebook_task":  {
+                                            "notebook_path":  "/Workspace/Users/SEU_EMAIL_DATABRICKS/aula_05_02_drift_aprimorado/aula_5_2_job_dados_prod_aprimorado",
+                                            "source":  "WORKSPACE"
+                                        }
+                  },
+                  {
+                      "task_key":  "monitoramento_drift",
+                      "depends_on":  [
+                                         {
+                                             "task_key":  "carga_prod"
+                                         }
+                                     ],
+                      "notebook_task":  {
+                                            "notebook_path":  "/Workspace/Users/SEU_EMAIL_DATABRICKS/aula_05_02_drift_aprimorado/aula_5_2_job_monitoramento_drift_aprimorado",
+                                            "source":  "WORKSPACE"
+                                        }
+                  }
+              ]
+}

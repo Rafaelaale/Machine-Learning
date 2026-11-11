@@ -1,0 +1,27 @@
+bundle:
+  name: alura_mlops_cicd
+
+include:
+  - resources/*.yml
+
+variables:
+  catalogo_destino:
+    description: "Catalogo por ambiente no Unity Catalog"
+    default: workspace
+
+targets:
+  dev:
+    mode: development
+    default: true
+    variables:
+      catalogo_destino: dev
+
+  staging:
+    mode: development
+    variables:
+      catalogo_destino: stag
+
+  prod:
+    mode: production
+    variables:
+      catalogo_destino: prod

@@ -1,0 +1,34 @@
+{
+    "nome":  "Carga Produtiva - Drift - Retreino",
+    "ambiente":  "LOCAL",
+    "data_inicio":  "20260501",
+    "data_fim_exclusivo":  "20260601",
+    "tarefas":  [
+                    {
+                        "task":  "carga_prod",
+                        "fonte":  "CSV produzido na aula anterior"
+                    },
+                    {
+                        "task":  "monitoramento_drift",
+                        "depende_de":  "carga_prod",
+                        "fonte":  "SQLite produzido na aula anterior"
+                    },
+                    {
+                        "task":  "verificar_drift",
+                        "depende_de":  "monitoramento_drift",
+                        "consulta":  "SELECT COUNT(*) FROM log_monitoramento_drift WHERE drift_detectado = 1 AND periodo_inicio = ? AND periodo_fim = ?"
+                    },
+                    {
+                        "task":  "condicao_drift",
+                        "depende_de":  "verificar_drift",
+                        "condicao":  "total_drift \u003e 0"
+                    },
+                    {
+                        "task":  "re_treino",
+                        "depende_de":  "condicao_drift",
+                        "executar_se":  "true",
+                        "algoritmo_preferencial":  "LightGBM",
+                        "algoritmo_alternativo":  "Regressao logistica"
+                    }
+                ]
+}

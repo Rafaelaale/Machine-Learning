@@ -1,0 +1,49 @@
+# MODELO FUTURO - NAO ESTA EM .github/workflows
+# NAO E EXECUTADO AUTOMATICAMENTE.
+# Exige workspace, credenciais e autorizacao.
+
+name: Databricks - Deploy Manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      ambiente:
+        description: "Ambiente de destino"
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: ${{ vars.AUTORIZAR_DEPLOY_DATABRICKS == 'true' }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.ambiente }}
+
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Validar Bundle
+        working-directory: aulas/aula_06_01_cicd_mlops
+        run: databricks bundle validate -t "${{ inputs.ambiente }}"
+
+      - name: Publicar Bundle
+        working-directory: aulas/aula_06_01_cicd_mlops
+        run: databricks bundle deploy -t "${{ inputs.ambiente }}"
+
+# Nenhum secret deve ser escrito neste arquivo.
+# O exemplo nao realiza deploy enquanto permanecer
+# fora da pasta .github/workflows.

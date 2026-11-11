@@ -1,0 +1,14 @@
+AUDITORIA - TREINAMENTO DE MODELOS
+
+aula_3_2_treinamento_modelos.ipynb: 17 celulas, 10 de codigo
+aula_3_3_SparkML_Hyperopt_Optuna.ipynb: 11 celulas, 5 de codigo
+aula_3_4_projeto_modelos.ipynb: 16 celulas, 10 de codigo
+Dataset Iris: 150 registros
+ATENCAO: Chaves temporais divergentes: timestamp_registro x dia_prtc.
+ATENCAO: Projeto usa divisao aleatoria; avaliar separacao cronologica para e-commerce.
+ATENCAO: Notebook original contem gravacao overwrite. Nao executar sem revisar a tabela de destino.
+ATENCAO: FeatureLookup e Model Registry dependem de tabelas, permissoes e recursos no Databricks.
+
+Material original preservado.
+Nenhum treinamento executado na nuvem.
+Nenhuma publicacao realizada.

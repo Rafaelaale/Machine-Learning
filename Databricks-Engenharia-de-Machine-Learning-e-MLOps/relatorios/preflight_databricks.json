@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-10T19:09:50",
+  "repository": "F:\\Projetos\\Databricks-Engenharia-de-Machine-Learning-e-MLOps\\material-alura\\6123-alura-ml-databricks",
+  "summary": {
+    "files": 33,
+    "notebooks": 16,
+    "cells": 134,
+    "code_cells": 81,
+    "python_scripts": 8,
+    "csv_files": 4,
+    "data_rows": 20315
+  },
+  "findings": [
+    {
+      "level": "INFO",
+      "file": "aula_1/base_bronze_eventos.csv",
+      "message": "CSV: 20000 linhas, separador ',', 1 colunas"
+    },
+    {
+      "level": "INFO",
+      "file": "aula_1/base_dim_produtos.csv",
+      "message": "CSV: 15 linhas, separador ',', 4 colunas"
+    },
+    {
+      "level": "INFO",
+      "file": "aula_1/Iris.csv",
+      "message": "CSV: 150 linhas, separador ',', 6 colunas"
+    },
+    {
+      "level": "INFO",
+      "file": "aula_1/iris_dataset.csv",
+      "message": "CSV: 150 linhas, separador ',', 5 colunas"
+    },
+    {
+      "level": "ATENCAO",
+      "file": "databricks.yml",
+      "message": "Workspace do instrutor identificado. Substituir pelo seu antes de qualquer deploy."
+    },
+    {
+      "level": "ATENCAO",
+      "file": ".github/workflows/deploy.yml",
+      "message": "Workflow com deploy automatico. Manter desativado no projeto de estudo."
+    },
+    {
+      "level": "ATENCAO",
+      "file": "aula_6/pipeline/01_ingestao_dados.py",
+      "message": "A consulta Gold usa tabelas fixas diferentes das variaveis de ambiente."
+    },
+    {
+      "level": "PREPARAR",
+      "file": "aula_6/pipeline/01_ingestao_dados.py",
+      "message": "Carregar CSVs em um Volume do seu workspace antes de executar a ingestao."
+    },
+    {
+      "level": "ATENCAO",
+      "file": "aula_6/pipeline/05_monitoramento_drift.py",
+      "message": "taskKey divergente: o codigo usa task_geracao_dados e o Job usa dados_prod."
+    },
+    {
+      "level": "REVISAR",
+      "file": "aula_6/pipeline/07_deploy_modelo.py",
+      "message": "Predict de classificador normalmente retorna classe. Conferir se o resultado desejado e probabilidade."
+    },
+    {
+      "level": "INFO",
+      "file": "Databricks Free Edition",
+      "message": "Antes da execucao confirmar Unity Catalog, permissoes, serverless, Jobs e MLflow."
+    },
+    {
+      "level": "INFO",
+      "file": "Seguranca",
+      "message": "Nao foram executados deploys, workflows ou modificacoes nos arquivos da Alura."
+    }
+  ]
+}

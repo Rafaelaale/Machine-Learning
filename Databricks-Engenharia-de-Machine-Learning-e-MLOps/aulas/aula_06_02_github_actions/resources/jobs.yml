@@ -1,0 +1,20 @@
+resources:
+  jobs:
+    job_teste_catalog:
+      name: "${bundle.target}_job_teste_catalog"
+
+      tasks:
+        - task_key: criar_usuarios_bronze
+          environment_key: default
+
+          notebook_task:
+            notebook_path: ../notebooks/ingestao_databricks.py
+            source: WORKSPACE
+
+            base_parameters:
+              env_catalog: "${var.env_catalog}"
+
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "2"

@@ -1,0 +1,18 @@
+{
+  "champion": "v0001",
+  "modelos": [
+    {
+      "versao": "v0001",
+      "modelo": "Regressao logistica - Python puro",
+      "auc": 0.999305,
+      "periodo": [
+        "20260501",
+        "20260601"
+      ],
+      "arquivo": "F:\\Projetos\\Databricks-Engenharia-de-Machine-Learning-e-MLOps\\aulas\\aula_05_05_retreino_local\\modelos\\v0001\\modelo_logistico.json"
+    }
+  ],
+  "execucoes": {
+    "20260501_20260601_86e87a5a3245b810": "v0001"
+  }
+}

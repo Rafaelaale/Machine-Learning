@@ -1,0 +1,10 @@
+﻿AULA - CARGA PRODUTIVA E MONITORAMENTO
+JSON: estrutura validada
+Tarefas: 2
+Dependencia carga_prod -> monitoramento_drift: OK
+Parametros: OK
+Notebooks locais: encontrados
+Workspace remoto: pendente de confirmacao
+Criacao remota do Job: nao realizada
+Execucao Databricks: nao realizada
+Arquivos anteriores: preservados

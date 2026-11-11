@@ -1,0 +1,31 @@
+{
+  "aula": "Pipeline Final e Codigos Produtivos",
+  "tipo": "auditoria_estatica",
+  "codigos_verificados": 7,
+  "tarefas_mapeadas": 8,
+  "ambientes": [
+    "dev",
+    "stage",
+    "prod"
+  ],
+  "rotas_condicionais_verificadas": 2,
+  "teste_d_menos_um": "20260531",
+  "hashes_sha256": {
+    "01_ingestao_dados.py": "f950e085d6eb20cc812842f6034d76d7589369a6e889284e673659561f59c1ee",
+    "02_pre_processamento.py": "4b868725658030ec41cf4e0e914acad7d694bac18ec87b516bb47ad07f8406d7",
+    "03_treinamento_modelo.py": "0a591046b76cd6eff9ae426e0e0aac665fd40a9293fe58bcaa33f6999140b56a",
+    "04_gerando_dados_produtivos.py": "ee2b59d083d6a5cef88dacc4efbb6af5975b63c855eef531aaadc46952e89f77",
+    "05_monitoramento_drift.py": "6ae27e0467a59adb60bbcc6ec153f6190c30aa5d29fb7eea0e4552a7a9cdafdf",
+    "06_re_treino.py": "ffad8293ed155f243885f02be42cf58182155a5ace5555c3e2cbc9be22f82d03",
+    "07_deploy_modelo.py": "5539cda8d9475831e7acbee7eb89a15d09303d8915ac802f7e17644c37aee21b"
+  },
+  "pontos_de_atencao": [
+    "Ingestao: referencias fixas ao catalogo workspace.",
+    "Monitoramento: taskKey diverge de dados_prod.",
+    "Deploy: verificar classes versus probabilidades."
+  ],
+  "spark_executado": false,
+  "mlflow_executado": false,
+  "databricks_remoto_executado": false,
+  "deploy_executado": false
+}

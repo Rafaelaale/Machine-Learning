@@ -1,0 +1,8 @@
+iris_dataset.csv: 150 registros, 5 colunas
+Iris.csv: 150 registros, 6 colunas
+base_dim_produtos.csv: 15 registros, 4 colunas
+base_bronze_eventos.csv: 20000 registros, 5 colunas
+
+Notebooks preparados: 2
+Nenhum notebook executado na nuvem.
+Nenhum arquivo original alterado.

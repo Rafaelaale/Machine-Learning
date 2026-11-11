@@ -1,0 +1,23 @@
+AULA - CRIANDO FEATURES NO DATABRICKS
+
+Dataset Iris: 150 registros
+Especies: 3
+Linhas distintas: 147
+Linhas repetidas: 3
+
+Notebook anterior: preservado
+Novo notebook: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\notebooks\aula_02_feature_store\03_criando_features_databricks.ipynb
+
+Conteudos:
+- Chave primaria
+- FeatureEngineeringClient
+- Feature Table
+- petal_ratio
+- write_table(mode=merge)
+- Delta History
+- DROP COLUMN isolado
+- Validacao final
+
+Auditoria local: concluida
+Execucao no Databricks: pendente
+Publicacao: nenhuma

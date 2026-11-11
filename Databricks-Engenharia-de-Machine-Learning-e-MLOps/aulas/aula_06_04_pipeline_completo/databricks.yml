@@ -1,0 +1,36 @@
+bundle:
+  name: alura_pipeline_completo_mlops
+
+include:
+  - resources/*.yml
+
+variables:
+  env_catalog:
+    description: Catalogo de destino no Unity Catalog
+    default: dev
+
+targets:
+  dev:
+    mode: development
+    default: true
+    variables:
+      env_catalog: dev
+
+  stage:
+    mode: development
+    variables:
+      env_catalog: stage
+
+  prod:
+    mode: production
+    variables:
+      env_catalog: prod
+
+sync:
+  exclude:
+    - resultados/**
+    - '*.md'
+    - '*.json'
+    - '*.sqlite'
+    - '*.bak'
+    - __pycache__/**

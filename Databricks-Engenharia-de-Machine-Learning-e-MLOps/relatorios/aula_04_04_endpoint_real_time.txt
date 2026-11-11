@@ -1,0 +1,22 @@
+AULA 4.4 - CRIANDO ENDPOINT E DEPLOY REAL TIME
+
+PROJETO: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps
+FONTE: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\material-alura\6123-alura-ml-databricks\aula_4\aula_4_4_deploy_real_time.ipynb
+NOTEBOOK: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\notebooks\aula_04_deploy\04_endpoint_real_time.py
+DOCUMENTACAO: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\aulas\aula_04_04_endpoint_real_time.md
+
+DATBRICKS SDK: PREPARADO
+MLFLOW MODEL REGISTRY: PREPARADO
+SIGNATURE: 16 FEATURES
+CLIENTES FICTICIOS: 5
+CONSULTA ENDPOINT: PREPARADA
+
+AUTENTICACAO: SEM TOKEN EXPOSTO
+ENVIO AUTOMATICO: DESATIVADO
+CRIACAO AUTOMATICA DE ENDPOINT: NAO
+ALTERACAO CHAMPION: NAO
+
+VALIDACAO LOCAL: SINTAXE APROVADA
+MODELO UC: NAO CONFIRMADO NA NUVEM
+ENDPOINT READY: NAO CONFIRMADO
+INFERENCIA REAL: PENDENTE

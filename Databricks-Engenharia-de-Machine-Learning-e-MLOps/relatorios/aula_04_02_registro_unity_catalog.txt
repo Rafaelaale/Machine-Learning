@@ -1,0 +1,22 @@
+AULA 4.2 - DISPONIBILIZANDO MODELO NO UNITY CATALOG
+
+Projeto: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps
+Fonte Alura: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\material-alura\6123-alura-ml-databricks\aula_4\aula_4_2_salvando_modelo_final.ipynb
+
+Notebook: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\notebooks\aula_04_deploy\02_registro_modelo_unity_catalog.py
+Documentacao: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\aulas\aula_04_02_registro_unity_catalog.md
+
+Encoding Spark: preparado
+FeatureLookup: preparado
+LightGBM: preparado
+Optuna: preparado
+MLflow: preparado
+Signature: preparada
+Registro Unity Catalog: opcional
+
+Sintaxe Python: aprovada
+Treinamento real: pendente
+Modelo registrado na nuvem: nao confirmado
+Deploy: nao realizado
+
+Arquivos anteriores preservados.

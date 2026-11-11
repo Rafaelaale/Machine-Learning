@@ -1,0 +1,20 @@
+AULA 4.3 - DEPLOY DO MODELO EM BATCH
+
+Projeto: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps
+Original Alura: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\material-alura\6123-alura-ml-databricks\aula_4\aula_4_3_deploy_modelo_batch.ipynb
+Notebook preparado: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\notebooks\aula_04_deploy\03_deploy_batch_champion.py
+Documentacao: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\aulas\aula_04_03_deploy_batch.md
+
+MlflowClient: preparado
+Consulta de versoes: preparada
+Alias Champion: protegido por confirmacao
+Signature: validacao preparada
+Clientes ficticios: 13
+Spark UDF: preparada
+Previsoes Delta: opcionais
+Overwrite: nao utilizado
+
+Sintaxe local: aprovada
+Modelo registrado na nuvem: nao confirmado
+Inferencia real: pendente
+Nenhum deploy executado pelo PowerShell

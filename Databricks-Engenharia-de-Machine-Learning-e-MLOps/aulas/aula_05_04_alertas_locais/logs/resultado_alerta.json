@@ -1,0 +1,47 @@
+{
+  "status": "TRIGGERED",
+  "periodo_inicio": "20260501",
+  "periodo_fim_exclusivo": "20260601",
+  "registros_treinamento": 10000,
+  "registros_producao": 3100,
+  "numero_dias": 31,
+  "metricas": [
+    {
+      "timestamp_execucao": "2026-11-11T03:38:09+00:00",
+      "periodo_inicio": "20260501",
+      "periodo_fim": "20260601",
+      "nome_metrica": "Feature drift KS: p-value",
+      "variavel": "renda_mensal_k",
+      "valor_calculado": 5.228182949275272e-189,
+      "threshold_alerta": 0.05,
+      "drift_detectado": 1,
+      "estatistica_ks": 0.95
+    },
+    {
+      "timestamp_execucao": "2026-11-11T03:38:09+00:00",
+      "periodo_inicio": "20260501",
+      "periodo_fim": "20260601",
+      "nome_metrica": "Feature drift KS: p-value",
+      "variavel": "tempo_medio_clique_segundos",
+      "valor_calculado": 7.351254429334346e-138,
+      "threshold_alerta": 0.05,
+      "drift_detectado": 1,
+      "estatistica_ks": 0.8109999999999999
+    },
+    {
+      "timestamp_execucao": "2026-11-11T03:38:09+00:00",
+      "periodo_inicio": "20260501",
+      "periodo_fim": "20260601",
+      "nome_metrica": "Target drift: variacao relativa",
+      "variavel": "comprou_eletronico",
+      "valor_calculado": 0.4845168702318368,
+      "threshold_alerta": 0.15,
+      "drift_detectado": 1,
+      "estatistica_ks": null
+    }
+  ],
+  "quantidade_alertas": 3,
+  "notificacao_nova": true,
+  "entrega": "local - sem email ou Databricks",
+  "metodo_ks": "KS com p-value assintotico aproximado"
+}

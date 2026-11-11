@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "name": "PROJETO COMPLETO",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.venv*": true,
+      "**/venv": true,
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true,
+      "**/.ipynb_checkpoints": true,
+      "**/node_modules": true,
+      "**/*.download": true,
+      "**/*.bak": true
+    },
+    "search.exclude": {
+      "**/.venv*": true,
+      "**/venv": true,
+      "**/node_modules": true,
+      "**/__pycache__": true
+    }
+  }
+}

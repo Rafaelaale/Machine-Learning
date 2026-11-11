@@ -1,0 +1,27 @@
+bundle:
+  name: alura_pipeline_mlops_iac
+
+include:
+  - resources/*.yml
+
+variables:
+  env_catalog:
+    description: Catalogo alvo no Unity Catalog
+    default: dev
+
+targets:
+  dev:
+    mode: development
+    default: true
+    variables:
+      env_catalog: dev
+
+  stage:
+    mode: development
+    variables:
+      env_catalog: stage
+
+  prod:
+    mode: production
+    variables:
+      env_catalog: prod

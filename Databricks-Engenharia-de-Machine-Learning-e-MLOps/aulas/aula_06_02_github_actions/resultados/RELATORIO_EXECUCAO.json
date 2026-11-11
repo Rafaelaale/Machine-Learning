@@ -1,0 +1,17 @@
+[
+  {
+    "ambiente": "dev",
+    "tabela": "dev_default_usuarios_bronze",
+    "registros": 2
+  },
+  {
+    "ambiente": "stage",
+    "tabela": "stage_default_usuarios_bronze",
+    "registros": 2
+  },
+  {
+    "ambiente": "prod",
+    "tabela": "prod_default_usuarios_bronze",
+    "registros": 2
+  }
+]

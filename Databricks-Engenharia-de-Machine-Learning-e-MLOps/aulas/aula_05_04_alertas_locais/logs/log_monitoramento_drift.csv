@@ -1,0 +1,4 @@
+﻿timestamp_execucao,periodo_inicio,periodo_fim,nome_metrica,variavel,valor_calculado,threshold_alerta,drift_detectado,estatistica_ks
+2026-11-11T03:38:09+00:00,20260501,20260601,Feature drift KS: p-value,renda_mensal_k,5.228182949275272e-189,0.05,1,0.95
+2026-11-11T03:38:09+00:00,20260501,20260601,Feature drift KS: p-value,tempo_medio_clique_segundos,7.351254429334346e-138,0.05,1,0.8109999999999999
+2026-11-11T03:38:09+00:00,20260501,20260601,Target drift: variacao relativa,comprou_eletronico,0.4845168702318368,0.15,1,

@@ -1,0 +1,13 @@
+AULA - ALERTAS DE DRIFT
+Treinamento: 10000
+Producao: 3100
+Dias: 31
+Metricas: 3
+Drifts: 3
+Estado: TRIGGERED
+SQLite: criado e consultado
+Notificacao local: registrada
+Email: nao configurado
+Agendamento automatico: nao configurado
+Databricks remoto: nao executado
+Notebooks anteriores: preservados

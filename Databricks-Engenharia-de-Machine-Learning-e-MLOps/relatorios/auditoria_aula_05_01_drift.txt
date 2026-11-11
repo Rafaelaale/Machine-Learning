@@ -1,0 +1,22 @@
+AUDITORIA AULA 5.1 - MONITORAMENTO E DRIFT
+
+VALIDADO: aula_5_2_gerando_dados.ipynb | celulas=1 | codigo=1
+VALIDADO: aula_5_2_job_dados_prod.ipynb | celulas=1 | codigo=1
+VALIDADO: aula_5_2_job_monitoramento_drift.ipynb | celulas=1 | codigo=1
+VALIDADO: verificar_drift.ipynb | celulas=2 | codigo=2
+VALIDADO: aula_5_5_re_treino.ipynb | celulas=2 | codigo=2
+VALIDADO: aula_5_5_promp_genie.ipynb | celulas=3 | codigo=0
+VALIDADO: carga_produtiva_monitoramento.yaml
+
+PONTOS DE ATENCAO:
+ATENCAO: KS sobre distribuicoes numericas; p-value sozinho nao mede impacto
+ATENCAO: Mudanca na taxa do target tratada como concept drift; classificacao precisa revisao
+ATENCAO: Contagem de alertas antigos sem filtro de periodo
+ATENCAO: Append produtivo pode duplicar dados ao reexecutar periodos
+ATENCAO: Retreinamento promove Champion automaticamente
+ATENCAO: Retreinamento original realiza divisao aleatoria
+ATENCAO: YAML possui caminho de usuario ainda nao configurado
+
+RESULTADO: 6 NOTEBOOKS + 1 YAML INSPECIONADOS
+Auditoria apenas estatica; codigo da Alura nao executado.
+Nenhum job criado, nenhuma tabela alterada, nenhum alias promovido.

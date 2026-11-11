@@ -1,0 +1,15 @@
+AULA 6.4 - PIPELINE MLOPS COMPLETO
+Data: 2026-11-11 01:48:30
+Erro Python -c: CONTORNADO
+PyYAML: DISPONIVEL
+Sete notebooks: VALIDADOS ESTATICAMENTE
+Oito tarefas: ESTRUTURA VALIDADA
+Seis cenarios condicionais: APROVADOS
+Ambientes: DEV, STAGE, PROD
+Bundle YAML: VALIDADO LOCALMENTE
+Arquivos anteriores: PRESERVADOS
+Execucao real dos modelos: NAO REALIZADA
+GitHub Actions remoto: NAO EXECUTADO
+Databricks remoto: NAO EXECUTADO
+Deploy remoto: NAO REALIZADO
+AUDITORIA LOCAL: APROVADA

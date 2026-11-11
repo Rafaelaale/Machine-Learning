@@ -1,0 +1,12 @@
+AULA - RETREINO AUTOMATIZADO
+Periodo: 20260501 a 20260601 (fim exclusivo)
+Total de drifts: 3
+Estado: CONCLUIDO
+Retreino nesta execucao: True
+Algoritmo: Regressao logistica - Python puro
+AUC: 0.999305
+Champion local: v0001
+Banco e CSV anteriores: preservados
+Databricks remoto: nao executado
+MLflow remoto: nao executado
+VS Code: configuracoes preservadas

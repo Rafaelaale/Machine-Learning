@@ -1,0 +1,16 @@
+bundle:
+  name: alura_mlops_drift
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+  staging:
+    mode: development
+
+  prod:
+    mode: production

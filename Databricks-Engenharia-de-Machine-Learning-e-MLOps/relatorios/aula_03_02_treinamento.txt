@@ -1,0 +1,19 @@
+AULA 3.2 - TREINAMENTO DE MODELOS
+
+Fonte Alura: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\material-alura\6123-alura-ml-databricks\aula_3\aula_3_2_treinamento_modelos.ipynb
+Dataset Iris: 150 registros
+Especies: 3
+
+Notebook MLflow: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\notebooks\aula_03_treinamento\02_featurelookup_mlflow_model_registry.py
+Notebook AutoML: F:\Projetos\Databricks-Engenharia-de-Machine-Learning-e-MLOps\notebooks\aula_03_treinamento\03_automl_bike_sharing.py
+
+FeatureLookup: preparado
+Quatro modelos: preparados
+MLflow: preparado
+Registro UC: opcional e desativado por padrao
+AutoML: preparado, sujeito a disponibilidade
+
+Validacao local: sintaxe aprovada
+Treinamento real: pendente
+Tabelas Databricks: ainda nao verificadas remotamente
+Nenhum deploy ou publicacao

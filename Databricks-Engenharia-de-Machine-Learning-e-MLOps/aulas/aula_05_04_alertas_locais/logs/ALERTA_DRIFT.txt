@@ -1,0 +1,10 @@
+AULA ALERTAS - TRIGGERED
+Periodo: 20260501 a 20260601 (fim exclusivo)
+Treinamento: 10000
+Producao: 3100
+Particoes: 31
+Drifts detectados: 3 de 3
+Notificacao nova: SIM
+renda_mensal_k: valor=5.2281829e-189; alerta=True
+tempo_medio_clique_segundos: valor=7.3512544e-138; alerta=True
+comprou_eletronico: valor=0.48451687; alerta=True

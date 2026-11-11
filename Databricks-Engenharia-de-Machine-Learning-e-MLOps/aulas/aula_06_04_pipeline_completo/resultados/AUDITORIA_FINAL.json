@@ -1,0 +1,109 @@
+{
+  "data_utc": "2026-11-11T04:48:30.340876+00:00",
+  "tipo": "VALIDACAO_E_SIMULACAO_DE_CONTROLE",
+  "tarefas": 8,
+  "notebooks": 7,
+  "ambientes": 3,
+  "cenarios": {
+    "dev_SEM_DRIFT": {
+      "drift_simulado": false,
+      "estados_simulados": {
+        "ingestao_dados": "SUCCESS",
+        "pre_processamento": "SUCCESS",
+        "treinamento": "SUCCESS",
+        "dados_prod": "SUCCESS",
+        "monitoramento_drift": "SUCCESS",
+        "check_re_treino": "FALSE",
+        "re_treino_modelo": "SKIPPED",
+        "deploy_modelo": "ELIGIBLE_SIMULATED"
+      },
+      "data_fim_exclusiva_teste": "20260601",
+      "dia_d_menos_1": "20260531"
+    },
+    "dev_COM_DRIFT": {
+      "drift_simulado": true,
+      "estados_simulados": {
+        "ingestao_dados": "SUCCESS",
+        "pre_processamento": "SUCCESS",
+        "treinamento": "SUCCESS",
+        "dados_prod": "SUCCESS",
+        "monitoramento_drift": "SUCCESS",
+        "check_re_treino": "TRUE",
+        "re_treino_modelo": "SUCCESS",
+        "deploy_modelo": "ELIGIBLE_SIMULATED"
+      },
+      "data_fim_exclusiva_teste": "20260601",
+      "dia_d_menos_1": "20260531"
+    },
+    "stage_SEM_DRIFT": {
+      "drift_simulado": false,
+      "estados_simulados": {
+        "ingestao_dados": "SUCCESS",
+        "pre_processamento": "SUCCESS",
+        "treinamento": "SUCCESS",
+        "dados_prod": "SUCCESS",
+        "monitoramento_drift": "SUCCESS",
+        "check_re_treino": "FALSE",
+        "re_treino_modelo": "SKIPPED",
+        "deploy_modelo": "ELIGIBLE_SIMULATED"
+      },
+      "data_fim_exclusiva_teste": "20260601",
+      "dia_d_menos_1": "20260531"
+    },
+    "stage_COM_DRIFT": {
+      "drift_simulado": true,
+      "estados_simulados": {
+        "ingestao_dados": "SUCCESS",
+        "pre_processamento": "SUCCESS",
+        "treinamento": "SUCCESS",
+        "dados_prod": "SUCCESS",
+        "monitoramento_drift": "SUCCESS",
+        "check_re_treino": "TRUE",
+        "re_treino_modelo": "SUCCESS",
+        "deploy_modelo": "ELIGIBLE_SIMULATED"
+      },
+      "data_fim_exclusiva_teste": "20260601",
+      "dia_d_menos_1": "20260531"
+    },
+    "prod_SEM_DRIFT": {
+      "drift_simulado": false,
+      "estados_simulados": {
+        "ingestao_dados": "SUCCESS",
+        "pre_processamento": "SUCCESS",
+        "treinamento": "SUCCESS",
+        "dados_prod": "SUCCESS",
+        "monitoramento_drift": "SUCCESS",
+        "check_re_treino": "FALSE",
+        "re_treino_modelo": "SKIPPED",
+        "deploy_modelo": "ELIGIBLE_SIMULATED"
+      },
+      "data_fim_exclusiva_teste": "20260601",
+      "dia_d_menos_1": "20260531"
+    },
+    "prod_COM_DRIFT": {
+      "drift_simulado": true,
+      "estados_simulados": {
+        "ingestao_dados": "SUCCESS",
+        "pre_processamento": "SUCCESS",
+        "treinamento": "SUCCESS",
+        "dados_prod": "SUCCESS",
+        "monitoramento_drift": "SUCCESS",
+        "check_re_treino": "TRUE",
+        "re_treino_modelo": "SUCCESS",
+        "deploy_modelo": "ELIGIBLE_SIMULATED"
+      },
+      "data_fim_exclusiva_teste": "20260601",
+      "dia_d_menos_1": "20260531"
+    }
+  },
+  "execucao_real_de_modelos": false,
+  "deploy_databricks": false,
+  "git_push_realizado": false,
+  "bundle_validate_oficial": false,
+  "pendencias": [
+    "Volumes CSV necessarios no Databricks",
+    "Validacao oficial com Databricks CLI",
+    "Execucao real Spark, Feature Store e MLflow",
+    "Testes do contrato de previsao LightGBM"
+  ]
+}

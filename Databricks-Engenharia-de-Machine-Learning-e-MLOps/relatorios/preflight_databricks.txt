@@ -1,0 +1,30 @@
+PRE-FLIGHT DATABRICKS FREE EDITION
+
+RESUMO
+files: 33
+notebooks: 16
+cells: 134
+code_cells: 81
+python_scripts: 8
+csv_files: 4
+data_rows: 20315
+
+ACHADOS E ACOES FUTURAS
+[INFO] aula_1/base_bronze_eventos.csv: CSV: 20000 linhas, separador ',', 1 colunas
+[INFO] aula_1/base_dim_produtos.csv: CSV: 15 linhas, separador ',', 4 colunas
+[INFO] aula_1/Iris.csv: CSV: 150 linhas, separador ',', 6 colunas
+[INFO] aula_1/iris_dataset.csv: CSV: 150 linhas, separador ',', 5 colunas
+[ATENCAO] databricks.yml: Workspace do instrutor identificado. Substituir pelo seu antes de qualquer deploy.
+[ATENCAO] .github/workflows/deploy.yml: Workflow com deploy automatico. Manter desativado no projeto de estudo.
+[ATENCAO] aula_6/pipeline/01_ingestao_dados.py: A consulta Gold usa tabelas fixas diferentes das variaveis de ambiente.
+[PREPARAR] aula_6/pipeline/01_ingestao_dados.py: Carregar CSVs em um Volume do seu workspace antes de executar a ingestao.
+[ATENCAO] aula_6/pipeline/05_monitoramento_drift.py: taskKey divergente: o codigo usa task_geracao_dados e o Job usa dados_prod.
+[REVISAR] aula_6/pipeline/07_deploy_modelo.py: Predict de classificador normalmente retorna classe. Conferir se o resultado desejado e probabilidade.
+[INFO] Databricks Free Edition: Antes da execucao confirmar Unity Catalog, permissoes, serverless, Jobs e MLflow.
+[INFO] Seguranca: Nao foram executados deploys, workflows ou modificacoes nos arquivos da Alura.
+
+LIMITACOES
+Auditoria estatica, sem executar Spark ou Databricks.
+Sintaxe YAML e permissões remotas ainda nao testadas.
+Arquivos originais da Alura preservados.
+Nenhum deploy ou publicacao realizada.

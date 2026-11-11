@@ -1,0 +1,15 @@
+AULA 6 - CI/CD MLOPS
+Data: 2026-11-11 01:08:08
+Nome do Bundle: alura_mlops_cicd
+Erro do validador: CORRIGIDO
+Bundle: VALIDACAO LOCAL APROVADA
+Notebooks: ESTRUTURA VALIDADA
+Cinco tarefas: VALIDADAS
+Dependencias: VALIDADAS
+Promocao entre branches: TESTES APROVADOS
+GitHub Actions: ESTRUTURA BASICA CONFERIDA
+Arquivos anteriores: PRESERVADOS
+Publicacao GitHub: NAO REALIZADA
+Execucao GitHub Actions: NAO REALIZADA
+Deploy Databricks: NAO REALIZADO
+Validacao oficial Databricks: PENDENTE

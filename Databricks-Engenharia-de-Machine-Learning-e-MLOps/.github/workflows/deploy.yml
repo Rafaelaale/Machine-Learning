@@ -1,0 +1,91 @@
+name: Alura - CI CD Simulacao Local
+
+# MODO_LOCAL_SEM_DATABRICKS
+# Nao publica Jobs nem acessa o Databricks.
+
+on:
+  push:
+    branches: [develop, stage, main]
+
+  pull_request:
+    branches: [stage, main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  simular-dev:
+    name: Simular desenvolvimento
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python -m pip install PyYAML==6.0.2
+
+      - name: Validar e simular DEV
+        run: python aulas/aula_06_02_github_actions/validar_e_simular.py --ambiente dev
+
+  simular-stage:
+    name: Simular homologacao
+    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python -m pip install PyYAML==6.0.2
+
+      - name: Validar e simular STAGE
+        run: python aulas/aula_06_02_github_actions/validar_e_simular.py --ambiente stage
+
+  validar-pr:
+    name: Validar origem do Pull Request
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python -m pip install PyYAML==6.0.2
+
+      - name: Verificar regra de promocao
+        env:
+          ORIGEM: ${{ github.head_ref }}
+          DESTINO: ${{ github.base_ref }}
+
+        run: |
+          python aulas/aula_06_02_github_actions/validar_e_simular.py --origem "$ORIGEM" --destino "$DESTINO" --validar
+
+  simular-prod:
+    name: Simular producao
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python -m pip install PyYAML==6.0.2
+
+      - name: Validar e simular PROD
+        run: python aulas/aula_06_02_github_actions/validar_e_simular.py --ambiente prod
